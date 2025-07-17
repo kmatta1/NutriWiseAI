@@ -1,0 +1,7 @@
+# This is a basic apphosting.yaml file for a Next.js app.
+# It specifies the resources for the backend Cloud Run service.
+run:
+  resources:
+    cpu: 1
+    memoryMiB: 1024
+    ephemeralStorage: 1Gi

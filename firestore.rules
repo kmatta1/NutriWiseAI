@@ -1,0 +1,39 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    // Users Collection
+    // - Anyone can create a user document (for signup).
+    // - Users can only read, update, or delete their own document.
+    match /users/{userId} {
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+      
+      // Plans Subcollection
+      // - Users can create, read, and delete their own supplement plans.
+      match /plans/{planId} {
+        allow create, read, delete: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Tracker Logs Subcollection
+      // - Users can create, read, and delete their own tracker logs.
+      match /tracker-logs/{logId} {
+      	allow create, read, delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // Admin Read-All Users
+    // - This allows a user with the 'isAdmin' flag to read all user documents.
+    // - This is useful for an admin dashboard.
+    match /users/{userId} {
+      allow list: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    
+    // Community Chat
+    // - Authenticated users can read and write to the chat.
+    match /community-chat/{messageId} {
+      allow read, create: if request.auth != null;
+    }
+  }
+}
