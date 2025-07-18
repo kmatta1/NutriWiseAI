@@ -4,7 +4,8 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import { onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
-import { getOrCreateUserProfile, logout } from '@/lib/auth-actions';
+import { logout } from '@/lib/auth-actions';
+import { getOrCreateUserProfile } from '@/lib/profile-utils';
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
@@ -43,14 +44,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
 
   const handleAuthStateChange = useCallback(async (userState: User | null) => {
+    console.log("🔄 Auth state changed:", userState ? `User: ${userState.email}, Verified: ${userState.emailVerified}` : "No user");
     setLoading(true);
     if (userState) {
+        console.log("🔄 Attempting to get/create user profile for:", userState.email);
         const { success, profile: fetchedProfile, error } = await getOrCreateUserProfile(userState);
+        console.log("🔄 Profile result:", { success, profile: fetchedProfile, error });
         if (success && fetchedProfile) {
             setUser(userState);
             setProfile(fetchedProfile);
+            console.log("✅ User profile loaded successfully");
         } else {
-            console.error("Profile fetch/create failed:", error);
+            console.error("❌ Profile fetch/create failed:", error);
             toast({ 
                 variant: "destructive", 
                 title: "Authentication Error", 
@@ -68,9 +73,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [toast]);
 
   useEffect(() => {
+    console.log("🚀 Setting up Firebase Auth listener...");
     const auth = getFirebaseAuth();
-    const unsubscribe = onAuthStateChanged(auth, handleAuthStateChange);
-    return () => unsubscribe();
+    console.log("🚀 Firebase Auth instance:", auth);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("🔥 onAuthStateChanged triggered with user:", user ? user.email : "null");
+      handleAuthStateChange(user);
+    });
+    return () => {
+      console.log("🚀 Cleaning up Firebase Auth listener");
+      unsubscribe();
+    };
   }, [handleAuthStateChange]);
 
   // Centralized redirection logic
@@ -97,13 +110,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [user, loading, pathname, router, searchParams]);
   
   const refreshAuthStatus = useCallback(async () => {
+    console.log("🔍 Refreshing auth status...");
     const auth = getFirebaseAuth();
     const currentUser = auth.currentUser;
     if (currentUser) {
+      console.log("🔍 Current user found, reloading...");
       await currentUser.reload();
-      // The onAuthStateChanged listener will automatically pick up the change and re-run handleAuthStateChange
+      // Force a re-evaluation of the auth state
+      await handleAuthStateChange(currentUser);
+    } else {
+      console.log("🔍 No current user found during refresh");
+      // If no current user, ensure we clear the state
+      await handleAuthStateChange(null);
     }
-  }, []);
+  }, [handleAuthStateChange]);
 
   const googleSignIn = async (initialPlanJson?: string): Promise<void> => {
     if (isAuthInProgress) return;

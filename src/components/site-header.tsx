@@ -8,6 +8,7 @@ import { useCart } from "@/contexts/cart-context";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 import { useAuth } from "@/contexts/auth-context";
+import { useAuthActions } from "@/hooks/use-auth-actions";
 import { logout } from "@/lib/auth-actions";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -31,23 +32,35 @@ const Logotype = () => (
 );
 
 const AuthNavDesktop = () => {
-  const { user, profile } = useAuth();
+  const { user, profile, loading } = useAuth();
+  const { logout: clientLogout, isLoading: isLoggingOut } = useAuthActions();
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2">
+        <Skeleton className="h-10 w-20" />
+        <Skeleton className="h-10 w-32" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center gap-2">
-      {user ? (
+      {user && user.emailVerified ? (
         <>
           {!profile?.isPremium && (
              <Button asChild variant="premium">
                 <Link href="/subscribe"><Crown className="mr-2 h-4 w-4"/> Upgrade</Link>
               </Button>
           )}
-          <form action={logout}>
-            <Button variant="outline" type="submit">
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </Button>
-          </form>
+          <Button 
+            variant="outline" 
+            onClick={clientLogout}
+            disabled={isLoggingOut}
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            {isLoggingOut ? "Signing out..." : "Logout"}
+          </Button>
         </>
       ) : (
         <>
@@ -61,22 +74,29 @@ const AuthNavDesktop = () => {
 
 
 const AuthNavMobile = ({ closeSheet }: { closeSheet: () => void }) => {
-  const { user, profile } = useAuth();
+  const { user, profile, loading } = useAuth();
+  const { logout: clientLogout, isLoading: isLoggingOut } = useAuthActions();
   return (
     <div className="flex flex-col space-y-4">
-      {user ? (
+      {user && user.emailVerified ? (
         <>
          {!profile?.isPremium && (
              <Button asChild variant="premium" onClick={closeSheet}>
                 <Link href="/subscribe"><Crown className="mr-2 h-4 w-4"/> Upgrade</Link>
               </Button>
           )}
-          <form action={logout}>
-            <Button variant="ghost" className="w-full justify-start" type="submit" onClick={closeSheet}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </Button>
-          </form>
+          <Button 
+            variant="ghost" 
+            className="w-full justify-start" 
+            onClick={async () => {
+              await clientLogout();
+              closeSheet();
+            }}
+            disabled={isLoggingOut}
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            {isLoggingOut ? "Signing out..." : "Logout"}
+          </Button>
         </>
       ) : (
         <>

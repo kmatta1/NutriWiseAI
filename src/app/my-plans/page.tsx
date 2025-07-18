@@ -7,7 +7,6 @@ import { getFirebaseFirestore } from "@/lib/firebase";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import type { SupplementAdvisorOutput } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { PlusCircle, Crown, Sparkles, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { PersonalizedSchedule } from "@/components/personalized-schedule";

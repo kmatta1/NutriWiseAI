@@ -1,37 +1,26 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import type { SupplementAdvisorOutput, SupplementAdvisorInput } from "@/lib/types";
+import type { SupplementAdvisorOutput, SupplementAdvisorInput } from "@/lib/actions";
 import { suggestSupplementsAction } from "@/lib/actions";
 import AdvisorForm from "@/components/advisor-form";
-import AdvisorResults from "@/components/advisor-results";
+import SupplementStackCard from "@/components/supplement-stack-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { useAppContext } from "@/contexts/app-context";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function AdvisorPage() {
   const [loading, setLoading] = useState(false);
-  const { recommendationContext, setRecommendationContext } = useAppContext();
   const { toast } = useToast();
-
   const [results, setResults] = useState<SupplementAdvisorOutput | null>(null);
-
-  useEffect(() => {
-    if (recommendationContext) {
-      setResults(recommendationContext.output);
-    } else {
-      setResults(null);
-    }
-  }, [recommendationContext]);
-
 
   const handleSubmit = async (data: any) => {
     setLoading(true);
     setResults(null);
-    setRecommendationContext(null); 
+    
     try {
       const weightInKg = Math.round(parseInt(data.weight, 10) * 0.453592);
       const input: SupplementAdvisorInput = {
@@ -41,7 +30,6 @@ export default function AdvisorPage() {
       };
       const result = await suggestSupplementsAction(input);
       setResults(result);
-      setRecommendationContext({ input, output: result });
 
     } catch (error: any) {
       console.error("Error submitting advisor form:", error);
@@ -78,9 +66,47 @@ export default function AdvisorPage() {
       <div className="container mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-theme(height.14))] py-12 md:py-24 px-4">
         {loading ? (
           <LoadingSkeleton />
-        ) : results ? (
+        ) : results && results.success ? (
           <div className="w-full max-w-4xl">
-            <AdvisorResults results={results} />
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">
+                Your Personalized Supplement Stack
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                Based on scientific research and your unique profile
+              </p>
+            </div>
+            <SupplementStackCard 
+              stack={results.stack} 
+              onPurchase={(_stack: any) => {
+                toast({
+                  title: "Redirecting to Purchase",
+                  description: "Taking you to the recommended products..."
+                });
+                // Handle purchase logic here
+              }}
+              isLoading={loading}
+            />
+          </div>
+        ) : results && !results.success ? (
+          <div className="w-full max-w-4xl">
+            <Card className="border-red-200 bg-red-50">
+              <CardContent className="pt-8 text-center">
+                <h2 className="text-2xl font-bold text-red-800 mb-4">
+                  Unable to Generate Recommendations
+                </h2>
+                <p className="text-red-700 mb-6">
+                  {results.message || "There was an error generating your supplement stack. Please try again."}
+                </p>
+                <Button 
+                  onClick={() => setResults(null)}
+                  variant="outline"
+                  className="border-red-300 text-red-800 hover:bg-red-100"
+                >
+                  Try Again
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         ) : (
           <>

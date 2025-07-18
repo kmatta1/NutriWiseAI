@@ -6,7 +6,6 @@ import { Suspense } from "react";
 import { useAuth } from "@/contexts/auth-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Banknote, CreditCard, Loader2 } from "lucide-react";
 import { getFirebaseFirestore } from "@/lib/firebase";

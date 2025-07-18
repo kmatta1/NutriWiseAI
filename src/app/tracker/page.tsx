@@ -102,8 +102,6 @@ export default function TrackerPage() {
   const [measurementForm, setMeasurementForm] = useState({ part: '', measurement: '', unit: 'in' });
   const [photoForm, setPhotoForm] = useState({ photoUrl: '', notes: '' });
   const [journalForm, setJournalForm] = useState({ entry: '' });
-  
-  const today = new Date().toLocaleDateString('en-US');
 
   const fetchLogs = useCallback(async () => {
     if (!user || !profile?.isPremium) {

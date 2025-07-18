@@ -1,3 +1,17 @@
 {
-  "/page": "app/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/admin/users/page": "app/admin/users/page.js",
+  "/cart/page": "app/cart/page.js",
+  "/page": "app/page.js",
+  "/advisor/page": "app/advisor/page.js",
+  "/community/page": "app/community/page.js",
+  "/my-plans/page": "app/my-plans/page.js",
+  "/subscribe/checkout/page": "app/subscribe/checkout/page.js",
+  "/tracker/page": "app/tracker/page.js",
+  "/subscribe/page": "app/subscribe/page.js",
+  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js"
 }

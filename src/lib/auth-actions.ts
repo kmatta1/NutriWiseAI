@@ -1,4 +1,3 @@
-
 "use server";
 
 import { getFirebaseAuth, getFirebaseFirestore } from "@/lib/firebase";
@@ -10,8 +9,7 @@ import {
   signOut,
   updateProfile
 } from "firebase/auth";
-import { doc, getDoc, setDoc, serverTimestamp, Timestamp, collection, addDoc } from "firebase/firestore";
-import type { User } from "firebase/auth";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import type { UserProfile } from "./types";
 import { SupplementAdvisorInputSchema, SupplementAdvisorOutputSchema } from "./types";
 import { z } from "zod";
@@ -23,7 +21,7 @@ export interface FormState {
   profile?: UserProfile;
 }
 
-export async function signup(prevState: FormState | null, formData: FormData): Promise<FormState> {
+export async function signup(_prevState: FormState | null, formData: FormData): Promise<FormState> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const firstName = formData.get("firstName") as string;
@@ -43,7 +41,7 @@ export async function signup(prevState: FormState | null, formData: FormData): P
     
     await updateProfile(userCredential.user, { displayName });
     await sendEmailVerification(userCredential.user);
-    await getOrCreateUserProfile(userCredential.user);
+    // Profile creation will be handled by the client-side auth state change
 
     return { success: true };
 
@@ -56,7 +54,7 @@ export async function signup(prevState: FormState | null, formData: FormData): P
 }
 
 
-export async function login(prevState: FormState | null, formData: FormData): Promise<FormState> {
+export async function login(_prevState: FormState | null, formData: FormData): Promise<FormState> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
@@ -86,7 +84,7 @@ export async function logout() {
 }
 
 
-export async function resetPassword(prevState: FormState | null, formData: FormData): Promise<FormState> {
+export async function resetPassword(_prevState: FormState | null, formData: FormData): Promise<FormState> {
     const email = formData.get("email") as string;
     if (!email) {
         return { error: "Please enter your email address." };
@@ -125,63 +123,5 @@ export async function saveInitialPlanForUser(userId: string, planJson: string) {
 
   } catch (error) {
     console.error(`Failed to save initial plan for user ${userId}:`, error);
-  }
-}
-
-export async function getOrCreateUserProfile(user: User, initialPlanJson?: string): Promise<{ success: boolean; profile?: UserProfile; error?: string }> {
-  const firestore = getFirebaseFirestore();
-  const userDocRef = doc(firestore, "users", user.uid);
-
-  try {
-    const userDoc = await getDoc(userDocRef);
-
-    if (userDoc.exists()) {
-      const data = userDoc.data();
-      const sub = data.subscription;
-      let isPremium = false;
-      if (sub?.status === 'active' && sub.endDate) {
-          const endDate = sub.endDate?.toDate ? sub.endDate.toDate() : new Date(sub.endDate);
-          isPremium = endDate > new Date();
-      }
-
-      const profile: UserProfile = {
-        email: data.email,
-        displayName: data.displayName,
-        photoURL: data.photoURL,
-        createdAt: data.createdAt?.toDate().toISOString() || new Date().toISOString(),
-        isAdmin: data.isAdmin ?? false,
-        isPremium: isPremium,
-        subscription: sub,
-      };
-      return { success: true, profile };
-    } else {
-      const displayName = user.displayName || user.email?.split('@')[0] || 'User';
-      const photoURL = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=random&color=fff`;
-
-      const newUserProfileData = {
-        email: user.email,
-        displayName: displayName,
-        photoURL: photoURL,
-        createdAt: serverTimestamp(),
-        isAdmin: false,
-      };
-
-      await setDoc(userDocRef, newUserProfileData);
-      
-      if (initialPlanJson) {
-        await saveInitialPlanForUser(user.uid, initialPlanJson);
-      }
-
-      const profile: UserProfile = {
-        ...newUserProfileData,
-        createdAt: new Date().toISOString(),
-        isPremium: false,
-      };
-
-      return { success: true, profile };
-    }
-  } catch (error: any) {
-    console.error("Error in getOrCreateUserProfile:", error);
-    return { success: false, error: error.message };
   }
 }
