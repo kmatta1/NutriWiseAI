@@ -1,61 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71% 4%;
-    --card: 0 0% 98%;
-    --card-foreground: 224 71% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 224 71% 4%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 215 20% 45%;
-    --accent: 210 40% 98%;
-    --accent-foreground: 224 71% 4%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 215 20% 90%;
-    --input: 215 20% 90%;
-    --ring: 221 83% 53%;
-    --radius: 0.75rem;
-  }
- 
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 224 71% 4%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 210 40% 98%;
-  }
+@theme {
+  --font-family-body: "PT Sans", sans-serif;
+  --font-family-headline: "Poppins", sans-serif;
+  --font-family-code: monospace;
+  
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-card: #fafafa;
+  --color-card-foreground: #0f172a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0f172a;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-accent: #f8fafc;
+  --color-accent-foreground: #0f172a;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #3b82f6;
+  
+  --radius: 0.75rem;
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: theme(--color-border);
   }
+  
   body {
-    @apply bg-background text-foreground;
+    background-color: theme(--color-background);
+    color: theme(--color-foreground);
+    font-family: theme(--font-family-body);
+    line-height: 1.6;
   }
+  
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -63,13 +47,18 @@
 }
 
 @layer utilities {
-  .select-none {
-    -webkit-user-select: none;
-    user-select: none;
+  .animate-ken-burns {
+    animation: ken-burns 20s ease-in-out infinite;
   }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+  
   .animation-delay-300 {
     animation-delay: 0.3s;
   }
+  
   .animation-delay-600 {
     animation-delay: 0.6s;
   }
@@ -86,9 +75,6 @@
     transform: scale(1) rotate(0deg);
   }
 }
-.animate-ken-burns {
-  animation: ken-burns 20s ease-in-out infinite;
-}
 
 @keyframes fade-in-up {
   from {
@@ -99,7 +85,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
 }

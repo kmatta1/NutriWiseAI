@@ -1,9 +1,9 @@
 {
   "node": {
-    "403475694afb4b9ab03fffb657b6734757cd13b5f8": {
+    "401ae04934f999a8fb3ca13f7facb608e17ee626f4": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -11,10 +11,10 @@
         "app/page": "action-browser"
       }
     },
-    "403b331f8a4fdbcef7a59feea9d83159a2e81286ff": {
+    "4065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -22,10 +22,10 @@
         "app/page": "action-browser"
       }
     },
-    "0016d66949030df7d72cab7bb3e53b0936db150f5c": {
+    "00feb266e01ee682c8087c2d022cffccbc7031ee64": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -33,10 +33,10 @@
         "app/page": "action-browser"
       }
     },
-    "601f749ce980b04eb4a9e731bd7914145d7b3b8ad1": {
+    "609a30ecb75b53e63f1b901e125faa5d624cc47eb8": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -44,10 +44,10 @@
         "app/page": "action-browser"
       }
     },
-    "60647f270f82fbeb3debe3c88eb8920677a841d89e": {
+    "60bd6e5a74059c9c885cfc4be3035c20ca6c953bea": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -55,10 +55,10 @@
         "app/page": "action-browser"
       }
     },
-    "60987447ee6894a0275e156f320e7c44d48b1ecdc1": {
+    "60bf73bb4de69a80968fd25fe018d012c0d8c8afcf": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -66,10 +66,10 @@
         "app/page": "action-browser"
       }
     },
-    "60ca633e8c168f2b44099e4e7e95e5efaec631c368": {
+    "60cc3e23cc5966053fcdab903939059d7096d330f7": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -77,10 +77,10 @@
         "app/page": "action-browser"
       }
     },
-    "60f933cb88c71899a8a7014779dd20c398f84d933b": {
+    "60f7c8a4304003e93589f3a311c54639a1d9337461": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Factions.ts%22%2C%5B%7B%22id%22%3A%22403475694afb4b9ab03fffb657b6734757cd13b5f8%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%2C%7B%22id%22%3A%22403b331f8a4fdbcef7a59feea9d83159a2e81286ff%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%5D%5D%2C%5B%22%2Fhome%2Fuser%2Fstudio%2Fsrc%2Flib%2Fauth-actions.ts%22%2C%5B%7B%22id%22%3A%220016d66949030df7d72cab7bb3e53b0936db150f5c%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22601f749ce980b04eb4a9e731bd7914145d7b3b8ad1%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260647f270f82fbeb3debe3c88eb8920677a841d89e%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260987447ee6894a0275e156f320e7c44d48b1ecdc1%22%2C%22exportedName%22%3A%22signup%22%7D%2C%7B%22id%22%3A%2260ca633e8c168f2b44099e4e7e95e5efaec631c368%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260f933cb88c71899a8a7014779dd20c398f84d933b%22%2C%22exportedName%22%3A%22resetPassword%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cactions.ts%22%2C%5B%7B%22id%22%3A%22401ae04934f999a8fb3ca13f7facb608e17ee626f4%22%2C%22exportedName%22%3A%22chatbotResponseAction%22%7D%2C%7B%22id%22%3A%224065c26a3b79cdb332e9d4bb7b7eb26caa239b6c9e%22%2C%22exportedName%22%3A%22suggestSupplementsAction%22%7D%5D%5D%2C%5B%22C%3A%5C%5Crepo%5C%5CNutriWiseAI%5C%5Csrc%5C%5Clib%5C%5Cauth-actions.ts%22%2C%5B%7B%22id%22%3A%2200feb266e01ee682c8087c2d022cffccbc7031ee64%22%2C%22exportedName%22%3A%22logout%22%7D%2C%7B%22id%22%3A%22609a30ecb75b53e63f1b901e125faa5d624cc47eb8%22%2C%22exportedName%22%3A%22resetPassword%22%7D%2C%7B%22id%22%3A%2260bd6e5a74059c9c885cfc4be3035c20ca6c953bea%22%2C%22exportedName%22%3A%22login%22%7D%2C%7B%22id%22%3A%2260bf73bb4de69a80968fd25fe018d012c0d8c8afcf%22%2C%22exportedName%22%3A%22getOrCreateUserProfile%22%7D%2C%7B%22id%22%3A%2260cc3e23cc5966053fcdab903939059d7096d330f7%22%2C%22exportedName%22%3A%22saveInitialPlanForUser%22%7D%2C%7B%22id%22%3A%2260f7c8a4304003e93589f3a311c54639a1d9337461%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },
@@ -90,5 +90,5 @@
     }
   },
   "edge": {},
-  "encryptionKey": "LQZt+X5qaEc30hTsEfXZFse3ZrD5iwYkdhP7JT9swlA="
+  "encryptionKey": "QtccQU4gNbSp6KZVXXleDtiTUUfO5Y+WtII2b/CzjjM="
 }

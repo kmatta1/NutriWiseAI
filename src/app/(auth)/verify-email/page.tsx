@@ -1,6 +1,7 @@
 
 "use client";
 
+import React from 'react';
 import { useAuth } from "@/contexts/auth-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,13 +11,18 @@ import { useToast } from "@/hooks/use-toast";
 import { logout } from "@/lib/auth-actions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function VerifyEmailPage() {
     const { user, loading, refreshAuthStatus } = useAuth();
     const { toast } = useToast();
     const [isChecking, setIsChecking] = useState(false);
+    const [resendCooldown, setResendCooldown] = useState(0);
+    const [lastResend, setLastResend] = useState<number | null>(null);
+    const [expiredInfo, setExpiredInfo] = useState(false);
 
     const handleResendVerification = async () => {
+        if (resendCooldown > 0) return;
         if (user) {
             try {
                 await sendEmailVerification(user);
@@ -24,6 +30,8 @@ export default function VerifyEmailPage() {
                     title: "Verification Email Sent",
                     description: "A new verification link has been sent to your email address."
                 });
+                setResendCooldown(30); // 30s cooldown
+                setLastResend(Date.now());
             } catch (error: any) {
                  toast({
                     variant: "destructive",
@@ -38,6 +46,10 @@ export default function VerifyEmailPage() {
         setIsChecking(true);
         try {
             await refreshAuthStatus();
+            // If still not verified after check, show expired info after several attempts
+            if (user && !user.emailVerified && lastResend && Date.now() - lastResend > 120000) {
+                setExpiredInfo(true);
+            }
         } catch (error) {
             console.error("Error refreshing auth status:", error);
             toast({
@@ -46,10 +58,16 @@ export default function VerifyEmailPage() {
                 description: "Failed to check verification status. Please try again."
             });
         }
-        // The redirect logic in AuthProvider will handle moving the user.
-        // We add a small delay to the loading state to prevent flickering if the redirect is fast.
         setTimeout(() => setIsChecking(false), 1000);
     }
+
+    // Cooldown timer for resend button
+    React.useEffect(() => {
+        if (resendCooldown > 0) {
+            const timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [resendCooldown]);
 
     if (loading) {
         return (
@@ -87,13 +105,19 @@ export default function VerifyEmailPage() {
                 <p className="text-sm text-muted-foreground mb-4">
                     If you don't see the email, please check your spam folder. It can sometimes take a minute or two to arrive.
                 </p>
+                {expiredInfo && (
+                    <div className="mb-4 text-sm text-warning-foreground bg-warning/10 rounded p-2">
+                        <strong>Having trouble?</strong> Your verification link may have expired. Please resend the email and try again. <br />
+                        <Link href="/help" className="underline text-primary">Need help?</Link>
+                    </div>
+                )}
                 <div className="flex flex-col gap-4">
                     <Button onClick={handleCheckVerification} disabled={isChecking}>
                         {isChecking ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
                         {isChecking ? "Checking..." : "I've verified, check again"}
                     </Button>
-                    <Button variant="outline" onClick={handleResendVerification} disabled={isChecking}>
-                        Resend Verification Email
+                    <Button variant="outline" onClick={handleResendVerification} disabled={isChecking || resendCooldown > 0}>
+                        {resendCooldown > 0 ? `Resend available in ${resendCooldown}s` : "Resend Verification Email"}
                     </Button>
                     <form action={logout}>
                          <Button variant="link" type="submit" className="text-muted-foreground" disabled={isChecking}>

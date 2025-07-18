@@ -1,15 +1,9 @@
 
 import { genkit } from 'genkit';
-import { vertexAI } from '@genkit-ai/vertexai';
 import { z } from 'zod';
 
 export const ai = genkit({
   plugins: [
-    vertexAI({
-      // The region to run the models in.
-      // See https://cloud.google.com/vertex-ai/docs/generative-ai/locations
-      location: 'us-central1',
-    }),
   ],
   // The model to use for the AI flow.
   model: 'vertexai/gemini-1.5-flash-001',
