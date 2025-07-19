@@ -26,6 +26,7 @@ export interface SupplementStack {
     affiliateUrl?: string;
     commissionRate?: number;
     price: number;
+    imageUrl?: string;
   }[];
   totalMonthlyCost: number;
   estimatedCommission: number;
@@ -58,7 +59,7 @@ export class RevenueOptimizedAI {
   private userOutcomesIndex = pinecone.index('user-outcomes');
   private productIndex = pinecone.index('affiliate-products');
 
-  async generateEvidenceBasedStack(userProfile: UserProfile): Promise<SupplementStack> {
+  async generateEvidenceBasedStack(userProfile: UserProfile, isPremium: boolean = false): Promise<SupplementStack> {
     try {
       // 1. Find similar successful users (collaborative filtering)
       const similarUsers = await this.findSimilarSuccessfulUsers(userProfile);
@@ -130,10 +131,13 @@ export class RevenueOptimizedAI {
       // 6. Enhance with persuasive content using Claude
       const enhancedStack = await this.enhanceWithPersuasiveContent(stack, userProfile);
       
-      // 7. Track for continuous improvement
-      await this.trackRecommendation(userProfile, enhancedStack);
+      // 7. Add product images to supplements
+      const stackWithImages = await this.addProductImages(enhancedStack, isPremium);
       
-      return enhancedStack;
+      // 8. Track for continuous improvement
+      await this.trackRecommendation(userProfile, stackWithImages);
+      
+      return stackWithImages;
       
     } catch (error) {
       console.error('Error generating evidence-based stack:', error);
@@ -144,7 +148,7 @@ export class RevenueOptimizedAI {
   private async findSimilarSuccessfulUsers(userProfile: UserProfile) {
     const profileEmbedding = await openai.embeddings.create({
       model: "text-embedding-3-large",
-      input: `${userProfile.age} ${userProfile.gender} ${userProfile.fitnessGoals.join(' ')} ${userProfile.lifestyle}`
+      input: `${userProfile.age} ${userProfile.gender} ${Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals.join(' ') : userProfile.fitnessGoals || 'general health'} ${userProfile.lifestyle}`
     });
 
     const similarUsers = await this.userOutcomesIndex.query({
@@ -233,7 +237,13 @@ export class RevenueOptimizedAI {
     
     // Sort by commission rate * user rating for revenue optimization
     return productResults.flatMap(r => r.matches.map(m => m.metadata))
-      .sort((a, b) => (b.commissionRate * b.rating) - (a.commissionRate * a.rating));
+      .filter(Boolean)
+      .sort((a, b) => {
+        if (!a || !b) return 0;
+        const aScore = (Number(a.commissionRate) || 0) * (Number(a.rating) || 0);
+        const bScore = (Number(b.commissionRate) || 0) * (Number(b.rating) || 0);
+        return bScore - aScore;
+      });
   }
 
   private async enhanceWithPersuasiveContent(stack: SupplementStack, userProfile: UserProfile) {
@@ -265,7 +275,7 @@ export class RevenueOptimizedAI {
 
     return {
       ...stack,
-      persuasiveDescription: persuasiveContent.content[0].text,
+      persuasiveDescription: persuasiveContent.content[0].type === 'text' ? persuasiveContent.content[0].text : 'Enhanced description available',
       enhancedAt: new Date().toISOString()
     };
   }
@@ -273,7 +283,6 @@ export class RevenueOptimizedAI {
   private async trackRecommendation(userProfile: UserProfile, stack: SupplementStack) {
     // Track recommendation for continuous improvement
     const trackingData = {
-      userId: userProfile.userId || 'anonymous',
       stackId: stack.id,
       timestamp: new Date().toISOString(),
       userProfile: userProfile,
@@ -292,6 +301,89 @@ export class RevenueOptimizedAI {
     const successScore = stack.userSuccessRate;
     
     return (evidenceScore * 0.4) + (successScore * 0.4) + ((1 - priceRatio) * 0.2);
+  }
+
+  private async addProductImages(stack: SupplementStack, isPremium: boolean = false): Promise<SupplementStack> {
+    try {
+      // Generate product images for each supplement
+      const supplementsWithImages = await Promise.all(
+        stack.supplements.map(async (supplement) => {
+          if (isPremium) {
+            // For premium users, try to get real product images
+            const realProductImage = this.getRealProductImage(supplement.name);
+            if (realProductImage) {
+              return {
+                ...supplement,
+                imageUrl: realProductImage
+              };
+            }
+          }
+          
+          // For non-premium users or when real product image is not available,
+          // use generic supplement type images
+          const genericImage = this.getGenericSupplementImage(supplement.name);
+          
+          return {
+            ...supplement,
+            imageUrl: genericImage
+          };
+        })
+      );
+
+      return {
+        ...stack,
+        supplements: supplementsWithImages
+      };
+    } catch (error) {
+      console.error('Error adding product images:', error);
+      // Return original stack if image generation fails
+      return stack;
+    }
+  }
+
+  private getRealProductImage(supplementName: string): string | null {
+    // Map supplement names to placeholder images until we have working Amazon URLs
+    const productMap: { [key: string]: string } = {
+      'Whey Protein Isolate': 'https://via.placeholder.com/300x300/4f46e5/white?text=Whey+Protein',
+      'Creatine Monohydrate': 'https://via.placeholder.com/300x300/ef4444/white?text=Creatine',
+      'Magnesium Glycinate': 'https://via.placeholder.com/300x300/10b981/white?text=Magnesium',
+      'Beta-Alanine': 'https://via.placeholder.com/300x300/f59e0b/white?text=Beta-Alanine',
+      'Zinc Bisglycinate': 'https://via.placeholder.com/300x300/8b5cf6/white?text=Zinc'
+    };
+
+    // Try exact match first
+    if (productMap[supplementName]) {
+      return productMap[supplementName];
+    }
+
+    // Try partial matches
+    const lowerName = supplementName.toLowerCase();
+    for (const [key, value] of Object.entries(productMap)) {
+      if (lowerName.includes(key.toLowerCase().split(' ')[0])) {
+        return value;
+      }
+    }
+
+    return null;
+  }
+
+  private getGenericSupplementImage(supplementName: string): string {
+    // Map supplement names to generic supplement type images
+    const lowerName = supplementName.toLowerCase();
+    if (lowerName.includes('protein') || lowerName.includes('whey')) {
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5Qcm90ZWluPC90ZXh0Pgo8L3N2Zz4K";
+    } else if (lowerName.includes('creatine')) {
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5DcmVhdGluZTwvdGV4dD4KPHN2Zz4K";
+    } else if (lowerName.includes('magnesium') || lowerName.includes('vitamin')) {
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5WaXRhbWluczwvdGV4dD4KPHN2Zz4K";
+    } else if (lowerName.includes('omega') || lowerName.includes('fish oil')) {
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5GaXNoIE9pbDwvdGV4dD4KPHN2Zz4K";
+    } else if (lowerName.includes('pre-workout') || lowerName.includes('beta-alanine')) {
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5QcmUgV29ya291dDwvdGV4dD4KPHN2Zz4K";
+    } else {
+      // Default supplement bottle image
+      return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5TdXBwbGVtZW50PC90ZXh0Pgo8L3N2Zz4K";
+    }
   }
 }
 

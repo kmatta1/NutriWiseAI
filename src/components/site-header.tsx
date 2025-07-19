@@ -1,215 +1,274 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ShoppingCart, Menu, LogOut, Crown, Shield } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { useCart } from "@/contexts/cart-context";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useState } from "react";
 import { useAuth } from "@/contexts/auth-context";
+import { useCart } from "@/contexts/cart-context";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useAuthActions } from "@/hooks/use-auth-actions";
-import { logout } from "@/lib/auth-actions";
-import { Skeleton } from "@/components/ui/skeleton";
+import { ShoppingCart, Menu, User, Crown, Zap, Target, TrendingUp, Users } from "lucide-react";
 
-const Logotype = () => (
-  <div className="flex items-center" title="NutriWise AI">
-    <svg
-      viewBox="0 0 200 28"
-      height="28"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <style>
-          {`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');`}
-        </style>
-      </defs>
-      <text x="0" y="22" fontFamily="Poppins, sans-serif" fontSize="24" fontWeight="700" letterSpacing="-1" className="fill-foreground">NUTRI</text>
-      <text x="78" y="22" fontFamily="Poppins, sans-serif" fontSize="24" fontWeight="700" letterSpacing="-1" className="fill-primary">WISE</text>
-    </svg>
-  </div>
-);
-
-const AuthNavDesktop = () => {
-  const { user, profile, loading } = useAuth();
-  const { logout: clientLogout, isLoading: isLoggingOut } = useAuthActions();
-
-  if (loading) {
-    return (
-      <div className="flex items-center gap-2">
-        <Skeleton className="h-10 w-20" />
-        <Skeleton className="h-10 w-32" />
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      {user && user.emailVerified ? (
-        <>
-          {!profile?.isPremium && (
-             <Button asChild variant="premium">
-                <Link href="/subscribe"><Crown className="mr-2 h-4 w-4"/> Upgrade</Link>
-              </Button>
-          )}
-          <Button 
-            variant="outline" 
-            onClick={clientLogout}
-            disabled={isLoggingOut}
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            {isLoggingOut ? "Signing out..." : "Logout"}
-          </Button>
-        </>
-      ) : (
-        <>
-           <Button variant="ghost" asChild><Link href="/login">Login</Link></Button>
-           <Button asChild><Link href="/signup">Create Free Account</Link></Button>
-        </>
-      )}
-    </div>
-  );
-};
-
-
-const AuthNavMobile = ({ closeSheet }: { closeSheet: () => void }) => {
-  const { user, profile, loading } = useAuth();
-  const { logout: clientLogout, isLoading: isLoggingOut } = useAuthActions();
-  return (
-    <div className="flex flex-col space-y-4">
-      {user && user.emailVerified ? (
-        <>
-         {!profile?.isPremium && (
-             <Button asChild variant="premium" onClick={closeSheet}>
-                <Link href="/subscribe"><Crown className="mr-2 h-4 w-4"/> Upgrade</Link>
-              </Button>
-          )}
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start" 
-            onClick={async () => {
-              await clientLogout();
-              closeSheet();
-            }}
-            disabled={isLoggingOut}
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            {isLoggingOut ? "Signing out..." : "Logout"}
-          </Button>
-        </>
-      ) : (
-        <>
-          <Button variant="ghost" onClick={closeSheet} asChild><Link href="/login">Login</Link></Button>
-          <Button onClick={closeSheet} asChild><Link href="/signup">Create Free Account</Link></Button>
-        </>
-      )}
-    </div>
-  )
-}
-
+const nutritionIcon = `data:image/svg+xml;base64,${btoa(`
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="24" cy="24" r="20" fill="url(#grad1)" stroke="#FFB300" stroke-width="2"/>
+  <circle cx="24" cy="24" r="12" fill="url(#grad2)" stroke="#FFB300" stroke-width="1"/>
+  <circle cx="24" cy="24" r="6" fill="#FFB300"/>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB300;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB300;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+</svg>
+`)}`;
 
 export function SiteHeader() {
-  const { state } = useCart();
   const { user, profile, loading } = useAuth();
-  const isMobile = useIsMobile();
-  const [isSheetOpen, setSheetOpen] = useState(false);
+  const { state } = useCart();
+  const { logout: clientLogout } = useAuthActions();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await clientLogout();
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  const navigationItems = [
+    { 
+      href: "/advisor", 
+      label: "AI Advisor", 
+      icon: Target,
+      description: "Get personalized supplement recommendations"
+    },
+    { 
+      href: "/my-plans", 
+      label: "My Plans", 
+      icon: Zap,
+      description: "View your supplement schedules"
+    },
+    { 
+      href: "/community", 
+      label: "Community", 
+      icon: Users,
+      description: "Connect with fitness enthusiasts"
+    },
+    { 
+      href: "/tracker", 
+      label: "Progress Tracker", 
+      icon: TrendingUp,
+      description: "Track your fitness journey"
+    },
+  ];
+
   const cartItemCount = state.items.reduce((count, item) => count + item.quantity, 0);
 
-  const navLinks = (
-    <>
-      <Button variant="ghost" asChild onClick={() => setSheetOpen(false)}>
-        <Link href="/advisor">AI Advisor</Link>
-      </Button>
-      <Button variant="ghost" asChild onClick={() => setSheetOpen(false)}>
-        <Link href="/tracker">Fitness Tracker</Link>
-      </Button>
-      <Button variant="ghost" asChild onClick={() => setSheetOpen(false)}>
-        <Link href="/community">Community</Link>
-      </Button>
-      <Button variant="ghost" asChild onClick={() => setSheetOpen(false)}>
-        <Link href="/my-plans">My Plans</Link>
-      </Button>
-       {profile?.isAdmin && (
-        <Button variant="ghost" asChild onClick={() => setSheetOpen(false)}>
-            <Link href="/admin/users" className="flex items-center gap-2"><Shield className="w-4 h-4"/>Admin</Link>
-        </Button>
-      )}
-    </>
-  );
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 flex items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <Logotype />
+    <header 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'glass-dark shadow-2xl border-b border-primary/20' 
+          : 'bg-gradient-to-r from-background/95 via-background/90 to-background/95'
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative w-10 h-10 lg:w-12 lg:h-12">
+              <img
+                src={nutritionIcon}
+                alt="NutriWise AI"
+                className="w-full h-full transition-transform duration-300 group-hover:scale-110 animate-glow"
+              />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary via-amber-400 to-primary bg-clip-text text-transparent">
+                NutriWise AI
+              </h1>
+              <p className="text-xs text-muted-foreground -mt-1">Premium Nutrition Intelligence</p>
+            </div>
           </Link>
-        </div>
-        
-        {isMobile ? (
-          <>
-            <div className="flex flex-1 items-center justify-end space-x-2">
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/cart">
-                  <ShoppingCart />
-                  {cartItemCount > 0 && (
-                    <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                      {cartItemCount}
-                    </span>
-                  )}
-                  <span className="sr-only">Cart</span>
-                </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-all duration-300"
+              >
+                <span className="flex items-center space-x-2">
+                  {item.icon && <item.icon className="w-4 h-4" />}
+                  <span>{item.label}</span>
+                </span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-amber-400 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
+            {profile?.isAdmin && (
+              <Link
+                href="/admin"
+                className="group relative px-4 py-2 text-sm font-medium text-primary hover:text-amber-400 transition-all duration-300"
+              >
+                <span>Admin</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-amber-400 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            )}
+          </nav>
+
+          {/* Right side actions */}
+          <div className="flex items-center space-x-4">
+            {/* Cart */}
+            <Link href="/cart" className="relative group">
+              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+                <ShoppingCart className="w-5 h-5" />
+                {cartItemCount > 0 && (
+                  <Badge 
+                    variant="default" 
+                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-primary animate-pulse-slow"
+                  >
+                    {cartItemCount}
+                  </Badge>
+                )}
               </Button>
-              <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" aria-label="Toggle Menu">
-                    <Menu />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                  <SheetHeader className="sr-only">
-                    <SheetTitle>Navigation Menu</SheetTitle>
-                    <SheetDescription>Main links for navigating the site, including AI advisor, fitness tracker, and your account.</SheetDescription>
-                  </SheetHeader>
-                  <div className="mt-8 flex flex-col space-y-4">
-                    {navLinks}
-                    <hr />
-                    {loading ? <Skeleton className="h-10 w-full" data-testid="skeleton" /> : <AuthNavMobile closeSheet={() => setSheetOpen(false)} />}
+            </Link>
+
+            {/* User Menu */}
+            {!loading && (
+              <>
+                {user && user.emailVerified ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="flex items-center space-x-2 hover:bg-primary/10">
+                        <div className="relative">
+                          <User className="w-5 h-5" />
+                          {profile?.isPremium && (
+                            <Crown className="w-3 h-3 absolute -top-1 -right-1 text-primary" />
+                          )}
+                        </div>
+                        <span className="hidden sm:block text-sm font-medium">
+                          {profile?.isPremium ? "Premium" : "Account"}
+                        </span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56 glass-effect border-primary/20">
+                      <DropdownMenuItem asChild>
+                        <Link href="/account" className="flex items-center space-x-2">
+                          <User className="w-4 h-4" />
+                          <span>Account Settings</span>
+                        </Link>
+                      </DropdownMenuItem>
+                      {!profile?.isPremium && (
+                        <DropdownMenuItem asChild>
+                          <Link href="/subscribe" className="flex items-center space-x-2 text-primary">
+                            <Crown className="w-4 h-4" />
+                            <span>Upgrade to Premium</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
+                      <DropdownMenuItem onClick={handleSignOut} className="text-red-400 hover:text-red-300">
+                        Sign Out
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Button variant="ghost" asChild className="hover:bg-primary/10">
+                      <Link href="/login">Sign In</Link>
+                    </Button>
+                    <Button asChild className="btn-primary">
+                      <Link href="/signup">Get Started</Link>
+                    </Button>
                   </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </>
-        ) : (
-          <>
-            <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
-              {navLinks}
-            </nav>
-            <div className="flex flex-1 items-center justify-end space-x-4">
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/cart" className="relative">
-                  <ShoppingCart />
-                  {cartItemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                      {cartItemCount}
-                    </span>
+                )}
+              </>
+            )}
+
+            {/* Mobile Menu */}
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden hover:bg-primary/10">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80 glass-dark border-primary/20">
+                <div className="flex flex-col space-y-6 mt-8">
+                  {navigationItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center space-x-3 p-4 rounded-lg hover:bg-primary/10 transition-colors group"
+                    >
+                      {item.icon && <item.icon className="w-5 h-5 text-primary" />}
+                      <div>
+                        <div className="font-medium">{item.label}</div>
+                        {item.description && (
+                          <div className="text-sm text-muted-foreground">{item.description}</div>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+                  
+                  {profile?.isAdmin && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center space-x-3 p-4 rounded-lg hover:bg-primary/10 transition-colors text-primary"
+                    >
+                      <Crown className="w-5 h-5" />
+                      <div>
+                        <div className="font-medium">Admin Panel</div>
+                        <div className="text-sm text-muted-foreground">Manage users and system</div>
+                      </div>
+                    </Link>
                   )}
-                  <span className="sr-only">Cart</span>
-                </Link>
-              </Button>
-              {loading ? (
-                <div className="flex items-center gap-2" data-testid="skeleton">
-                  <Skeleton className="h-10 w-24" />
-                  <Skeleton className="h-10 w-36" />
+                  
+                  {user && !profile?.isPremium && (
+                    <Link
+                      href="/subscribe"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center space-x-2 p-4 rounded-lg bg-gradient-to-r from-primary to-amber-400 text-primary-foreground font-medium"
+                    >
+                      <Crown className="w-5 h-5" />
+                      <span>Upgrade to Premium</span>
+                    </Link>
+                  )}
                 </div>
-              ) : (
-                <AuthNavDesktop />
-              )}
-            </div>
-          </>
-        )}
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
       </div>
     </header>
   );
 }
+
+export default SiteHeader;

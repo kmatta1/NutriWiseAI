@@ -75,9 +75,6 @@ export default function SubscribePage() {
                 </CardFooter>
             </Card>
         </div>
-         <p className="text-center text-muted-foreground text-sm mt-12">
-            Already have an account? <Link href="/login" className="underline hover:text-primary">Log in</Link>
-        </p>
       </div>
     </div>
   );

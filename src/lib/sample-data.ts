@@ -123,7 +123,8 @@ export const sampleAffiliateProducts = [
     category: 'performance',
     dosage: '5g',
     servingsPerContainer: 60,
-    keyBenefits: ['increased power', 'muscle volumization', 'improved recovery']
+    keyBenefits: ['increased power', 'muscle volumization', 'improved recovery'],
+    realProductImage: 'https://m.media-amazon.com/images/I/51YJLAOlzWL._AC_SL1000_.jpg'
   },
   {
     name: 'Beta-Alanine Powder',
@@ -136,7 +137,8 @@ export const sampleAffiliateProducts = [
     category: 'performance',
     dosage: '3.2g',
     servingsPerContainer: 75,
-    keyBenefits: ['reduced fatigue', 'improved endurance', 'enhanced workout capacity']
+    keyBenefits: ['reduced fatigue', 'improved endurance', 'enhanced workout capacity'],
+    realProductImage: 'https://m.media-amazon.com/images/I/71BtVvXBXuL._AC_SL1500_.jpg'
   },
   {
     name: 'Whey Protein Isolate',
@@ -149,7 +151,8 @@ export const sampleAffiliateProducts = [
     category: 'protein',
     dosage: '25g',
     servingsPerContainer: 32,
-    keyBenefits: ['muscle protein synthesis', 'fast absorption', 'lean muscle growth']
+    keyBenefits: ['muscle protein synthesis', 'fast absorption', 'lean muscle growth'],
+    realProductImage: 'https://m.media-amazon.com/images/I/71k5qOUlFKL._AC_SL1500_.jpg'
   },
   {
     name: 'Magnesium Glycinate',
@@ -162,7 +165,8 @@ export const sampleAffiliateProducts = [
     category: 'recovery',
     dosage: '400mg',
     servingsPerContainer: 30,
-    keyBenefits: ['improved sleep', 'muscle relaxation', 'reduced stress']
+    keyBenefits: ['improved sleep', 'muscle relaxation', 'reduced stress'],
+    realProductImage: 'https://m.media-amazon.com/images/I/61E5HpNQzjL._AC_SL1500_.jpg'
   },
   {
     name: 'Zinc Bisglycinate',
@@ -175,6 +179,7 @@ export const sampleAffiliateProducts = [
     category: 'recovery',
     dosage: '15mg',
     servingsPerContainer: 90,
-    keyBenefits: ['immune support', 'wound healing', 'hormone optimization']
+    keyBenefits: ['immune support', 'wound healing', 'hormone optimization'],
+    realProductImage: 'https://m.media-amazon.com/images/I/61E5ZZKgVEL._SL1500_.jpg'
   }
 ];

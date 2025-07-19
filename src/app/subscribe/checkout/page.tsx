@@ -29,58 +29,11 @@ function CheckoutForm() {
 
     const handleMockPayment = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!user) {
-            toast({
-                variant: "destructive",
-                title: "You must be logged in",
-                description: "Please log in or create an account to subscribe.",
-            });
-            router.push(`/login?redirect=/subscribe/checkout?plan=${plan}`);
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            const firestore = getFirebaseFirestore();
-            const userDocRef = doc(firestore, "users", user.uid);
-            const now = new Date();
-            const endDate = new Date(now);
-            if (interval === 'month') {
-                endDate.setMonth(now.getMonth() + 1);
-            } else {
-                endDate.setFullYear(now.getFullYear() + 1);
-            }
-
-            await setDoc(userDocRef, {
-                subscription: {
-                    plan: plan,
-                    status: 'active',
-                    startDate: now.toISOString(),
-                    endDate: endDate.toISOString(),
-                    price: price,
-                }
-            }, { merge: true });
-            
-            await refreshAuthStatus();
-
-            toast({
-                title: "Payment Successful!",
-                description: "Your premium membership is now active.",
-            });
-
-            router.push('/tracker');
-
-        } catch (error: any) {
-            console.error("Mock payment failed:", error);
-            toast({
-                variant: "destructive",
-                title: "Payment Failed",
-                description: "An error occurred. Please try again.",
-            });
-        } finally {
-            setLoading(false);
-        }
+        toast({
+            variant: "default",
+            title: "Demo Mode",
+            description: "Payment processing is not implemented in this demo.",
+        });
     };
 
     return (

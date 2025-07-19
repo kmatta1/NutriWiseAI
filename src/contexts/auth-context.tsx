@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
 import { logout } from '@/lib/auth-actions';
@@ -18,7 +18,7 @@ interface AuthContextType {
   loading: boolean;
   isAuthInProgress: boolean;
   refreshAuthStatus: () => Promise<void>;
-  googleSignIn: (initialPlanJson?: string) => Promise<void>;
+  googleSignIn: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -125,15 +125,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [handleAuthStateChange]);
 
-  const googleSignIn = async (initialPlanJson?: string): Promise<void> => {
+  const googleSignIn = async (): Promise<void> => {
     if (isAuthInProgress) return;
     setAuthInProgress(true);
     const auth = getFirebaseAuth();
     try {
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
       // The onAuthStateChanged listener will handle setting user/profile
       // and the redirection logic in this provider will handle navigation.
-      // await getOrCreateUserProfile(result.user, initialPlanJson);
     } catch (error: any) {
       if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
         toast({
@@ -164,11 +163,11 @@ export const useAuth = () => {
   return context;
 };
 
-export function GoogleButton({ initialPlanJson }: { initialPlanJson?: string }) {
+export function GoogleButton() {
   const { googleSignIn, isAuthInProgress } = useAuth();
 
   const handleGoogleClick = () => {
-    googleSignIn(initialPlanJson).catch((err) => {
+    googleSignIn().catch(() => {
       // Error is handled inside googleSignIn, this is just to prevent unhandled promise rejections
     });
   };

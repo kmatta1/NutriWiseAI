@@ -134,7 +134,7 @@ export default function TrackerPage() {
     }
   }, [authLoading, fetchLogs]);
 
-  const addLog = async (logType: LogType, data: Omit<AllLogTypes, 'id' | 'uid' | 'createdAt' | 'date'>) => {
+  const addLog = async <T extends LogType>(logType: T, data: Omit<Extract<AllLogTypes, { type: T }>, 'id' | 'uid' | 'createdAt' | 'date'>) => {
       if (!user) return;
       const firestore = getFirebaseFirestore();
       try {

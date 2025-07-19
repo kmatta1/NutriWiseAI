@@ -10,7 +10,6 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
-import { useAuth } from '@/contexts/auth-context';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 

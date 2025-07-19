@@ -18,6 +18,55 @@ export type UserProfile = {
     };
 };
 
+// Extended User Profile for AI Recommendations
+export interface ExtendedUserProfile extends UserProfile {
+  age: number;
+  gender: string;
+  race?: string;
+  weight: number;
+  activityLevel: string;
+  diet: string;
+  sleepQuality: string;
+  healthConcerns: string[];
+  currentSupplements?: string[];
+  otherCriteria?: string;
+  fitnessGoals: string[];
+  budget: number;
+  lifestyle?: string;
+  experienceLevel?: string;
+}
+
+// Supplement Stack Types
+export interface Supplement {
+  name: string;
+  dosage: string;
+  timing: string;
+  reasoning: string;
+  price: number;
+  affiliateUrl: string;
+  imageUrl?: string;
+}
+
+export interface SupplementStack {
+  id: string;
+  name: string;
+  supplements: Supplement[];
+  totalMonthlyCost: number;
+  estimatedCommission: number;
+  evidenceScore: number;
+  userSuccessRate: number;
+  timeline: string;
+  synergies: string[];
+  contraindications: string[];
+  scientificBacking: {
+    studyCount: number;
+    qualityScore: number;
+    citations: string[];
+  };
+  persuasiveDescription?: string;
+  enhancedAt?: string;
+}
+
 // AI Flow related types below...
 
 // Types for: src/ai/flows/supplement-advisor.ts
@@ -49,6 +98,35 @@ export const SupplementSuggestionSchema = z.object({
     .describe('A summary of scientific data supporting the supplement.'),
   imageUrl: z.string().optional().describe('A dynamically generated image URL for the supplement.'),
   asin: z.string().optional().describe('A fake but realistic-looking Amazon Standard Identification Number (ASIN).'),
+  // Enhanced Amazon integration fields
+  name: z.string().optional().describe('The supplement name (for backward compatibility)'),
+  dosage: z.string().optional().describe('The recommended dosage'),
+  timing: z.string().optional().describe('When to take the supplement'),
+  description: z.string().optional().describe('Detailed description of the supplement'),
+  amazonProduct: z.object({
+    asin: z.string(),
+    rating: z.number(),
+    reviewCount: z.number(),
+    primeEligible: z.boolean(),
+    qualityScore: z.number(),
+    alternatives: z.object({
+      bestValue: z.any().optional(),
+      premium: z.any().optional(),
+      budget: z.any().optional(),
+    }).optional(),
+    qualityFactors: z.object({
+      thirdPartyTested: z.boolean(),
+      gmpCertified: z.boolean(),
+      organicCertified: z.boolean(),
+      allergenFree: z.boolean(),
+      bioavailableForm: z.boolean(),
+    }).optional(),
+  }).optional(),
+  alternatives: z.object({
+    bestValue: z.any().optional(),
+    premium: z.any().optional(),
+    budget: z.any().optional(),
+  }).optional(),
 });
 export type SupplementSuggestion = z.infer<typeof SupplementSuggestionSchema>;
 
