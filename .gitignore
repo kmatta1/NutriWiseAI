@@ -1,27 +1,77 @@
+# Dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js build outputs and cache
+.next/
+out/
+.next/*
+.vercel
+
+# Build outputs
 dist/
 build/
 .cache/
-firebase-debug.log
-npm-debug.log
-.DS_Store
+
+# Environment variables
 .env
-.next/  
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and editor files
 .vscode/
 .idea/
 .vscode-test/
-coverage/
-*.log
-*.lock
-*.tmp
 *.swp
 *.swo
-*.bak
-*.orig      
-*.cache
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firestore-debug.log
+
+# Runtime data
+pids
 *.pid
 *.seed
 *.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Archive files
 *.tgz
 *.zip
 *.tar.gz
@@ -31,7 +81,7 @@ coverage/
 *.bz2
 *.xz
 *.tar
-*.dmg                                                  
+*.dmg
 *.exe
 *.msi
 *.apk
@@ -39,6 +89,8 @@ coverage/
 *.app
 *.deb
 *.rpm
+
+# Package files
 *.whl
 *.egg
 *.gem
@@ -48,6 +100,13 @@ coverage/
 *.dll
 *.so
 *.dylib
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+*.cache
+*.lock
 *.o
 *.a
 *.obj
