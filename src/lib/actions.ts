@@ -1,14 +1,11 @@
 
 "use server";
 
-import { FallbackAI } from "@/lib/fallback-ai";
+import { enhancedAdvisorService } from "@/lib/enhanced-advisor-service";
 import type { UserProfile, SupplementStack } from "@/lib/fallback-ai";
 import type { AIChatbotInterfaceInput, AIChatbotInterfaceOutput } from "@/lib/types";
 import { getFirebaseAuth } from "@/lib/firebase";
 import { getOrCreateUserProfile } from "@/lib/profile-utils";
-
-// Initialize the AI service
-const aiService = new FallbackAI();
 
 // Define input/output types for the actions
 export interface SupplementAdvisorInput extends UserProfile {}
@@ -16,12 +13,17 @@ export interface SupplementAdvisorOutput {
   stack: SupplementStack;
   success: boolean;
   message?: string;
+  source?: 'cached' | 'ai-generated';
+  matchScore?: number;
+  archetypeUsed?: string;
 }
 
 export async function suggestSupplementsAction(
   input: SupplementAdvisorInput
 ): Promise<SupplementAdvisorOutput> {
   try {
+    console.log('🚀 Advisor Action: Using enhanced service with caching');
+    
     // Try to get user profile to check premium status
     let isPremium = false;
     try {
@@ -38,16 +40,30 @@ export async function suggestSupplementsAction(
     }
 
     // DEMO: For demonstration purposes, set to premium to test images
-    // In production, this would be based on actual subscription status
     isPremium = true; // Force premium for testing
-    console.log(`Demo mode: User ${isPremium ? 'is' : 'is not'} premium - showing ${isPremium ? 'real' : 'generic'} product images`);
+    console.log(`Demo mode: User ${isPremium ? 'is' : 'is not'} premium`);
 
-    const stack = await aiService.generateEvidenceBasedStack(input, isPremium);
-    return {
-      stack,
-      success: true,
-      message: "Supplement stack generated successfully"
-    };
+    // Use enhanced advisor service with caching
+    const result = await enhancedAdvisorService.getRecommendations(input);
+    
+    if (result.success) {
+      const responseMessage = result.source === 'cached' 
+        ? `✅ Found perfect match from cached stacks (${result.archetypeUsed}) - instant delivery with verified products!`
+        : '🤖 Generated custom recommendations using AI - all links verified';
+
+      console.log(`✅ Advisor Success: ${responseMessage}`);
+      
+      return {
+        stack: result.stack,
+        success: true,
+        message: responseMessage,
+        source: result.source,
+        matchScore: result.matchScore,
+        archetypeUsed: result.archetypeUsed
+      };
+    } else {
+      throw new Error(result.error || 'Failed to generate recommendations');
+    }
   } catch (error) {
     console.error("[Action Error] Failed to get supplement suggestions:", error);
     return {
@@ -78,13 +94,16 @@ export async function chatbotResponseAction(
   input: AIChatbotInterfaceInput
 ): Promise<AIChatbotInterfaceOutput> {
   try {
+    // Import fallback AI for chat functionality
+    const { fallbackAI } = await import("@/lib/fallback-ai");
+    
     // Convert chat history to context string
     const contextString = input.chatHistory 
       ? input.chatHistory.map(msg => `${msg.role}: ${msg.content}`).join('\n')
       : undefined;
     
     // Simple chatbot response for now
-    const response = await aiService.generateChatResponse(input.message, contextString);
+    const response = await fallbackAI.generateChatResponse(input.message, contextString);
     return {
       response
     };

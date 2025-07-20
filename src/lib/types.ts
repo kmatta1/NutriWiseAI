@@ -45,6 +45,7 @@ export interface Supplement {
   price: number;
   affiliateUrl: string;
   imageUrl?: string;
+  brand?: string;
 }
 
 export interface SupplementStack {

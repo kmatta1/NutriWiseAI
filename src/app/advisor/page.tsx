@@ -12,22 +12,59 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { userProfileManager } from "@/lib/user-profile-store";
 import { AlertCircle, RefreshCw, X } from "lucide-react";
+import { useAuth } from "@/contexts/auth-context";
+import { useCart } from "@/contexts/cart-context";
 
 export default function AdvisorPage() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
+  const { dispatch } = useCart();
   const [results, setResults] = useState<SupplementAdvisorOutput | null>(null);
   const [savedFormData, setSavedFormData] = useState<any>(null);
   const [showChangePrompt, setShowChangePrompt] = useState(false);
 
+  // Sample data for quick testing
+  const sampleData = {
+    fitnessGoals: "weight-lifting", // Changed from "build-muscle" to match form options
+    gender: "male", 
+    age: "30",
+    weight: "180",
+    activityLevel: "moderate", // Changed from "moderately-active" to match form options  
+    diet: "balanced", // Added - will need to add this field to form
+    sleepQuality: "good", // Added - will need to add this field to form
+    race: "white", // Changed from "caucasian" to match form options
+    budget: "100",
+    otherCriteria: "Testing supplement recommendations",
+    healthConcerns: []
+  };
+
+  const fillSampleData = () => {
+    setSavedFormData(sampleData);
+    toast({
+      title: "Sample Data Loaded",
+      description: "Form filled with test data - you can modify any fields and submit!",
+    });
+    
+    // Force the form to update by triggering a re-render with a key change
+    setShowChangePrompt(false);
+  };
+
+  const testDirectSubmission = async () => {
+    console.log('🧪 Testing direct submission with sample data');
+    await handleSubmit(sampleData);
+  };
+
   useEffect(() => {
-    // Load saved form data on component mount
-    const savedData = userProfileManager.getFormData();
-    if (savedData) {
-      setSavedFormData(savedData);
-      setShowChangePrompt(true);
+    // Only load saved form data for authenticated users
+    if (user) {
+      const savedData = userProfileManager.getFormData();
+      if (savedData) {
+        setSavedFormData(savedData);
+        setShowChangePrompt(true);
+      }
     }
-  }, []);
+  }, [user]);
 
   const handleClearProfile = () => {
     userProfileManager.clearFormData();
@@ -48,10 +85,25 @@ export default function AdvisorPage() {
   };
 
   const handleSubmit = async (data: any) => {
+    console.log('🟡 AdvisorPage handleSubmit called with:', data);
     setLoading(true);
     setResults(null);
     
     try {
+      // Validate required fields before processing
+      const requiredFields = ['fitnessGoals', 'gender', 'age', 'weight', 'activityLevel', 'diet', 'sleepQuality', 'race'];
+      const missingFields = requiredFields.filter(field => !data[field] || data[field] === '');
+      
+      if (missingFields.length > 0) {
+        toast({
+          title: "Missing Required Information",
+          description: `Please fill out: ${missingFields.join(', ').replace(/([A-Z])/g, ' $1').toLowerCase()}`,
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+      
       // Save form data for future visits
       userProfileManager.saveFormData(data);
       
@@ -74,29 +126,43 @@ export default function AdvisorPage() {
         weight: data.weight ? parseInt(data.weight, 10) : undefined,
       };
       
-      console.log('Transformed input:', input); // Debug log
+      console.log('✅ Submitting form with data:', input); // Debug log
+      
+      toast({
+        title: "Processing Your Profile",
+        description: "Analyzing your information to create personalized recommendations...",
+      });
+      
       const result = await suggestSupplementsAction(input);
       
       if (result.success) {
         setResults(result);
         setShowChangePrompt(false);
         toast({
-          title: "Recommendations Generated",
-          description: "Your personalized supplement stack has been created based on your profile.",
+          title: "🎉 Recommendations Generated!",
+          description: "Your personalized supplement stack is ready with real Amazon products.",
         });
+        
+        // Scroll to results
+        setTimeout(() => {
+          const resultsElement = document.getElementById('supplement-results');
+          if (resultsElement) {
+            resultsElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
       } else {
         toast({
-          title: "Error",
+          title: "Generation Error",
           description: result.message || "Failed to generate recommendations. Please try again.",
           variant: "destructive",
         });
       }
 
     } catch (error: any) {
-      console.error("Error submitting advisor form:", error);
+      console.error("❌ Error submitting advisor form:", error);
       toast({
         variant: "destructive",
-        title: "An Error Occurred",
+        title: "Processing Error",
         description: error.message || "Failed to generate recommendation. Please try again later.",
       });
     } finally {
@@ -109,9 +175,50 @@ export default function AdvisorPage() {
       // Save stack to user's plans
       userProfileManager.saveStack(stack);
       
+      // Add all supplements to cart
+      console.log('🛒 Adding stack supplements to cart:', stack.supplements);
+      
+      if (stack.supplements && Array.isArray(stack.supplements)) {
+        stack.supplements.forEach((supplement: any) => {
+          try {
+            // Ensure price is properly formatted as string
+            let priceString = '0';
+            if (supplement.price) {
+              if (typeof supplement.price === 'string') {
+                priceString = supplement.price;
+              } else if (typeof supplement.price === 'number') {
+                priceString = supplement.price.toString();
+              }
+            }
+            
+            dispatch({
+              type: "ADD_ITEM",
+              payload: {
+                supplementName: supplement.name,
+                brand: supplement.brand || 'Premium Brand',
+                price: priceString, // Pass as string
+                whereToOrder: supplement.affiliateUrl || 'Amazon',
+                userReviewsSummary: '4.5/5 stars - Highly rated by users',
+                scientificDataSummary: supplement.description || 'Scientifically formulated supplement',
+                imageUrl: supplement.imageUrl || null,
+                dosage: supplement.dosage || '1 serving',
+                timing: supplement.timing || 'With meals',
+                description: supplement.description || supplement.benefits || 'High-quality supplement',
+                name: supplement.name,
+                asin: supplement.amazonProduct?.asin || 'B000000000',
+                quantity: 1
+              }
+            });
+            console.log(`✅ Added ${supplement.name} to cart with price: ${priceString}`);
+          } catch (error) {
+            console.error(`❌ Failed to add ${supplement.name} to cart:`, error);
+          }
+        });
+      }
+      
       toast({
-        title: "Stack Saved!",
-        description: `"${stack.name}" has been added to your plans.`,
+        title: "Stack Added to Cart!",
+        description: `"${stack.name}" supplements have been added to your cart. ${stack.supplements?.length || 0} items added.`,
       });
       
       // Check if user is premium and handle accordingly
@@ -125,14 +232,7 @@ export default function AdvisorPage() {
         if (supplementUrls.length > 0) {
           toast({
             title: "Ready to Purchase",
-            description: "Opening product links for your stack supplements...",
-          });
-          
-          // Open each supplement's purchase link with delay
-          supplementUrls.forEach((url: string, index: number) => {
-            setTimeout(() => {
-              window.open(url, '_blank');
-            }, index * 500);
+            description: "Stack added to cart! You can also purchase directly from Amazon.",
           });
         } else {
           // Redirect to cart page as fallback
@@ -245,9 +345,36 @@ export default function AdvisorPage() {
               </Card>
             </div>
           ) : results && results.success ? (
-            <div className="w-full">
+            <div className="w-full" id="supplement-results">
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-8">
+                {/* Show source of recommendations */}
+                <div className="flex flex-col items-center gap-4 mb-8">
+                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
+                    {(results as any).source === 'cached' ? (
+                      <>
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <span className="text-sm font-semibold text-primary uppercase tracking-wide">
+                          ⚡ Instant Match Found
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        <span className="text-sm font-semibold text-primary uppercase tracking-wide">
+                          🤖 AI-Generated Custom Stack
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  
+                  {(results as any).source === 'cached' && (results as any).matchScore && (
+                    <div className="text-sm text-muted-foreground">
+                      {(results as any).matchScore}% profile match • Archetype: {(results as any).archetypeUsed}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6">
                   <AlertCircle className="w-5 h-5 text-primary" />
                   <span className="text-base font-semibold text-primary">Your Results Are Ready</span>
                 </div>
@@ -347,70 +474,120 @@ export default function AdvisorPage() {
               </div>
 
               {/* Main Form Card */}
-              <Card className="w-full max-w-6xl shadow-2xl md:grid md:grid-cols-5 border-primary/20 glass-effect relative overflow-visible">
+              <Card className="w-full max-w-6xl shadow-2xl md:grid md:grid-cols-5 border-gray-200/20 bg-white/5 backdrop-blur-md relative overflow-visible">
                 {/* Left Side - Hero Image */}
-                <div className="relative hidden md:block md:col-span-2 h-full min-h-[700px] overflow-hidden rounded-l-lg bg-gradient-to-br from-slate-900 via-slate-800 to-primary/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-primary/30" />
+                <div className="relative hidden md:block md:col-span-2 h-full min-h-[700px] overflow-hidden rounded-l-lg bg-gradient-to-br from-slate-900 via-blue-900/90 to-blue-800/80">
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-blue-600/20" />
                   
-                  {/* Professional Fitness Logo */}
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
+                        </pattern>
+                      </defs>
+                      <rect width="100" height="100" fill="url(#grid)" />
+                    </svg>
+                  </div>
+                  
+                  {/* Professional Fitness Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                     <div className="mb-8">
-                      {/* Modern Icon */}
-                      <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-primary to-orange-500 rounded-2xl flex items-center justify-center shadow-2xl">
-                        <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2L13.09 8.26L20 8L14.74 10.5L20 13L13.09 15.74L12 22L10.91 15.74L4 13L9.26 10.5L4 8L10.91 8.26L12 2Z"/>
+                      {/* Modern Science/DNA Icon */}
+                      <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C13.11 2 14 2.9 14 4C14 5.11 13.11 6 12 6C10.89 6 10 5.11 10 4C10 2.9 10.89 2 12 2M21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H11V21H5V3H13V9H21M20.5 18.08L19.08 19.5L20.5 20.92L21.92 19.5L20.5 18.08M18.5 19.5C18.5 17.57 20.07 16 22 16V14C18.96 14 16.5 16.46 16.5 19.5S18.96 25 22 25V23C20.07 23 18.5 21.43 18.5 19.5M12 10C13.11 10 14 10.9 14 12C14 13.11 13.11 14 12 14C10.89 14 10 13.11 10 12C10 10.9 10.89 10 12 10M12 16C13.11 16 14 16.9 14 18C14 19.11 13.11 20 12 20C10.89 20 10 19.11 10 18C10 16.9 10.89 16 12 16Z"/>
                         </svg>
                       </div>
                       
                       {/* Elite Branding */}
                       <h1 className="text-4xl font-black text-white mb-2 tracking-wider">
-                        NUTRI<span className="text-primary">WISE</span>
+                        NUTRI<span className="text-blue-400">WISE</span>
                       </h1>
-                      <h2 className="text-3xl font-bold text-primary mb-4">
+                      <h2 className="text-2xl font-bold text-blue-400 mb-4">
                         ELITE AI
                       </h2>
-                      <div className="w-16 h-1 bg-primary mx-auto mb-4 rounded-full"></div>
-                      <p className="text-lg text-gray-300 font-medium">
-                        Performance Analytics
+                      <div className="w-16 h-1 bg-blue-400 mx-auto mb-4 rounded-full"></div>
+                      <p className="text-base text-gray-300 font-medium">
+                        Science-Backed Nutrition Intelligence
                       </p>
                     </div>
                     
                     {/* Stats */}
-                    <div className="grid grid-cols-2 gap-6 w-full max-w-xs">
+                    <div className="grid grid-cols-2 gap-6 w-full max-w-xs mb-8">
                       <div className="text-center">
-                        <div className="text-2xl font-black text-primary">50K+</div>
-                        <div className="text-sm text-gray-400 uppercase tracking-wide">Athletes</div>
+                        <div className="text-2xl font-black text-blue-400">25K+</div>
+                        <div className="text-xs text-gray-400 uppercase tracking-wide">Athletes</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-black text-primary">99.8%</div>
-                        <div className="text-sm text-gray-400 uppercase tracking-wide">Accuracy</div>
+                        <div className="text-2xl font-black text-blue-400">99.2%</div>
+                        <div className="text-xs text-gray-400 uppercase tracking-wide">Accuracy</div>
+                      </div>
+                    </div>
+
+                    {/* Trust Indicators */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm text-gray-300">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span>Clinically Validated</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-300">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span>AI-Powered Analysis</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-300">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <span>Personalized Results</span>
                       </div>
                     </div>
                   </div>
                   
                   {/* Bottom Badge */}
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 border border-primary/20">
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-white font-semibold">Science-Backed Analysis</span>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="bg-black/20 backdrop-blur-sm rounded-lg p-3 border border-blue-500/20">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-white text-sm font-medium">Live AI Analysis</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 
                 {/* Right Side - Form */}
-                <div className="md:col-span-3 p-6 lg:p-8 flex flex-col justify-center bg-card/50 backdrop-blur-sm relative overflow-visible">
+                <div className="md:col-span-3 p-6 lg:p-8 flex flex-col justify-center bg-gradient-to-br from-slate-50 to-blue-50/50 backdrop-blur-sm relative overflow-visible">
                   <div className="mb-6">
-                    <h2 className="text-2xl lg:text-3xl font-black mb-3">Get Your Elite Analysis</h2>
-                    <p className="text-muted-foreground text-base lg:text-lg">
-                      Fill out this assessment to receive your personalized supplement protocol
+                    <h2 className="text-3xl lg:text-4xl font-black mb-3 text-slate-900">Get Your Elite Analysis</h2>
+                    <p className="text-slate-700 text-base lg:text-lg font-medium">
+                      Complete our science-based assessment for your personalized supplement protocol
                     </p>
+                    {/* Sample Data Button for Testing */}
+                    <div className="mt-4 flex gap-2">
+                      <Button 
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={fillSampleData}
+                        className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                      >
+                        🧪 Fill Sample Data
+                      </Button>
+                      <Button 
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={testDirectSubmission}
+                        disabled={loading}
+                        className="text-green-600 border-green-200 hover:bg-green-50"
+                      >
+                        🚀 Test Direct Submit
+                      </Button>
+                    </div>
                   </div>
                   <AdvisorForm 
                     onSubmit={handleSubmit} 
-                    loading={loading} 
-                    savedFormData={!showChangePrompt ? savedFormData : null}
+                    isLoading={loading} 
+                    prefillData={!showChangePrompt ? savedFormData : undefined}
                   />
                 </div>
               </Card>

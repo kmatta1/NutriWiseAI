@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import WorkingAmazonCart from "@/lib/working-amazon-cart";
 
 export default function CartPage() {
   const { state, dispatch } = useCart();
@@ -27,23 +28,39 @@ export default function CartPage() {
   };
 
   const subtotal = state.items.reduce((total, item) => {
-    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+    // Handle both string and number price formats
+    let price = 0;
+    if (typeof item.price === 'string') {
+      price = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+    } else if (typeof item.price === 'number') {
+      price = item.price;
+    }
     return total + price * item.quantity;
   }, 0);
-  
-  const affiliateTag = "nutriwiseai-20";
 
-  // Construct the "Add to Cart" URL for Amazon
-  const amazonCartUrl = new URL("https://www.amazon.com/gp/aws/cart/add.html");
-  amazonCartUrl.searchParams.set("AssociateTag", affiliateTag);
-  
-  state.items.forEach((item, index) => {
-    const itemNumber = index + 1;
-    // The AI is prompted to generate a fake but valid-looking ASIN.
-    // In a real application, you would map products to real ASINs.
-    amazonCartUrl.searchParams.set(`ASIN.${itemNumber}`, item.asin || ''); 
-    amazonCartUrl.searchParams.set(`Quantity.${itemNumber}`, item.quantity.toString());
-  });
+  const handleAmazonCheckout = async () => {
+    // Convert cart items to the format expected by WorkingAmazonCart
+    const cartItems = state.items.map(item => ({
+      name: item.supplementName, // Use supplement name instead of ASIN
+      quantity: item.quantity
+    }));
+
+    if (cartItems.length === 0) {
+      alert('No items in cart');
+      return;
+    }
+
+    try {
+      console.log('🛒 Processing Amazon checkout with items:', cartItems);
+      const cartUrl = await WorkingAmazonCart.addToCart(cartItems);
+      
+      // Redirect to Amazon cart
+      window.open(cartUrl, '_blank');
+    } catch (error) {
+      console.error('❌ Error processing Amazon checkout:', error);
+      alert('Error processing checkout. Please try again or use individual product links.');
+    }
+  };
 
 
   return (
@@ -85,6 +102,18 @@ export default function CartPage() {
                     className="w-16 text-center"
                   />
                   <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const productUrl = WorkingAmazonCart.getProductCartUrl(item.supplementName, 1);
+                      if (productUrl) {
+                        window.open(productUrl, '_blank');
+                      }
+                    }}
+                  >
+                    View on Amazon
+                  </Button>
+                  <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => handleRemoveItem(item.supplementName)}
@@ -116,10 +145,8 @@ export default function CartPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                 <Button asChild className="w-full">
-                    <a href={amazonCartUrl.toString()} target="_blank" rel="noopener noreferrer">
-                        Checkout on Amazon
-                    </a>
+                <Button onClick={handleAmazonCheckout} className="w-full">
+                  Checkout on Amazon
                 </Button>
               </CardFooter>
             </Card>

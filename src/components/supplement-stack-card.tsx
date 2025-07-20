@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
+import Image from 'next/image';
 import { 
   FlaskConical, 
   Users, 
@@ -27,11 +28,12 @@ interface SupplementStackCardProps {
 }
 
 export function SupplementStackCard({ stack, onPurchase, isLoading }: SupplementStackCardProps) {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('supplements');
   const [imageErrors, setImageErrors] = useState<{[key: string]: boolean}>({});
 
   const handleImageError = (supplementName: string) => {
-    console.log(`Image error for ${supplementName}:`, stack.supplements.find(s => s.name === supplementName)?.imageUrl);
+    const supplement = stack.supplements.find(s => s.name === supplementName);
+    console.error(`❌ Image failed to load for ${supplementName}:`, supplement?.imageUrl);
     setImageErrors(prev => ({
       ...prev,
       [supplementName]: true
@@ -49,26 +51,20 @@ export function SupplementStackCard({ stack, onPurchase, isLoading }: Supplement
 
   const handleViewProductDetails = (supplementName: string) => {
     const supplement = stack.supplements.find(s => s.name === supplementName);
+    
     if (supplement?.affiliateUrl) {
       // Track affiliate click for analytics
-      console.log(`Amazon affiliate click: ${supplementName}`, {
-        asin: supplement.amazonProduct?.asin,
-        price: supplement.price,
-        url: supplement.affiliateUrl
-      });
+      console.log(`🛒 Affiliate click: ${supplementName}`, { url: supplement.affiliateUrl });
       
       // Open affiliate URL in new tab
       window.open(supplement.affiliateUrl, '_blank');
     } else {
-      // Fallback to Amazon search with tracking ID
+      // Final fallback to Amazon search with tracking ID
       const amazonUrl = `https://www.amazon.com/s?k=${encodeURIComponent(supplementName + ' supplement')}&tag=nutriwiseai-20`;
-      console.log(`Amazon search fallback: ${supplementName} -> ${amazonUrl}`);
+      console.log(`🔍 Amazon search fallback: ${supplementName} -> ${amazonUrl}`);
       window.open(amazonUrl, '_blank');
     }
   };
-
-  // Debug: Log image URLs
-  console.log('Stack supplements with images:', stack.supplements.map(s => ({ name: s.name, imageUrl: s.imageUrl })));
 
   return (
     <Card className="w-full max-w-4xl mx-auto bg-card/50 border-border/50 backdrop-blur-sm hover:border-primary/20 transition-all duration-300">
@@ -188,30 +184,83 @@ export function SupplementStackCard({ stack, onPurchase, isLoading }: Supplement
                       {/* Product Image */}
                       <div className="flex-shrink-0">
                         {supplement.imageUrl && !imageErrors[supplement.name] ? (
-                          <div className="relative">
-                            <img
-                              src={supplement.imageUrl}
+                          <div className="relative group">
+                            <Image
+                              src={supplement.imageUrl.includes('media-amazon.com') || supplement.imageUrl.includes('images-amazon.com') 
+                                ? `/api/image?url=${encodeURIComponent(supplement.imageUrl)}`
+                                : supplement.imageUrl
+                              }
                               alt={supplement.name}
-                              width={80}
-                              height={80}
-                              className="rounded-lg object-cover border border-border/50"
+                              width={100}
+                              height={100}
+                              className="rounded-lg object-cover border border-border/50 hover:border-primary/30 transition-all duration-300"
                               onError={() => handleImageError(supplement.name)}
+                              priority={index < 3}
+                              unoptimized={supplement.imageUrl.includes('placeholder')}
                             />
-                            {/* Show premium badge for real product images */}
-                            {supplement.imageUrl.includes('media-amazon') && (
-                              <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md">
-                                REAL
+                            {/* Show indicator for Amazon images */}
+                            {(supplement.imageUrl?.includes('media-amazon') || supplement.imageUrl?.includes('images-amazon')) && (
+                              <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                                <div className="text-[10px] text-white font-bold">A</div>
+                              </div>
+                            )}
+                            {/* Premium indicator */}
+                            {supplement.amazonProduct?.primeEligible && (
+                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
+                                <div className="text-[8px] text-white font-bold">P</div>
                               </div>
                             )}
                           </div>
                         ) : (
-                          <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center border border-primary/30">
+                          <div className="w-[100px] h-[100px] bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-lg flex items-center justify-center border border-primary/30 hover:border-primary/50 transition-all duration-300 relative">
                             <div className="text-center">
-                              <FlaskConical className="w-6 h-6 text-primary mx-auto mb-1" />
-                              <div className="text-xs font-bold text-primary">
+                              {/* Different icons for different supplement types */}
+                              {supplement.name.toLowerCase().includes('protein') ? (
+                                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-2">
+                                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L13.09 8.26L16 9L13.09 9.74L12 16L10.91 9.74L8 9L10.91 8.26L12 2Z"/>
+                                  </svg>
+                                </div>
+                              ) : supplement.name.toLowerCase().includes('omega') || supplement.name.toLowerCase().includes('fish oil') ? (
+                                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-2">
+                                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25S18,10 18,14A6,6 0 0,1 12,20Z"/>
+                                  </svg>
+                                </div>
+                              ) : supplement.name.toLowerCase().includes('vitamin') ? (
+                                <div className="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mb-2">
+                                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                                  </svg>
+                                </div>
+                              ) : supplement.name.toLowerCase().includes('magnesium') || supplement.name.toLowerCase().includes('mineral') ? (
+                                <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-2">
+                                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17,12C17,10.89 16.1,10 15,10H13V8A4,4 0 0,0 9,4A4,4 0 0,0 5,8V10H3C1.89,10 1,10.89 1,12V18C1,19.1 1.9,20 3,20H15C16.1,20 17,19.1 17,18V12Z"/>
+                                  </svg>
+                                </div>
+                              ) : supplement.name.toLowerCase().includes('creatine') ? (
+                                <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mb-2">
+                                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M13,14H11V10H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                                  </svg>
+                                </div>
+                              ) : (
+                                <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mb-2">
+                                  <FlaskConical className="w-6 h-6 text-white" />
+                                </div>
+                              )}
+                              <div className="text-xs font-bold text-foreground">
                                 {supplement.name.split(' ').map(word => word.charAt(0)).join('').slice(0, 2)}
                               </div>
                             </div>
+                            
+                            {/* Amazon indicator if we have affiliate URL */}
+                            {supplement.affiliateUrl && (
+                              <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                                <div className="text-[10px] text-white font-bold">A</div>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
@@ -226,6 +275,11 @@ export function SupplementStackCard({ stack, onPurchase, isLoading }: Supplement
                                 supplement.name
                               }
                             </h4>
+                            {supplement.brand && (
+                              <p className="text-sm text-blue-600 font-medium mb-1">
+                                Brand: {supplement.brand}
+                              </p>
+                            )}
                             <p className="text-sm text-muted-foreground">{supplement.dosage}</p>
                             {supplement.amazonProduct?.primeEligible && (
                               <Badge variant="secondary" className="mt-1 text-xs">

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { BrainCircuit, TestTube, Dumbbell, Sparkles, ArrowRight, Play, Shield, Trophy, Zap } from "lucide-react";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+// import Autoplay from "embla-carousel-autoplay"; // Temporarily disabled
 
 export default function Home() {
 
@@ -40,14 +40,34 @@ export default function Home() {
 
   const carouselImages = [
       {
-        src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-        alt: "Athletic man doing battle rope training in modern gym",
-        hint: "High-intensity battle rope workout"
+        src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        alt: "Elite athlete performing battle rope training in premium fitness facility",
+        hint: "High-intensity functional training"
       },
       {
-        src: "https://images.unsplash.com/photo-1583500178690-594ce94555e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-        alt: "Strong woman performing barbell squats in gym",
-        hint: "Professional strength training session"
+        src: "https://images.unsplash.com/photo-1583500178690-594ce94555e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+        alt: "Professional bodybuilder executing perfect squat form",
+        hint: "Strength training excellence"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        alt: "Nutrition science laboratory with supplement analysis",
+        hint: "Scientific supplement research"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1540479631048-a2e9b6bae5e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        alt: "Premium nutrition supplements and scientific equipment",
+        hint: "Advanced supplement technology"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        alt: "Athletic woman showcasing peak physical condition",
+        hint: "Elite fitness results"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1577221084712-45b0445d2b00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        alt: "Modern fitness technology and performance tracking",
+        hint: "AI-powered fitness analytics"
       },
       {
         src: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
@@ -63,7 +83,6 @@ export default function Home() {
       <section className="relative w-full h-screen flex items-center justify-center text-white overflow-hidden">
         <Carousel
           className="absolute inset-0 w-full h-full z-0"
-          plugins={[Autoplay({ delay: 6000, stopOnInteraction: false })]}
           opts={{ loop: true }}
         >
           <CarouselContent className="h-full">

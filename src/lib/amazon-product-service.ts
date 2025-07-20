@@ -35,6 +35,9 @@ export interface AmazonProduct {
   affiliateUrl: string;
   qualityScore: number;
   valueScore: number;
+  // Enhanced image data
+  realImageUrl?: string;
+  imageVerified?: boolean;
 }
 
 export interface ProductRecommendation {
@@ -82,6 +85,150 @@ export class AmazonProductService {
     this.initializeProductDatabase();
     this.initializeTrustedBrands();
     this.initializeQualityKeywords();
+  }
+
+  /**
+   * Extract real product image from Amazon using ASIN
+   */
+  async extractRealProductImage(asin: string): Promise<string | null> {
+    try {
+      console.log(`🖼️ Extracting real product image for ASIN: ${asin}`);
+      
+      // Amazon's predictable image URL patterns
+      const imageUrlPatterns = [
+        `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.L.jpg`,
+        `https://images-na.ssl-images-amazon.com/images/P/${asin}.01._SL1500_.jpg`,
+        `https://m.media-amazon.com/images/P/${asin}.01._SL1500_.jpg`,
+        `https://images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`,
+        `https://ec1.images-amazon.com/images/P/${asin}.01.L.jpg`,
+      ];
+      
+      // Test each URL pattern to find a working image
+      for (const imageUrl of imageUrlPatterns) {
+        const isWorking = await this.testImageAvailability(imageUrl);
+        if (isWorking) {
+          console.log(`✅ Found working image URL: ${imageUrl}`);
+          return imageUrl;
+        }
+      }
+      
+      console.log(`❌ No working image found for ASIN: ${asin}`);
+      return null;
+      
+    } catch (error) {
+      console.error(`❌ Error extracting image for ASIN ${asin}:`, error);
+      return null;
+    }
+  }
+
+  /**
+   * Test if an image URL is accessible
+   */
+  private async testImageAvailability(imageUrl: string): Promise<boolean> {
+    try {
+      return new Promise((resolve) => {
+        const img = new Image();
+        const timeout = setTimeout(() => {
+          console.log(`⏰ Image test timeout: ${imageUrl}`);
+          resolve(false);
+        }, 2000); // 2 second timeout
+        
+        img.onload = () => {
+          clearTimeout(timeout);
+          console.log(`✅ Image accessible: ${imageUrl}`);
+          resolve(true);
+        };
+        
+        img.onerror = () => {
+          clearTimeout(timeout);
+          console.log(`❌ Image not accessible: ${imageUrl}`);
+          resolve(false);
+        };
+        
+        img.src = imageUrl;
+      });
+    } catch (error) {
+      console.error(`❌ Error testing image URL: ${imageUrl}`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Get enhanced product with real verified image
+   */
+  async getProductWithRealImage(asin: string, supplementName: string): Promise<AmazonProduct | null> {
+    try {
+      console.log(`Fetching product with real image - ASIN: ${asin}, Name: ${supplementName}`);
+
+      // Extract real image
+      const realImageUrl = await this.extractRealProductImage(asin);
+
+      // Get base product data
+      const baseProduct = this.createProductFromASIN(asin, supplementName);
+
+      if (baseProduct) {
+        // Enhanced with real image data
+        baseProduct.realImageUrl = realImageUrl || undefined;
+        baseProduct.imageVerified = !!realImageUrl;
+
+        if (realImageUrl) {
+          baseProduct.images.primary = realImageUrl;
+          console.log(`Enhanced product with real image: ${supplementName}`);
+        } else {
+          console.log(`No real image found for ASIN: ${asin}`);
+        }
+
+        return baseProduct;
+      } else {
+        console.log(`No base product found for ASIN: ${asin}`);
+      }
+
+      return null;
+    } catch (error) {
+      console.error(`Error fetching product with real image:`, error);
+      return null;
+    }
+  }
+
+  /**
+   * Create a product object from ASIN and supplement name
+   */
+  private createProductFromASIN(asin: string, supplementName: string): AmazonProduct {
+    console.log(`Creating product from ASIN: ${asin}, Name: ${supplementName}`);
+    // Mock fallback logic for demo purposes
+    return {
+      asin,
+      title: supplementName,
+      brand: 'Generic Brand',
+      price: {
+        current: 0,
+        list: 0,
+        savings: 0,
+        currency: 'USD',
+      },
+      rating: {
+        average: 0,
+        count: 0,
+      },
+      images: {
+        primary: '',
+        variants: [],
+      },
+      availability: {
+        inStock: false,
+        primeEligible: false,
+        deliveryInfo: '',
+      },
+      features: [],
+      specifications: {
+        servings: 0,
+        dosagePerServing: '',
+        ingredients: [],
+      },
+      affiliateUrl: '',
+      qualityScore: 0,
+      valueScore: 0,
+    };
   }
 
   async findOptimalSupplementProducts(
@@ -542,9 +689,6 @@ export class AmazonProductService {
       'Multivitamin': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5NdWx0aXZpdGFtaW48L3RleHQ+Cjwvc3ZnPgo=',
       'Ashwagandha KSM-66': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5Bc2h3YWdhbmRoYTwvdGV4dD4KPHN2Zz4K',
       'CoQ10 Ubiquinol': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5Db1ExMDwvdGV4dD4KPHN2Zz4K',
-      'Lion\'s Mane Mushroom': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5MaW9ucyBNYW5lPC90ZXh0Pgo8L3N2Zz4K',
-      'Zinc Bisglycinate': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5aaW5jPC90ZXh0Pgo8L3N2Zz4K',
-      'Iron Bisglycinate': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5Jcm9uPC90ZXh0Pgo8L3N2Zz4K',
       'B12 Methylcobalamin': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMjU2M2ViIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj5CMTI8L3RleHQ+Cjwvc3ZnPgo='
     };
     

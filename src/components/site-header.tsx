@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/auth-context";
 import { useCart } from "@/contexts/cart-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Logo from "@/components/ui/logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,24 +20,6 @@ import {
 } from "@/components/ui/sheet";
 import { useAuthActions } from "@/hooks/use-auth-actions";
 import { ShoppingCart, Menu, User, Crown, Zap, Target, TrendingUp, Users } from "lucide-react";
-
-const nutritionIcon = `data:image/svg+xml;base64,${btoa(`
-<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="24" cy="24" r="20" fill="url(#grad1)" stroke="#FFB300" stroke-width="2"/>
-  <circle cx="24" cy="24" r="12" fill="url(#grad2)" stroke="#FFB300" stroke-width="1"/>
-  <circle cx="24" cy="24" r="6" fill="#FFB300"/>
-  <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FFB300;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFB300;stop-opacity:0.8" />
-      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.8" />
-    </linearGradient>
-  </defs>
-</svg>
-`)}`;
 
 export function SiteHeader() {
   const { user, profile, loading } = useAuth();
@@ -102,19 +85,7 @@ export function SiteHeader() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-10 h-10 lg:w-12 lg:h-12">
-              <img
-                src={nutritionIcon}
-                alt="NutriWise AI"
-                className="w-full h-full transition-transform duration-300 group-hover:scale-110 animate-glow"
-              />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary via-amber-400 to-primary bg-clip-text text-transparent">
-                NutriWise AI
-              </h1>
-              <p className="text-xs text-muted-foreground -mt-1">Premium Nutrition Intelligence</p>
-            </div>
+            <Logo size="md" variant="default" showText={true} />
           </Link>
 
           {/* Desktop Navigation */}

@@ -5,27 +5,50 @@
   --font-family-headline: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-family-code: "JetBrains Mono", monospace;
 
-  /* Elite Fitness Color Scheme - Inspired by Bodybuilding.com and Men's Health */
-  --background: 210 20% 6%;      /* Dark navy background */
-  --foreground: 210 40% 98%;     /* Light text */
-  --card: 210 20% 8%;            /* Card background */
+  /* Modern Fitness Color Scheme - Inspired by FitLab, Bodybuilding.com, MyFitnessPal */
+  --background: 220 20% 4%;      /* Deep navy background */
+  --foreground: 210 40% 98%;     /* Clean white text */
+  --card: 220 15% 8%;            /* Card background */
   --card-foreground: 210 40% 98%; /* Card text */
-  --popover: 210 20% 8%;         /* Popover background */
+  --popover: 220 15% 8%;         /* Popover background */
   --popover-foreground: 210 40% 98%; /* Popover text */
-  --primary: 14 100% 57%;        /* Bright orange-red (like Men's Health) */
+  --primary: 217 91% 60%;        /* Vibrant blue (like FitLab) */
   --primary-foreground: 210 40% 98%; /* White text on primary */
-  --secondary: 210 40% 15%;      /* Dark secondary */
+  --secondary: 220 15% 12%;      /* Dark secondary */
   --secondary-foreground: 210 40% 98%; /* Light secondary text */
-  --muted: 210 40% 12%;          /* Muted background */
+  --muted: 220 15% 10%;          /* Muted background */
   --muted-foreground: 215 25% 65%; /* Muted text */
-  --accent: 210 40% 15%;         /* Accent background */
+  --accent: 142 76% 36%;         /* Electric green accent */
   --accent-foreground: 210 40% 98%; /* Accent text */
-  --destructive: 0 62.8% 30.6%;  /* Red for errors */
+  --destructive: 0 84% 60%;      /* Bright red for errors */
   --destructive-foreground: 210 40% 98%; /* White text on destructive */
-  --border: 210 40% 20%;         /* Border color */
-  --input: 210 40% 15%;          /* Input background */
-  --ring: 14 100% 57%;           /* Focus ring (primary color) */
+  --border: 220 15% 20%;         /* Border color */
+  --input: 220 15% 12%;          /* Input background */
+  --ring: 217 91% 60%;           /* Focus ring (primary color) */
   --radius: 0.75rem;             /* Rounded corners */
+  --success: 142 76% 36%;        /* Success green */
+  --warning: 38 92% 50%;         /* Warning orange */
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 15% 6%) 50%, hsl(217 91% 8%) 100%);
+    color: hsl(var(--foreground));
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-attachment: fixed;
+  }
+  --success: 142 76% 36%;        /* Success green */
+  --warning: 38 92% 50%;         /* Warning orange */
 }
 
 @layer base {
