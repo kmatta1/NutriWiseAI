@@ -160,7 +160,7 @@ export default function TrackerPage() {
     try {
         await deleteDoc(doc(firestore, `users/${user.uid}/tracker-logs`, id));
         toast({ title: "Log Removed", description: "The entry has been deleted."});
-        setLogs(logs.filter(log => log.id !== id));
+        setLogs((logs ?? []).filter(log => log?.id !== id));
     } catch (error) {
         console.error("Error removing log:", error);
         toast({ variant: "destructive", title: "Error", description: "Failed to delete the log."});
@@ -254,7 +254,7 @@ export default function TrackerPage() {
                         </TableRow>
                         </TableHeader>
                         <TableBody>
-                        {logs.filter(l => l.type === 'strength').length > 0 ? logs.filter((l): l is StrengthLog => l.type === 'strength').map(log => (
+                        {(logs?.filter(l => l?.type === 'strength')?.length ?? 0) > 0 ? (logs?.filter((l): l is StrengthLog => l?.type === 'strength') ?? []).map(log => (
                             <TableRow key={log.id}>
                             <TableCell>{log.date}</TableCell><TableCell className="font-medium">{log.exercise}</TableCell><TableCell>{log.weight}</TableCell><TableCell>{log.reps}</TableCell><TableCell>{log.sets}</TableCell>
                             <TableCell className="text-right"><Button variant="ghost" size="icon" onClick={() => removeLog(log.id)}><Trash2 className="h-4 w-4" /></Button></TableCell>
@@ -288,7 +288,7 @@ export default function TrackerPage() {
                         </TableRow>
                         </TableHeader>
                         <TableBody>
-                        {logs.filter(l => l.type === 'endurance').length > 0 ? logs.filter((l): l is EnduranceLog => l.type === 'endurance').map(log => (
+                        {(logs?.filter(l => l?.type === 'endurance')?.length ?? 0) > 0 ? (logs?.filter((l): l is EnduranceLog => l?.type === 'endurance') ?? []).map(log => (
                             <TableRow key={log.id}>
                             <TableCell>{log.date}</TableCell><TableCell className="font-medium">{log.activity}</TableCell><TableCell>{log.duration}</TableCell><TableCell>{log.distance}</TableCell>
                             <TableCell className="text-right"><Button variant="ghost" size="icon" onClick={() => removeLog(log.id)}><Trash2 className="h-4 w-4" /></Button></TableCell>

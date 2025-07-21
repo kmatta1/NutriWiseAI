@@ -42,6 +42,14 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.weserv.nl',
+      },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
     ],
   },
 };

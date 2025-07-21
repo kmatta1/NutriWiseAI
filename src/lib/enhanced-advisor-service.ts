@@ -1,4 +1,4 @@
-import { CachedStackService } from './cached-stack-service';
+import { fetchVerifiedStacks } from './cached-stack-service';
 import { fallbackAI } from './fallback-ai';
 import type { SupplementAdvisorInput } from './actions';
 import { CachedSupplementStack } from './cached-stacks-schema';
@@ -13,11 +13,7 @@ export interface EnhancedSupplementAdvisorResult {
 }
 
 export class EnhancedAdvisorService {
-  private cachedStackService: CachedStackService;
-
-  constructor() {
-    this.cachedStackService = new CachedStackService();
-  }
+  private cachedStacks: any[] = [];
   
   /**
    * Get supplement recommendations - tries cached stacks first, falls back to AI
@@ -27,9 +23,10 @@ export class EnhancedAdvisorService {
       console.log('🎯 Enhanced Advisor: Processing request for user profile');
       
       // Initialize cached stacks if not already done
-      if (this.cachedStackService.getAllCachedStacks().length === 0) {
-        console.log('🔄 Initializing cached stacks...');
-        await this.cachedStackService.generateAndCacheAllStacks();
+      // Fetch cached stacks from Firestore if not already loaded
+      if (this.cachedStacks.length === 0) {
+        console.log('🔄 Fetching cached stacks from Firestore...');
+        this.cachedStacks = await fetchVerifiedStacks();
       }
 
       // Step 1: Try to find a matching cached stack
@@ -63,12 +60,12 @@ export class EnhancedAdvisorService {
     const gender = input.gender;
 
     // Find best matching cached stack
-    const matchedStack = this.cachedStackService.findBestMatchingStack(userGoals, age, gender);
-    
+    const matchedStack = this.findBestMatchingStack(userGoals, age, gender);
+
     if (matchedStack) {
       // Convert cached stack to the format expected by the frontend
       const convertedStack = this.convertCachedStackToAdvisorFormat(matchedStack, input);
-      
+
       return {
         success: true,
         stack: convertedStack,
@@ -79,6 +76,28 @@ export class EnhancedAdvisorService {
     }
 
     return null;
+  }
+
+  /**
+   * Find best matching stack from cachedStacks array
+   */
+  private findBestMatchingStack(userGoals: string[], age: number, gender: string): any | null {
+    // Simple matching logic: find stack with most overlapping goals and matching demographics
+    let bestMatch: any | null = null;
+    let bestScore = -1;
+    for (const stack of this.cachedStacks) {
+      let score = 0;
+      if (stack.demographics) {
+        if (stack.demographics.gender === gender || stack.demographics.gender === 'any') score += 1;
+        if (age >= stack.demographics.ageRange[0] && age <= stack.demographics.ageRange[1]) score += 1;
+        score += stack.demographics.primaryGoals.filter((goal: string) => userGoals.includes(goal)).length;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = stack;
+      }
+    }
+    return bestMatch;
   }
 
   /**
@@ -122,43 +141,31 @@ export class EnhancedAdvisorService {
    * Convert cached stack format to advisor format
    */
   private convertCachedStackToAdvisorFormat(cachedStack: CachedSupplementStack, _input: SupplementAdvisorInput) {
+    // Use supplementDetails array if available, otherwise fallback to supplement IDs
+    const details = cachedStack.supplementDetails || cachedStack.supplementsDetails || [];
     return {
-      id: cachedStack.id,
+      id: cachedStack.id || cachedStack.archetypeId,
       name: cachedStack.name,
-      supplements: cachedStack.supplements.map(supplement => ({
+      supplements: details.map((supplement: any) => ({
         name: supplement.name,
-        dosage: supplement.dosage,
-        timing: supplement.timing,
-        reasoning: supplement.reasoning,
-        affiliateUrl: supplement.amazonUrl,
+        dosage: supplement.dosage || '',
+        timing: supplement.timing || '',
+        reasoning: supplement.reasoning || '',
+        affiliateUrl: supplement.affiliateUrl || supplement.amazonUrl,
         commissionRate: 0.08, // 8%
-        price: supplement.currentPrice,
+        price: supplement.price || '',
         imageUrl: supplement.imageUrl,
         brand: supplement.brand,
         amazonProduct: {
-          asin: supplement.asin,
+          asin: supplement.asin || '',
           rating: supplement.rating,
           reviewCount: supplement.reviewCount,
-          primeEligible: supplement.primeEligible,
-          qualityScore: 0.9,
-          qualityFactors: supplement.qualityFactors
-        }
+        },
       })),
-      totalMonthlyCost: cachedStack.totalMonthlyCost,
-      estimatedCommission: cachedStack.estimatedCommission,
-      evidenceScore: cachedStack.evidenceScore,
-      userSuccessRate: cachedStack.userSuccessRate,
-      timeline: cachedStack.timeline,
-      synergies: cachedStack.synergies,
-      contraindications: cachedStack.contraindications,
-      scientificBacking: cachedStack.scientificBacking,
-      // Add metadata about caching
-      _metadata: {
-        source: 'cached',
-        archetypeUsed: cachedStack.archetypeId,
-        lastVerified: cachedStack.lastVerified,
-        allLinksValid: cachedStack.allLinksValid
-      }
+      archetype: cachedStack.archetypeId,
+      averageRating: cachedStack.averageRating,
+      totalReviewCount: cachedStack.totalReviewCount || cachedStack.reviewCount || 0,
+      lastUpdated: cachedStack.lastUpdated,
     };
   }
 
@@ -218,15 +225,9 @@ export class EnhancedAdvisorService {
    * Clear cached stacks and regenerate with updated data
    */
   async clearAndRegenerateStacks(): Promise<void> {
-    console.log('🗑️ Clearing existing cached stacks...');
-    
-    // Create a new service instance to clear the cache
-    this.cachedStackService = new CachedStackService();
-    
-    console.log('🔄 Regenerating stacks with updated data...');
-    await this.cachedStackService.generateAndCacheAllStacks();
-    
-    console.log('✅ Cache cleared and stacks regenerated successfully');
+    console.log('🗑️ Clearing cached stacks...');
+    this.cachedStacks = [];
+    console.log('✅ Cached stacks cleared. Next request will fetch from Firestore.');
   }
 }
 
