@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import AdvisorForm from '@/components/advisor-form';
 import { SupplementStackCard } from '@/components/supplement-stack-card';
@@ -37,7 +38,7 @@ export default function AdvisorTestPage() {
         gender: testData.gender,
         fitnessGoals: [testData.fitnessGoals],
         dietaryRestrictions: testData.diet ? [testData.diet] : [],
-        currentSupplements: testData.otherCriteria ? testData.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean) : [],
+        currentSupplements: testData.otherCriteria ? (testData.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean)) : [],
         healthConcerns: testData.healthConcerns || [],
         budget: testData.budget ? parseInt(testData.budget, 10) : 100,
         experienceLevel: testData.activityLevel,
@@ -91,10 +92,10 @@ export default function AdvisorTestPage() {
       const input: SupplementAdvisorInput = {
         age: parseInt(data.age, 10),
         gender: data.gender,
-        fitnessGoals: Array.isArray(data.fitnessGoals) ? data.fitnessGoals : [data.fitnessGoals],
+        fitnessGoals: Array.isArray(data?.fitnessGoals) ? data.fitnessGoals : (data?.fitnessGoals ? [data.fitnessGoals] : []),
         dietaryRestrictions: data.diet ? [data.diet] : [],
-        currentSupplements: data.otherCriteria ? data.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean) : [],
-        healthConcerns: Array.isArray(data.healthConcerns) ? data.healthConcerns : (data.healthConcerns ? [data.healthConcerns] : []),
+        currentSupplements: data?.otherCriteria ? (data.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean)) : [],
+        healthConcerns: Array.isArray(data?.healthConcerns) ? data.healthConcerns : (data?.healthConcerns ? [data.healthConcerns] : []),
         budget: data.budget ? parseInt(data.budget, 10) : 100,
         experienceLevel: data.activityLevel,
         lifestyle: `${data.sleepQuality} sleep, ${data.activityLevel} activity`,

@@ -47,7 +47,7 @@ export default function MyPlansPage() {
     const handleDeletePlan = async (planId: string) => {
         try {
             userProfileManager.removeStack(planId);
-            setSavedPlans(plans => plans.filter(p => p.id !== planId));
+            setSavedPlans(plans => (plans ?? []).filter(p => p?.id !== planId));
             toast({
                 title: "Plan Deleted",
                 description: "Your supplement plan has been removed.",
@@ -66,8 +66,8 @@ export default function MyPlansPage() {
         if (user?.subscription?.status === 'active') {
             // For premium users, go directly to Amazon or affiliate links
             const supplementUrls = plan.supplements
-                .filter(s => s.affiliateUrl || s.imageUrl)
-                .map(s => s.affiliateUrl || `https://www.amazon.com/s?k=${encodeURIComponent(s.name + ' supplement')}&tag=nutriwiseai-20`);
+                .filter(s => s?.affiliateUrl || s?.imageUrl)
+                .map(s => s?.affiliateUrl || `https://www.amazon.com/s?k=${encodeURIComponent((s?.name ?? '') + ' supplement')}&tag=nutriwiseai-20`);
             
             if (supplementUrls.length > 0) {
                 toast({
@@ -76,7 +76,7 @@ export default function MyPlansPage() {
                 });
                 
                 // Open each supplement's purchase link
-                supplementUrls.forEach((url, index) => {
+                (supplementUrls ?? []).forEach((url, index) => {
                     setTimeout(() => {
                         window.open(url, '_blank');
                     }, index * 500); // Stagger the opening to avoid popup blockers
@@ -129,7 +129,7 @@ export default function MyPlansPage() {
                 <NoPlansState />
             ) : (
                 <div className="grid gap-6">
-                    {savedPlans.map((plan) => (
+                    {(savedPlans ?? []).map((plan) => (
                         <Card key={plan.id} className="overflow-hidden bg-card/50 border-border/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
                             <CardHeader className="bg-gradient-to-r from-primary/5 to-transparent border-b border-border/30">
                                 <div className="flex items-center justify-between">
@@ -172,9 +172,9 @@ export default function MyPlansPage() {
                             <CardContent className="p-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <h4 className="font-semibold mb-3 text-foreground">Supplements ({plan.supplements.length})</h4>
+                                        <h4 className="font-semibold mb-3 text-foreground">Supplements ({(plan?.supplements?.length ?? 0)})</h4>
                                         <div className="space-y-2">
-                                            {plan.supplements.map((supplement, index) => (
+                                            {(plan?.supplements ?? []).map((supplement, index) => (
                                                 <div key={index} className="flex items-center gap-3 p-3 bg-muted/30 border border-border/30 rounded-lg hover:bg-muted/50 transition-colors">
                                                     {supplement.imageUrl ? (
                                                         <Image
@@ -207,7 +207,7 @@ export default function MyPlansPage() {
                                     <div>
                                         <h4 className="font-semibold mb-3 text-foreground">Key Benefits</h4>
                                         <ul className="space-y-1 text-sm">
-                                            {plan.synergies.map((synergy, index) => (
+                                            {(plan?.synergies ?? []).map((synergy, index) => (
                                                 <li key={index} className="flex items-start gap-2">
                                                     <span className="text-primary font-bold">•</span>
                                                     <span className="text-muted-foreground">{synergy}</span>

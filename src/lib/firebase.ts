@@ -1,6 +1,7 @@
 
-import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getAuth, Auth } from "firebase/auth";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import type { FirebaseApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore, Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -21,7 +22,7 @@ if (getApps().length === 0) {
 
 const db = getFirestore(app);
 
-const getFirebaseAuth = (): Auth => getAuth(app);
+const getFirebaseAuth = () => getAuth(app);
 const getFirebaseFirestore = (): Firestore => db;
 
 export { app, getFirebaseAuth, getFirebaseFirestore, db };

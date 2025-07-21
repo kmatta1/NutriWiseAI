@@ -78,13 +78,6 @@ class AmazonProductScraper {
     this.associateTag = process.env.AMAZON_ASSOCIATE_TAG || 'nutri0ad-20';
   }
 
-  /**
-   * Extract ASIN from Amazon URL
-   */
-  private extractASIN(url: string): string {
-    const asinMatch = url.match(/\/dp\/([A-Z0-9]{10})/i) || url.match(/\/gp\/product\/([A-Z0-9]{10})/i);
-    return asinMatch ? asinMatch[1] : '';
-  }
 
   /**
    * Generate affiliate URL from ASIN
@@ -137,10 +130,6 @@ class AmazonProductScraper {
   /**
    * Generate search URL for Amazon
    */
-  private generateSearchUrl(query: SearchQuery): string {
-    const encodedKeywords = encodeURIComponent(query.keywords);
-    return `${this.baseUrl}/s?k=${encodedKeywords}&rh=n%3A3760901&ref=sr_nr_n_1`;
-  }
 
   /**
    * Simulate fetching product data (for demonstration)
