@@ -40,7 +40,7 @@ const formSchema = z.object({
   sleepQuality: z.string().min(1, "Please select your sleep quality."),
   healthConcerns: z.array(z.string()).optional(),
   race: z.string().min(1, "Please select your race/ethnicity."),
-  budget: z.string().optional(),
+  budget: z.string().min(1, "Monthly budget is required for personalized recommendations."),
   otherCriteria: z.string().optional(),
 });
 
@@ -157,6 +157,20 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
       setHasLoadedProfile(true);
     }
   }, [isClient, getInitialValues, hasLoadedProfile, form, toast]);
+
+  // Handle prefillData changes from parent component
+  useEffect(() => {
+    if (prefillData && isClient) {
+      const hasData = Object.values(prefillData).some(value => 
+        Array.isArray(value) ? value.length > 0 : value !== "" && value !== undefined
+      );
+      
+      if (hasData) {
+        console.log('🔄 Updating form with prefillData:', prefillData);
+        form.reset(prefillData);
+      }
+    }
+  }, [prefillData, isClient, form]);
 
   // Auto-save form data as user types (debounced) - only on client side
   useEffect(() => {
@@ -542,12 +556,18 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
                     <FormLabel className="text-lg font-bold text-slate-900 mb-3 block">Health Concerns (Optional)</FormLabel>
                     <div className="grid grid-cols-2 gap-3">
                       {[
-                        { id: "joint-pain", label: "Joint Pain" },
+                        { id: "joint-pain", label: "Joint Pain/Arthritis" },
                         { id: "low-energy", label: "Low Energy/Fatigue" },
                         { id: "stress-anxiety", label: "Stress/Anxiety" },
                         { id: "poor-digestion", label: "Poor Digestion" },
-                        { id: "focus-memory", label: "Focus/Memory" },
-                        { id: "sleep-issues", label: "Sleep Issues" }
+                        { id: "focus-memory", label: "Focus/Memory Issues" },
+                        { id: "sleep-issues", label: "Sleep Issues" },
+                        { id: "immune-system", label: "Weak Immune System" },
+                        { id: "inflammation", label: "Chronic Inflammation" },
+                        { id: "heart-health", label: "Heart Health Concerns" },
+                        { id: "bone-health", label: "Bone Health/Osteoporosis" },
+                        { id: "hormone-balance", label: "Hormonal Imbalances" },
+                        { id: "skin-hair", label: "Skin/Hair Issues" }
                       ].map((concern) => (
                         <div key={concern.id} className="flex items-center space-x-2">
                           <Checkbox
@@ -555,13 +575,17 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
                             checked={field.value?.includes(concern.id)}
                             onCheckedChange={(checked: boolean) => {
                               const current = field.value || [];
+                              let updated;
                               if (checked) {
-                                field.onChange([...current, concern.id]);
+                                updated = [...current, concern.id];
                               } else {
-                                field.onChange(current.filter((id) => id !== concern.id));
+                                updated = current.filter((id) => id !== concern.id);
                               }
+                              console.log('Health concern changed:', concern.id, checked, updated);
+                              field.onChange(updated);
                             }}
                             className="border-2 border-slate-300"
+                            disabled={isLoading ? true : false}
                           />
                           <label htmlFor={concern.id} className="text-sm font-medium text-slate-700">
                             {concern.label}

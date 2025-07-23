@@ -1,5 +1,5 @@
-import { fallbackAI } from './fallback-ai';
-import { USER_ARCHETYPES, UserArchetype, CachedSupplementStack, VerifiedSupplement } from './cached-stacks-schema';
+import { fallbackAI } from './fallback-ai.ts';
+import { USER_ARCHETYPES, UserArchetype, CachedSupplementStack, VerifiedSupplement } from './cached-stacks-schema.ts';
 
 // Reliable supplement database with verified Amazon products
 const VERIFIED_SUPPLEMENTS: Record<string, VerifiedSupplement> = {

@@ -56,13 +56,15 @@ export default function AdvisorPage() {
   };
 
   useEffect(() => {
-    // Only load saved form data for authenticated users
-    if (user) {
-      const savedData = userProfileManager.getFormData();
-      if (savedData) {
-        setSavedFormData(savedData);
-        setShowChangePrompt(true);
-      }
+    // Load saved form data (works for both authenticated and guest users)
+    const savedData = userProfileManager.getFormData();
+    console.log('🔍 Saved form data found:', savedData);
+    if (savedData) {
+      setSavedFormData(savedData);
+      setShowChangePrompt(true);
+      console.log('✅ Setting savedFormData and showChangePrompt to true');
+    } else {
+      console.log('❌ No saved form data found');
     }
   }, [user]);
 
@@ -78,6 +80,10 @@ export default function AdvisorPage() {
 
   const handleUseSavedProfile = () => {
     setShowChangePrompt(false);
+    if (savedFormData) {
+      // Force a re-render by updating the savedFormData state
+      setSavedFormData({...savedFormData});
+    }
     toast({
       title: "Using Saved Profile",
       description: "You can edit any fields before generating recommendations.",
@@ -91,7 +97,7 @@ export default function AdvisorPage() {
     
     try {
       // Validate required fields before processing
-      const requiredFields = ['fitnessGoals', 'gender', 'age', 'weight', 'activityLevel', 'diet', 'sleepQuality', 'race'];
+      const requiredFields = ['fitnessGoals', 'gender', 'age', 'weight', 'activityLevel', 'diet', 'sleepQuality', 'race', 'budget'];
       const missingFields = requiredFields.filter(field => !data[field] || data[field] === '');
       
       if (missingFields.length > 0) {
@@ -587,7 +593,7 @@ export default function AdvisorPage() {
                   <AdvisorForm 
                     onSubmit={handleSubmit} 
                     isLoading={loading} 
-                    prefillData={!showChangePrompt ? savedFormData : undefined}
+                    prefillData={savedFormData}
                   />
                 </div>
               </Card>

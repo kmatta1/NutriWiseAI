@@ -33,7 +33,11 @@ export async function GET() {
           name: supp.name,
           brand: supp.brand,
           imageUrl: supp.imageUrl,
-          price: supp.currentPrice || supp.price
+          price: supp.currentPrice || supp.price,
+          dosage: supp.dosage,
+          timing: supp.timing,
+          reasoning: supp.reasoning,
+          affiliateUrl: supp.affiliateUrl
         }))
       });
     } else {
