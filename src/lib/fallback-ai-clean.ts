@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
-import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data';
+import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data.ts';
 
 export interface SupplementStack {
   id: string;

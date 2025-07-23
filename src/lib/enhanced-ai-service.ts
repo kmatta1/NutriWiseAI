@@ -2,8 +2,8 @@
 // Advanced RAG-Powered Supplement Intelligence
 
 import { OpenAI } from 'openai';
-import { AmazonIntegrationService } from './amazon-integration';
-import { ExtendedUserProfile, SupplementStack } from './types';
+import { AmazonIntegrationService } from './amazon-integration.ts';
+import { ExtendedUserProfile, SupplementStack } from './types.ts';
 
 interface ResearchData {
   pubmedStudies: Study[];

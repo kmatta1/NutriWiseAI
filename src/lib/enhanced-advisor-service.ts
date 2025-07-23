@@ -1,7 +1,7 @@
-import { fetchVerifiedStacks } from './cached-stack-service';
-import { fallbackAI } from './fallback-ai';
-import type { SupplementAdvisorInput } from './actions';
-import { CachedSupplementStack } from './cached-stacks-schema';
+import { fetchVerifiedStacks } from './cached-stack-service.ts';
+import { fallbackAI } from './fallback-ai.ts';
+import type { SupplementAdvisorInput } from './actions.ts';
+import { CachedSupplementStack } from './cached-stacks-schema.ts';
 
 export interface EnhancedSupplementAdvisorResult {
   success: boolean;
@@ -143,17 +143,54 @@ export class EnhancedAdvisorService {
   private convertCachedStackToAdvisorFormat(cachedStack: CachedSupplementStack, _input: SupplementAdvisorInput) {
     // Use supplementDetails array if available, otherwise fallback to supplement IDs
     const details = cachedStack.supplementDetails || cachedStack.supplementsDetails || [];
-    return {
-      id: cachedStack.id || cachedStack.archetypeId,
-      name: cachedStack.name,
-      supplements: details.map((supplement: any) => ({
+    
+    // Create supplement info mapping for common supplements
+    const supplementInfoMap: { [key: string]: { dosage: string; timing: string; reasoning: string } } = {
+      'Pre-Workout Supplement by Legion Pulse': {
+        dosage: '1 scoop (21.5g)',
+        timing: '15-30 minutes before workout',
+        reasoning: 'Clinically dosed pre-workout formula with natural caffeine, citrulline malate, and beta-alanine for enhanced energy, focus, and endurance during training sessions.'
+      },
+      'Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla': {
+        dosage: '1 scoop (30g)',
+        timing: 'Post-workout or between meals',
+        reasoning: 'High-quality whey protein isolates and concentrates providing 24g of protein per serving to support muscle recovery and growth.'
+      },
+      'Creatine Monohydrate Powder Micronized by BulkSupplements': {
+        dosage: '5g',
+        timing: 'Daily, any time',
+        reasoning: 'Pure creatine monohydrate to increase muscle power, strength, and size. Most researched supplement for athletic performance.'
+      },
+      'BCAA Energy Amino Acid Supplement by Cellucor C4': {
+        dosage: '1 scoop (7g)',
+        timing: 'During or after workout',
+        reasoning: 'Essential amino acids (leucine, isoleucine, valine) to prevent muscle breakdown and support recovery during intense training.'
+      }
+    };
+
+    const processedSupplements = details.map((supplement: any) => {
+      const supplementInfo = supplementInfoMap[supplement.name] || {
+        dosage: 'As directed',
+        timing: 'With meals',
+        reasoning: 'Supports overall health and wellness goals'
+      };
+      
+      // Parse price to number for calculation
+      let numericPrice = 0;
+      if (typeof supplement.price === 'string') {
+        numericPrice = parseFloat(supplement.price.replace(/[$,]/g, ''));
+      } else if (typeof supplement.price === 'number') {
+        numericPrice = supplement.price;
+      }
+      
+      return {
         name: supplement.name,
-        dosage: supplement.dosage || '',
-        timing: supplement.timing || '',
-        reasoning: supplement.reasoning || '',
+        dosage: supplement.dosage || supplementInfo.dosage,
+        timing: supplement.timing || supplementInfo.timing,
+        reasoning: supplement.reasoning || supplementInfo.reasoning,
         affiliateUrl: supplement.affiliateUrl || supplement.amazonUrl,
         commissionRate: 0.08, // 8%
-        price: supplement.price || '',
+        price: numericPrice,
         imageUrl: supplement.imageUrl,
         brand: supplement.brand,
         amazonProduct: {
@@ -161,11 +198,23 @@ export class EnhancedAdvisorService {
           rating: supplement.rating,
           reviewCount: supplement.reviewCount,
         },
-      })),
+      };
+    });
+
+    // Calculate total monthly cost by summing individual supplement prices
+    const totalMonthlyCost = processedSupplements.reduce((total, supplement) => {
+      return total + (supplement.price || 0);
+    }, 0);
+
+    return {
+      id: cachedStack.id || cachedStack.archetypeId,
+      name: cachedStack.name,
+      supplements: processedSupplements,
       archetype: cachedStack.archetypeId,
       averageRating: cachedStack.averageRating,
       totalReviewCount: cachedStack.totalReviewCount || cachedStack.reviewCount || 0,
       lastUpdated: cachedStack.lastUpdated,
+      totalMonthlyCost: totalMonthlyCost
     };
   }
 
@@ -176,31 +225,44 @@ export class EnhancedAdvisorService {
     let score = 0;
     let maxScore = 0;
 
-    // Age matching (weight: 20%)
-    maxScore += 20;
-    // Note: We'd need to store archetype data with the stack for perfect matching
-    // For now, assume reasonable age matching based on stack type
-    score += 15;
-
-    // Budget matching (weight: 25%)
-    maxScore += 25;
-    const budgetDiff = Math.abs((input.budget || 100) - stack.totalMonthlyCost);
-    if (budgetDiff <= 20) score += 25;
-    else if (budgetDiff <= 40) score += 15;
-    else if (budgetDiff <= 60) score += 10;
-
-    // Goals matching (weight: 35%) - simplified for now
+    // Budget matching (weight: 35% - HIGHEST PRIORITY)
     maxScore += 35;
+    const budgetDiff = Math.abs((input.budget || 100) - stack.totalMonthlyCost);
+    if (budgetDiff <= 10) score += 35; // Within $10
+    else if (budgetDiff <= 20) score += 25; // Within $20
+    else if (budgetDiff <= 40) score += 15; // Within $40
+    else if (budgetDiff <= 60) score += 5;  // Within $60
+    // If over budget by more than $60, score = 0 for budget
+
+    // Health concerns matching (weight: 25%)
+    maxScore += 25;
+    const userHealthConcerns = input.healthConcerns || [];
+    // This would need to be enhanced with health concern mapping to stacks
+    // For now, give partial score if user has specific health concerns
+    if (userHealthConcerns.length > 0) {
+      score += 15; // Assume some relevance for now
+    } else {
+      score += 20; // Full score if no specific concerns
+    }
+
+    // Goals matching (weight: 20%)
+    maxScore += 20;
+    const userGoals = Array.isArray(input.fitnessGoals) ? input.fitnessGoals : [input.fitnessGoals];
     // This would require storing goals with the stack for perfect matching
-    score += 25;
+    score += 15; // Simplified for now
 
-    // Gender matching (weight: 10%)
+    // Age matching (weight: 10%)
     maxScore += 10;
-    score += 8; // Assume most stacks work for both genders
+    // Assume reasonable age matching based on stack type
+    score += 8;
 
-    // Activity level matching (weight: 10%)
-    maxScore += 10;
-    score += 7; // Simplified
+    // Gender matching (weight: 5%)
+    maxScore += 5;
+    score += 4; // Assume most stacks work for both genders
+
+    // Activity level matching (weight: 5%)
+    maxScore += 5;
+    score += 4; // Simplified
 
     return Math.round((score / maxScore) * 100);
   }

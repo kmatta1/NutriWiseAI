@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
+import Navigation from '../components/Navigation';
 
 interface SupplementData {
   id: string;
@@ -89,8 +90,10 @@ export default function DatabaseAnalysis() {
   }, {} as Record<string, SupplementData[]>);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Firestore Database Analysis</h1>
+    <>
+      <Navigation />
+      <div className="p-8">
+        <h1 className="text-3xl font-bold mb-6">Firestore Database Analysis</h1>
       
       <div className="mb-6 p-4 bg-blue-50 rounded-lg">
         <h2 className="text-xl font-semibold mb-2">Summary</h2>
@@ -151,5 +154,6 @@ export default function DatabaseAnalysis() {
         </div>
       </div>
     </div>
+    </>
   );
 }

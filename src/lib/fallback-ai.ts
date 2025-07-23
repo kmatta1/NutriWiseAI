@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
-import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data';
-import { workingAmazonService } from './working-amazon-service';
+import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data.ts';
+import { workingAmazonService } from './working-amazon-service.ts';
 
 export interface SupplementStack {
   id: string;
@@ -82,6 +82,98 @@ const anthropic = process.env.ANTHROPIC_API_KEY ? new Anthropic({
 // const amazonService = new AmazonIntegrationService();
 
 export class FallbackAI {
+  // Helper methods for enhanced personalization
+  private getAgeCategory(age: number): string {
+    if (age < 25) return "Young Adult - High metabolic rate, building phase";
+    if (age < 40) return "Adult - Peak performance, maintenance phase";
+    if (age < 55) return "Middle-aged - Declining metabolism, prevention focus";
+    return "Mature Adult - Age-related decline prevention, enhanced absorption needs";
+  }
+
+  private getGenderSpecificNeeds(gender: string): string {
+    if (gender === 'female') return "Higher iron needs, bone health priority, hormonal considerations";
+    if (gender === 'male') return "Higher protein needs, cardiovascular focus, testosterone support";
+    return "General nutritional needs";
+  }
+
+  private getRaceSpecificConsiderations(race?: string): string {
+    if (!race) return "Standard absorption rates";
+    const raceMap: { [key: string]: string } = {
+      'white': 'Standard vitamin D synthesis, potential lactose tolerance',
+      'black': 'Higher vitamin D needs, lower calcium absorption, sickle cell considerations',
+      'hispanic': 'Diabetes risk factors, vitamin D deficiency common',
+      'asian': 'Lactose intolerance common, alcohol metabolism variations',
+      'native-american': 'Diabetes predisposition, unique metabolic factors',
+      'other': 'Individual assessment needed'
+    };
+    return raceMap[race] || 'Individual assessment needed';
+  }
+
+  private getActivityLevelNeeds(activityLevel?: string): string {
+    const activityMap: { [key: string]: string } = {
+      'sedentary': 'Focus on metabolism, energy, basic nutrition',
+      'light': 'Light exercise recovery, general wellness',
+      'moderate': 'Enhanced recovery, performance maintenance',
+      'active': 'Performance optimization, faster recovery',
+      'very-active': 'Athletic performance, intense recovery needs'
+    };
+    return activityMap[activityLevel || 'moderate'] || 'Moderate activity needs';
+  }
+
+  private getDietSpecificNeeds(diet?: string): string {
+    const dietMap: { [key: string]: string } = {
+      'vegan': 'B12, iron, omega-3, protein focus',
+      'vegetarian': 'B12, iron considerations',
+      'keto': 'Electrolyte balance, MCT, exogenous ketones',
+      'paleo': 'Micronutrient density focus',
+      'mediterranean': 'Anti-inflammatory support',
+      'balanced': 'General nutritional support'
+    };
+    return dietMap[diet || 'balanced'] || 'Standard nutritional needs';
+  }
+
+  private getSleepQualityImplications(sleepQuality?: string): string {
+    if (!sleepQuality) return 'Standard sleep support';
+    const quality = parseInt(sleepQuality) || 5;
+    if (quality < 4) return 'Severe sleep issues - magnesium, melatonin, stress management critical';
+    if (quality < 6) return 'Poor sleep - relaxation and sleep hygiene support needed';
+    if (quality < 8) return 'Moderate sleep - minor optimization helpful';
+    return 'Good sleep quality - maintenance approach';
+  }
+
+  private getHealthConcernTargeting(healthConcerns?: string[]): string {
+    if (!healthConcerns || healthConcerns.length === 0) return 'General wellness focus';
+    
+    const concernMap: { [key: string]: string } = {
+      'joint-pain': 'Anti-inflammatory, collagen, omega-3 priority',
+      'low-energy': 'B-vitamins, iron, CoQ10, mitochondrial support',
+      'stress-anxiety': 'Adaptogenic herbs, magnesium, GABA support',
+      'poor-digestion': 'Probiotics, digestive enzymes, gut health',
+      'focus-memory': 'Nootropics, omega-3, B-vitamins for cognitive health',
+      'sleep-issues': 'Magnesium, melatonin, relaxation support'
+    };
+    
+    return healthConcerns.map(concern => concernMap[concern] || concern).join('; ');
+  }
+
+  private getBudgetCategory(budget: number): string {
+    if (budget < 30) return "Very Limited - Focus on essentials only";
+    if (budget < 60) return "Modest - Core supplements prioritized";
+    if (budget < 100) return "Moderate - Good foundation possible";
+    if (budget < 150) return "Comfortable - Comprehensive stack achievable";
+    return "Premium - Advanced optimization possible";
+  }
+
+  private getBudgetStrategy(budget: number): string {
+    if (budget < 50) {
+      return "Focus on 2-3 high-impact supplements: multivitamin, omega-3, one targeted supplement";
+    } else if (budget < 100) {
+      return "Build foundation: multivitamin, omega-3, protein, 1-2 targeted supplements";
+    } else {
+      return "Comprehensive approach: foundational supplements + targeted interventions + performance enhancers";
+    }
+  }
+
   async generateEvidenceBasedStack(userProfile: UserProfile, isPremium: boolean = false): Promise<SupplementStack> {
     try {
       console.log(`🎯 generateEvidenceBasedStack called with isPremium: ${isPremium}`);
@@ -98,86 +190,129 @@ export class FallbackAI {
           messages: [
             {
               role: "system",
-              content: `You are an expert supplement scientist creating synergistic stacks.
-                       
-                       FOCUS ON:
-                       1. Supplements that work together (synergy)
-                       2. Scientific evidence backing
-                       3. User safety and realistic expectations
-                       4. Cost-effectiveness within budget
-                       
-                       Create a JSON response with the exact SupplementStack structure.`
+              content: `You are Dr. NutriWise, a world-renowned supplement scientist and nutritional biochemist with 20+ years of experience in personalized nutrition. You have published over 200 peer-reviewed studies and have helped over 50,000 individuals optimize their health through evidence-based supplementation.
+
+CORE PRINCIPLES:
+1. Evidence-based recommendations backed by peer-reviewed research
+2. Personalization based on individual demographics, health status, and lifestyle
+3. Safety first - always consider contraindications and interactions
+4. Budget optimization - maximum value within financial constraints
+5. Synergistic combinations that enhance bioavailability and effectiveness
+6. Realistic expectations with clear timelines for results
+
+CRITICAL ANALYSIS FRAMEWORK:
+- Age-specific nutritional needs and absorption rates
+- Gender-specific hormonal and physiological considerations  
+- Race/ethnicity genetic variations affecting supplement metabolism
+- Health condition targeting with evidence-based dosing
+- Activity level matching for performance and recovery needs
+- Diet-specific nutrient gaps and requirements
+- Budget-constrained optimization for maximum impact
+
+You must create scientifically sound, personalized supplement stacks that prioritize safety, efficacy, and cost-effectiveness.`
             },
             {
               role: "user",
               content: `
-                Create a SCIENTIFICALLY-BACKED supplement stack for this user:
-                
-                User Profile:
-                - Age: ${userProfile.age} years
-                - Gender: ${userProfile.gender}
-                - Race/Ethnicity: ${userProfile.race || 'Not specified'}
-                - Fitness Goals: ${Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals.join(', ') : userProfile.fitnessGoals || 'General health'}
-                - Activity Level: ${userProfile.activityLevel || userProfile.experienceLevel}
-                - Diet Type: ${userProfile.diet || 'Not specified'}
-                - Sleep Quality: ${userProfile.sleepQuality || 'Not specified'}
-                - Weight: ${userProfile.weight}kg
-                - Budget: $${userProfile.budget}/month
-                - Health Concerns: ${Array.isArray(userProfile.healthConcerns) ? userProfile.healthConcerns.join(', ') : 'None specified'}
-                - Current Supplements: ${Array.isArray(userProfile.currentSupplements) ? userProfile.currentSupplements.join(', ') : 'None'}
-                - Other Criteria: ${userProfile.otherCriteria || 'None'}
-                
-                Available Products: ${JSON.stringify(availableProducts.slice(0, 3))}
-                
-                Relevant Studies: ${JSON.stringify(relevantStudies.slice(0, 2))}
-                
-                Similar User Outcomes: ${JSON.stringify(similarUsers.slice(0, 2))}
-                
-                Requirements:
-                1. Consider age-specific needs (younger vs older nutritional requirements)
-                2. Gender-specific considerations (iron, calcium, hormones)
-                3. Race/ethnicity considerations (vitamin D, lactose tolerance, genetic variations)
-                4. Activity level matching (sedentary vs athlete needs)
-                5. Diet-specific needs (vegan, keto, restrictions)
-                6. Sleep quality considerations (magnesium, melatonin support)
-                7. Health concern targeting (joint pain, energy, stress management)
-                8. Synergistic combinations that enhance each other
-                9. Proper dosing and timing for maximum bioavailability
-                10. Stay within budget constraints
-                
-                IMPORTANT: Base recommendations on REAL scientific evidence and user demographics.
-                
-                Return as JSON with this exact structure:
-                {
-                  "id": "stack_[random_id]",
-                  "name": "Descriptive Stack Name",
-                  "supplements": [
-                    {
-                      "name": "supplement name",
-                      "dosage": "specific dosage",
-                      "timing": "when to take",
-                      "reasoning": "why this supplement and dosage",
-                      "price": 0,
-                      "affiliateUrl": null
-                    }
-                  ],
-                  "totalMonthlyCost": 0,
-                  "estimatedCommission": 0,
-                  "evidenceScore": 0,
-                  "userSuccessRate": 0,
-                  "timeline": "expected_results_timeline",
-                  "synergies": ["synergy1", "synergy2"],
-                  "contraindications": ["warning1", "warning2"],
-                  "scientificBacking": {
-                    "studyCount": 0,
-                    "qualityScore": 0,
-                    "citations": ["citation1", "citation2"]
-                  }
-                }`
+Create a COMPREHENSIVE, EVIDENCE-BASED supplement stack for this individual:
+
+=== USER PROFILE ===
+Demographics:
+- Age: ${userProfile.age} years (${this.getAgeCategory(userProfile.age)})
+- Gender: ${userProfile.gender} (${this.getGenderSpecificNeeds(userProfile.gender)})
+- Race/Ethnicity: ${userProfile.race || 'Not specified'} (${this.getRaceSpecificConsiderations(userProfile.race)})
+- Weight: ${userProfile.weight || 'Not specified'}kg
+- Activity Level: ${userProfile.activityLevel || 'moderate'} (${this.getActivityLevelNeeds(userProfile.activityLevel)})
+
+Health & Lifestyle:
+- Primary Goals: ${Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals.join(', ') : userProfile.fitnessGoals || 'General health'}
+- Diet Type: ${userProfile.diet || 'Mixed'} (${this.getDietSpecificNeeds(userProfile.diet)})
+- Sleep Quality: ${userProfile.sleepQuality || 'Average'}/10 (${this.getSleepQualityImplications(userProfile.sleepQuality)})
+- Health Concerns: ${Array.isArray(userProfile.healthConcerns) ? userProfile.healthConcerns.join(', ') : 'None specified'} (${this.getHealthConcernTargeting(userProfile.healthConcerns)})
+- Current Supplements: ${Array.isArray(userProfile.currentSupplements) ? userProfile.currentSupplements.join(', ') : 'None'}
+- Additional Criteria: ${userProfile.otherCriteria || 'None'}
+
+Budget Constraints:
+- Monthly Budget: $${userProfile.budget} USD (${this.getBudgetCategory(userProfile.budget)})
+- Budget Allocation Strategy: ${this.getBudgetStrategy(userProfile.budget)}
+
+=== SCIENTIFIC DATA ===
+Relevant Research: ${JSON.stringify(relevantStudies.slice(0, 3))}
+Similar User Outcomes: ${JSON.stringify(similarUsers.slice(0, 2))}
+Available Products: ${JSON.stringify(availableProducts.slice(0, 5))}
+
+=== ANALYSIS REQUIREMENTS ===
+
+1. PERSONALIZED ASSESSMENT:
+   - Analyze age-specific metabolic changes and absorption rates
+   - Consider gender-specific hormonal needs (iron, calcium, omega-3s)
+   - Factor in race/ethnicity genetic variations (vitamin D, B12, folate metabolism)
+   - Address specific health concerns with targeted interventions
+
+2. EVIDENCE-BASED SELECTION:
+   - Choose supplements with strong scientific backing (minimum 3+ quality studies)
+   - Prioritize forms with highest bioavailability (methylfolate vs folic acid, etc.)
+   - Consider timing and food interactions for optimal absorption
+   - Account for synergistic combinations (vitamin D + K2, magnesium + vitamin D)
+
+3. BUDGET OPTIMIZATION:
+   - Stay STRICTLY within $${userProfile.budget} monthly budget
+   - Prioritize supplements by impact/cost ratio
+   - Suggest high-impact, cost-effective options first
+   - Consider subscription savings and bulk pricing
+
+4. SAFETY & INTERACTIONS:
+   - Check for contraindications with health conditions
+   - Consider potential drug interactions
+   - Provide appropriate warnings and precautions
+   - Recommend conservative dosing for beginners
+
+5. REALISTIC EXPECTATIONS:
+   - Provide evidence-based timelines for expected benefits
+   - Explain mechanism of action for each supplement
+   - Set realistic expectations based on individual factors
+
+MANDATORY OUTPUT FORMAT:
+Return ONLY valid JSON with this exact structure (no additional text):
+
+{
+  "id": "stack_${Date.now()}",
+  "name": "[Personalized Stack Name based on goals]",
+  "supplements": [
+    {
+      "name": "[Specific supplement name with form]",
+      "dosage": "[Evidence-based dosage with units]",
+      "timing": "[Optimal timing for absorption]",
+      "reasoning": "[Scientific rationale: Why this supplement, this dose, this timing - include study references]",
+      "price": [Estimated monthly cost in USD],
+      "affiliateUrl": null,
+      "bioavailabilityNotes": "[Form-specific absorption notes]",
+      "safetyNotes": "[Any warnings or contraindications]"
+    }
+  ],
+  "totalMonthlyCost": [Sum of all supplement costs - MUST be ≤ ${userProfile.budget}],
+  "estimatedCommission": [totalMonthlyCost * 0.08],
+  "evidenceScore": [0-100 based on research quality],
+  "userSuccessRate": [Estimated % based on similar profiles],
+  "timeline": "[Realistic expectations: 2-4 weeks for X, 2-3 months for Y]",
+  "synergies": ["[Supplement A] + [Supplement B] = [Enhanced effect]"],
+  "contraindications": ["[Specific warnings for this user's profile]"],
+  "scientificBacking": {
+    "studyCount": [Number of supporting studies],
+    "qualityScore": [0-100 research quality score],
+    "citations": ["[Key study citations with specific findings]"]
+  },
+  "budgetBreakdown": {
+    "highPriority": [Cost of essential supplements],
+    "mediumPriority": [Cost of beneficial additions],
+    "upgradeOptions": ["[If budget were higher, consider adding...]"]
+  },
+  "personalizedNotes": "[Specific advice for this individual's unique situation]"
+}`
             }
           ],
-          max_tokens: 1500,
-          temperature: 0.7
+          max_tokens: 2000,
+          temperature: 0.3
         });
 
         const content = recommendation.choices[0]?.message?.content;
@@ -187,8 +322,11 @@ export class FallbackAI {
 
         const stack = JSON.parse(content);
         
+        // Validate and enforce budget constraints
+        const budgetValidatedStack = this.validateAndAdjustBudget(stack, userProfile.budget);
+        
         // Enhance with persuasive content
-        const enhancedStack = await this.enhanceWithContent(stack, userProfile);
+        const enhancedStack = await this.enhanceWithContent(budgetValidatedStack, userProfile);
         
         // Add appropriate images based on premium status
         const stackWithImages = await this.addProductImages(enhancedStack, isPremium);
@@ -262,11 +400,110 @@ export class FallbackAI {
     ).slice(0, 2);
   }
 
+  private validateAndAdjustBudget(stack: SupplementStack, userBudget: number): SupplementStack {
+    // Calculate current total cost
+    const currentTotal = stack.supplements.reduce((total, supp) => total + (supp.price || 0), 0);
+    
+    // If within budget, return as-is
+    if (currentTotal <= userBudget) {
+      stack.totalMonthlyCost = currentTotal;
+      return stack;
+    }
+    
+    console.log(`⚠️ Stack over budget: $${currentTotal} > $${userBudget}. Optimizing...`);
+    
+    // Sort supplements by priority/value ratio
+      const prioritizedSupplements = stack.supplements
+      .map(supp => ({
+        ...supp,
+        valueScore: this.calculateSupplementValue(supp)
+      }))
+      .sort((a, b) => b.valueScore - a.valueScore);    // Build optimized stack within budget
+    const optimizedSupplements = [];
+    let runningTotal = 0;
+    
+    for (const supplement of prioritizedSupplements) {
+      if (runningTotal + supplement.price <= userBudget) {
+        optimizedSupplements.push(supplement);
+        runningTotal += supplement.price;
+      }
+    }
+    
+    // Update stack with budget-compliant supplements
+    return {
+      ...stack,
+      supplements: optimizedSupplements,
+      totalMonthlyCost: runningTotal,
+      name: stack.name + " (Budget Optimized)",
+      contraindications: [
+        ...stack.contraindications,
+        `Optimized to fit $${userBudget} monthly budget`
+      ]
+    };
+  }
+
+  private calculateSupplementValue(supplement: any): number {
+    // Base value on price vs expected impact
+    const baseValue = 50; // Default value
+    const priceWeight = supplement.price > 0 ? 100 / supplement.price : 100;
+    
+    // Adjust based on supplement type importance
+    let importanceMultiplier = 1;
+    
+    if (supplement.name.toLowerCase().includes('multivitamin')) importanceMultiplier = 1.5;
+    if (supplement.name.toLowerCase().includes('omega')) importanceMultiplier = 1.4;
+    if (supplement.name.toLowerCase().includes('vitamin d')) importanceMultiplier = 1.3;
+    if (supplement.name.toLowerCase().includes('protein')) importanceMultiplier = 1.2;
+    
+    return baseValue * priceWeight * importanceMultiplier;
+  }
+
   private findRelevantProducts(userProfile: UserProfile) {
-    // Filter products by budget
-    return sampleAffiliateProducts.filter(product => 
-      product.price <= userProfile.budget * 0.4
-    ).slice(0, 5);
+    // Enhanced product filtering based on comprehensive user profile
+    const maxBudgetPerSupplement = userProfile.budget * 0.3; // Max 30% of budget per supplement
+    const minBudgetPerSupplement = userProfile.budget * 0.05; // Min 5% of budget per supplement
+    
+    return sampleAffiliateProducts.filter(product => {
+      // Strict budget filtering
+      if (product.price > maxBudgetPerSupplement || product.price < minBudgetPerSupplement) {
+        return false;
+      }
+      
+      // Basic filtering by category and goals
+      const userGoals = Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals : [userProfile.fitnessGoals];
+      
+      // Simple keyword matching for relevance
+      const productName = product.name.toLowerCase();
+      const category = product.category.toLowerCase();
+      
+      // Check for goal-related keywords
+      const hasGoalMatch = userGoals.some(goal => {
+        const goalKeywords = goal.toLowerCase();
+        return productName.includes(goalKeywords) || 
+               category.includes(goalKeywords) ||
+               product.keyBenefits.some(benefit => benefit.toLowerCase().includes(goalKeywords));
+      });
+      
+      // Check for health concern keywords if specified
+      if (userProfile.healthConcerns && userProfile.healthConcerns.length > 0) {
+        const hasHealthMatch = userProfile.healthConcerns.some(concern => {
+          const concernKeywords = concern.toLowerCase().replace('-', ' ');
+          return productName.includes(concernKeywords) ||
+                 product.keyBenefits.some(benefit => benefit.toLowerCase().includes(concernKeywords));
+        });
+        
+        return hasGoalMatch || hasHealthMatch;
+      }
+      
+      return hasGoalMatch;
+    })
+    .sort((a, b) => {
+      // Sort by value proposition (rating / price)
+      const aValue = a.rating / a.price;
+      const bValue = b.rating / b.price;
+      return bValue - aValue;
+    })
+    .slice(0, 8); // Return top 8 most relevant products
   }
 
   private async enhanceWithContent(stack: SupplementStack, userProfile: UserProfile) {
