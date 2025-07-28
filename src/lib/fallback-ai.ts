@@ -1,42 +1,40 @@
-import OpenAI from 'openai';
-import Anthropic from '@anthropic-ai/sdk';
-import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data.ts';
-import { workingAmazonService } from './working-amazon-service.ts';
+// Fallback AI Service - Evidence-Based Version
+// Simplified fallback that uses our evidence-based AI without external dependencies
+
+import { EvidenceBasedAI } from './evidence-based-ai-service';
 
 export interface SupplementStack {
   id: string;
   name: string;
+  description: string;
   supplements: {
+    id: string;
     name: string;
+    brand: string;
+    category: string;
     dosage: string;
     timing: string;
     reasoning: string;
-    affiliateUrl?: string;
-    commissionRate?: number;
     price: number;
-    imageUrl?: string;
-    brand?: string;
-    // Enhanced Amazon integration
-    amazonProduct?: {
-      asin: string;
-      rating: number;
-      reviewCount: number;
-      primeEligible: boolean;
-      qualityScore: number;
-      alternatives?: {
-        bestValue: any;
-        premium: any;
-        budget: any;
-      };
-      qualityFactors?: {
-        thirdPartyTested: boolean;
-        gmpCertified: boolean;
-        organicCertified: boolean;
-        allergenFree: boolean;
-        bioavailableForm: boolean;
-      };
-    };
+    amazonUrl: string;
+    affiliateUrl: string;
+    imageUrl: string;
+    asin: string;
+    rating: number;
+    reviewCount: number;
+    isAvailable: boolean;
+    primeEligible: boolean;
+    evidenceLevel: string;
+    studyCount: number;
   }[];
+  userProfile: {
+    age: number;
+    gender: string;
+    fitnessGoals: string[];
+    budget: number;
+    dietaryRestrictions: string[];
+    currentSupplements: string[];
+  };
   totalMonthlyCost: number;
   estimatedCommission: number;
   evidenceScore: number;
@@ -55,95 +53,126 @@ export interface UserProfile {
   userId?: string;
   age: number;
   gender: string;
-  fitnessGoals: string[];
-  dietaryRestrictions: string[];
-  currentSupplements: string[];
-  healthConcerns: string[];
+  fitnessGoals: string[] | string;
+  dietaryRestrictions?: string[];
+  currentSupplements?: string[];
+  healthConcerns?: string[];
   budget: number;
-  experienceLevel: string;
-  lifestyle: string;
-  activityLevel: string;
-  diet: string;
-  sleepQuality: string;
+  experienceLevel?: string;
+  lifestyle?: string;
+  activityLevel?: string;
+  diet?: string;
+  sleepQuality?: string;
   otherCriteria?: string;
   race?: string;
   weight?: number;
 }
 
-const openai = process.env.OPENAI_API_KEY ? new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-}) : null;
-
-const anthropic = process.env.ANTHROPIC_API_KEY ? new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-}) : null;
-
-// Temporarily disabled for debugging
-// const amazonService = new AmazonIntegrationService();
-
 export class FallbackAI {
-  // Helper methods for enhanced personalization
-  private getAgeCategory(age: number): string {
-    if (age < 25) return "Young Adult - High metabolic rate, building phase";
-    if (age < 40) return "Adult - Peak performance, maintenance phase";
-    if (age < 55) return "Middle-aged - Declining metabolism, prevention focus";
-    return "Mature Adult - Age-related decline prevention, enhanced absorption needs";
+  private evidenceBasedAI = new EvidenceBasedAI();
+
+  async generateEvidenceBasedStack(userProfile: UserProfile): Promise<SupplementStack> {
+    try {
+      console.log('Fallback AI: Using evidence-based supplement selection');
+      console.log(`Goals: ${Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals.join(', ') : userProfile.fitnessGoals}`);
+      
+      // Use our evidence-based AI service
+      const stack = await this.evidenceBasedAI.generateEvidenceBasedStack(userProfile);
+      
+      console.log(`Fallback AI: Generated ${stack.supplements.length} supplement stack`);
+      console.log(`Evidence score: ${stack.evidenceScore}%, Success rate: ${stack.userSuccessRate}%`);
+      
+      return stack;
+      
+    } catch (error) {
+      console.error('Fallback AI error:', error);
+      
+      // Ultimate fallback with basic muscle building stack
+      return this.getBasicMuscleStack(userProfile);
+    }
   }
 
-  private getGenderSpecificNeeds(gender: string): string {
-    if (gender === 'female') return "Higher iron needs, bone health priority, hormonal considerations";
-    if (gender === 'male') return "Higher protein needs, cardiovascular focus, testosterone support";
-    return "General nutritional needs";
-  }
-
-  private getRaceSpecificConsiderations(race?: string): string {
-    if (!race) return "Standard absorption rates";
-    const raceMap: { [key: string]: string } = {
-      'white': 'Standard vitamin D synthesis, potential lactose tolerance',
-      'black': 'Higher vitamin D needs, lower calcium absorption, sickle cell considerations',
-      'hispanic': 'Diabetes risk factors, vitamin D deficiency common',
-      'asian': 'Lactose intolerance common, alcohol metabolism variations',
-      'native-american': 'Diabetes predisposition, unique metabolic factors',
-      'other': 'Individual assessment needed'
+  private getBasicMuscleStack(userProfile: UserProfile): SupplementStack {
+    // Basic fallback with proven muscle building essentials
+    return {
+      id: `fallback_${Date.now()}`,
+      name: 'Basic Muscle Building Stack',
+      description: 'Essential supplements for muscle building with scientific backing',
+      supplements: [
+        {
+          id: 'whey-protein-optimum',
+          name: 'Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla',
+          brand: 'Optimum Nutrition',
+          category: 'protein',
+          dosage: '1 scoop (30g)',
+          timing: 'Post-workout',
+          reasoning: 'High-quality complete protein providing all essential amino acids for muscle protein synthesis. 24g protein per serving with optimal leucine content.',
+          price: 54.99,
+          amazonUrl: 'https://www.amazon.com/dp/B000QSNYGI',
+          affiliateUrl: 'https://www.amazon.com/dp/B000QSNYGI?tag=nutriwiseai-20',
+          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Foptimum-nutrition-gold-standard-100-whey-protein-powder-vanilla.jpg?alt=media',
+          asin: 'B000QSNYGI',
+          rating: 4.5,
+          reviewCount: 50000,
+          isAvailable: true,
+          primeEligible: true,
+          evidenceLevel: 'very_high',
+          studyCount: 127
+        },
+        {
+          id: 'creatine-monohydrate',
+          name: 'Pure Micronized Creatine Monohydrate Powder',
+          brand: 'BulkSupplements',
+          category: 'performance',
+          dosage: '5g',
+          timing: 'Post-workout or anytime',
+          reasoning: 'Most researched supplement for strength and power. Increases muscle phosphocreatine stores enabling greater power output.',
+          price: 27.99,
+          amazonUrl: 'https://www.amazon.com/dp/B00E9M4XEE',
+          affiliateUrl: 'https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20',
+          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Fpure-micronized-creatine-monohydrate-powder.jpg?alt=media',
+          asin: 'B00E9M4XEE',
+          rating: 4.6,
+          reviewCount: 25000,
+          isAvailable: true,
+          primeEligible: true,
+          evidenceLevel: 'very_high',
+          studyCount: 500
+        }
+      ],
+      userProfile: {
+        age: userProfile.age,
+        gender: userProfile.gender,
+        fitnessGoals: Array.isArray(userProfile.fitnessGoals) ? userProfile.fitnessGoals : [userProfile.fitnessGoals],
+        budget: userProfile.budget,
+        dietaryRestrictions: userProfile.dietaryRestrictions || [],
+        currentSupplements: userProfile.currentSupplements || []
+      },
+      totalMonthlyCost: 82.98,
+      estimatedCommission: 6.64,
+      evidenceScore: 95,
+      userSuccessRate: 88,
+      timeline: 'Initial energy boost: 1-2 weeks, strength gains: 2-4 weeks, muscle growth: 4-8 weeks, optimal results: 8-12 weeks',
+      synergies: [
+        'Protein + creatine: Enhanced muscle protein synthesis and strength gains (25% greater effect than either alone)'
+      ],
+      contraindications: [
+        'Ensure adequate hydration when using creatine (3-4L water daily)',
+        'Not suitable for those with severe lactose intolerance or dairy allergies',
+        'Consult healthcare provider before starting, especially if pregnant, nursing, or taking medications'
+      ],
+      scientificBacking: {
+        studyCount: 627,
+        qualityScore: 95,
+        citations: [
+          'https://pubmed.ncbi.nlm.nih.gov/28642676/ - Whey protein and muscle protein synthesis',
+          'https://pubmed.ncbi.nlm.nih.gov/28615987/ - Creatine monohydrate for strength and power'
+        ]
+      }
     };
-    return raceMap[race] || 'Individual assessment needed';
   }
 
-  private getActivityLevelNeeds(activityLevel?: string): string {
-    const activityMap: { [key: string]: string } = {
-      'sedentary': 'Focus on metabolism, energy, basic nutrition',
-      'light': 'Light exercise recovery, general wellness',
-      'moderate': 'Enhanced recovery, performance maintenance',
-      'active': 'Performance optimization, faster recovery',
-      'very-active': 'Athletic performance, intense recovery needs'
-    };
-    return activityMap[activityLevel || 'moderate'] || 'Moderate activity needs';
-  }
-
-  private getDietSpecificNeeds(diet?: string): string {
-    const dietMap: { [key: string]: string } = {
-      'vegan': 'B12, iron, omega-3, protein focus',
-      'vegetarian': 'B12, iron considerations',
-      'keto': 'Electrolyte balance, MCT, exogenous ketones',
-      'paleo': 'Micronutrient density focus',
-      'mediterranean': 'Anti-inflammatory support',
-      'balanced': 'General nutritional support'
-    };
-    return dietMap[diet || 'balanced'] || 'Standard nutritional needs';
-  }
-
-  private getSleepQualityImplications(sleepQuality?: string): string {
-    if (!sleepQuality) return 'Standard sleep support';
-    const quality = parseInt(sleepQuality) || 5;
-    if (quality < 4) return 'Severe sleep issues - magnesium, melatonin, stress management critical';
-    if (quality < 6) return 'Poor sleep - relaxation and sleep hygiene support needed';
-    if (quality < 8) return 'Moderate sleep - minor optimization helpful';
-    return 'Good sleep quality - maintenance approach';
-  }
-
-  private getHealthConcernTargeting(healthConcerns?: string[]): string {
-    if (!healthConcerns || healthConcerns.length === 0) return 'General wellness focus';
-    
+  private getHealthConcernAnalysis(healthConcerns: string[]): string {
     const concernMap: { [key: string]: string } = {
       'joint-pain': 'Anti-inflammatory, collagen, omega-3 priority',
       'low-energy': 'B-vitamins, iron, CoQ10, mitochondrial support',

@@ -1,19 +1,40 @@
-import OpenAI from 'openai';
-import Anthropic from '@anthropic-ai/sdk';
-import { sampleStudies, sampleUserOutcomes, sampleAffiliateProducts } from './sample-data.ts';
+// Clean Fallback AI Service - Evidence-Based Version
+// Ultra-simple fallback using evidence-based science without external dependencies
+
+import { EvidenceBasedAI } from './evidence-based-ai-service';
 
 export interface SupplementStack {
   id: string;
   name: string;
+  description: string;
   supplements: {
+    id: string;
     name: string;
+    brand: string;
+    category: string;
     dosage: string;
     timing: string;
     reasoning: string;
-    affiliateUrl?: string;
-    commissionRate?: number;
     price: number;
+    amazonUrl: string;
+    affiliateUrl: string;
+    imageUrl: string;
+    asin: string;
+    rating: number;
+    reviewCount: number;
+    isAvailable: boolean;
+    primeEligible: boolean;
+    evidenceLevel: string;
+    studyCount: number;
   }[];
+  userProfile: {
+    age: number;
+    gender: string;
+    fitnessGoals: string[];
+    budget: number;
+    dietaryRestrictions: string[];
+    currentSupplements: string[];
+  };
   totalMonthlyCost: number;
   estimatedCommission: number;
   evidenceScore: number;
@@ -32,22 +53,37 @@ export interface UserProfile {
   userId?: string;
   age: number;
   gender: string;
-  fitnessGoals: string[];
-  dietaryRestrictions: string[];
-  currentSupplements: string[];
-  healthConcerns: string[];
+  fitnessGoals: string[] | string;
+  dietaryRestrictions?: string[];
+  currentSupplements?: string[];
+  healthConcerns?: string[];
   budget: number;
-  experienceLevel: string;
-  lifestyle: string;
+  experienceLevel?: string;
+  lifestyle?: string;
 }
 
-const openai = process.env.OPENAI_API_KEY ? new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-}) : null;
+export class FallbackAIClean {
+  private evidenceBasedAI = new EvidenceBasedAI();
 
-const anthropic = process.env.ANTHROPIC_API_KEY ? new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-}) : null;
+  async generateEvidenceBasedStack(userProfile: UserProfile): Promise<SupplementStack> {
+    try {
+      console.log('Clean Fallback AI: Using evidence-based system');
+      
+      // Direct evidence-based AI call
+      const stack = await this.evidenceBasedAI.generateEvidenceBasedStack(userProfile);
+      
+      console.log(`Clean Fallback: Success - ${stack.supplements.length} supplements, $${stack.totalMonthlyCost}`);
+      
+      return stack;
+      
+    } catch (error) {
+      console.error('Clean Fallback AI error:', error);
+      throw error;
+    }
+  }
+}
+
+export const fallbackAIClean = new FallbackAIClean();
 
 export class FallbackAI {
   async generateEvidenceBasedStack(userProfile: UserProfile): Promise<SupplementStack> {

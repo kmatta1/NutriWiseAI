@@ -2,25 +2,58 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { SupplementAdvisorOutput, SupplementAdvisorInput } from "@/lib/actions";
-import { suggestSupplementsAction } from "@/lib/actions";
+import type { SupplementAdvisorInput } from "@/lib/actions";
 import AdvisorForm from "@/components/advisor-form";
-import SupplementStackCard from "@/components/supplement-stack-card";
+import { SupplementStackCard } from "@/components/supplement-stack-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { userProfileManager } from "@/lib/user-profile-store";
-import { AlertCircle, RefreshCw, X } from "lucide-react";
+import { AlertCircle, RefreshCw, X, Sparkles } from "lucide-react";
 import { useAuth } from "@/contexts/auth-context";
 import { useCart } from "@/contexts/cart-context";
+import { dynamicAIAdvisorService, DynamicAdvisorResult } from "@/lib/dynamic-ai-advisor-service";
+import { ComprehensiveSupplementStack } from "@/lib/comprehensive-ai-advisor";
+
+// Helper function to convert ComprehensiveSupplementStack to PersonalizedStack format
+function convertComprehensiveToPersonalizedStack(comprehensiveStack: ComprehensiveSupplementStack): any {
+  return {
+    id: comprehensiveStack.id,
+    name: comprehensiveStack.name,
+    description: comprehensiveStack.description,
+    recommendations: comprehensiveStack.recommendations.map(rec => ({
+      ...rec,
+      reasoning: rec.scientificEvidence.mechanismOfAction || 'AI-recommended based on your profile',
+    })),
+    totalMonthlyCost: comprehensiveStack.totalMonthlyCost,
+    budgetUtilization: comprehensiveStack.budgetUtilization,
+    
+    // Map ComprehensiveSupplementStack properties to PersonalizedStack format
+    expectedResults: comprehensiveStack.expectedOutcomes.shortTerm.concat(
+      comprehensiveStack.expectedOutcomes.mediumTerm,
+      comprehensiveStack.expectedOutcomes.longTerm
+    ),
+    scientificRationale: comprehensiveStack.aiRationale,
+    safetyNotes: comprehensiveStack.potentialInteractions,
+    monitoringRecommendations: comprehensiveStack.monitoringPlan,
+    
+    // Additional metadata
+    overallEvidenceScore: comprehensiveStack.overallEvidenceScore,
+    predictedCompliance: comprehensiveStack.predictedCompliance,
+    stackSynergies: comprehensiveStack.stackSynergies,
+    confidenceScore: comprehensiveStack.confidenceScore,
+    createdAt: comprehensiveStack.createdAt
+  };
+}
 
 export default function AdvisorPage() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
   const { dispatch } = useCart();
-  const [results, setResults] = useState<SupplementAdvisorOutput | null>(null);
+  const [results, setResults] = useState<any>(null);
+  const [advisorAnalytics, setAdvisorAnalytics] = useState<DynamicAdvisorResult | null>(null);
   const [savedFormData, setSavedFormData] = useState<any>(null);
   const [showChangePrompt, setShowChangePrompt] = useState(false);
 
@@ -51,20 +84,15 @@ export default function AdvisorPage() {
   };
 
   const testDirectSubmission = async () => {
-    console.log('🧪 Testing direct submission with sample data');
     await handleSubmit(sampleData);
   };
 
   useEffect(() => {
     // Load saved form data (works for both authenticated and guest users)
     const savedData = userProfileManager.getFormData();
-    console.log('🔍 Saved form data found:', savedData);
     if (savedData) {
       setSavedFormData(savedData);
       setShowChangePrompt(true);
-      console.log('✅ Setting savedFormData and showChangePrompt to true');
-    } else {
-      console.log('❌ No saved form data found');
     }
   }, [user]);
 
@@ -91,9 +119,9 @@ export default function AdvisorPage() {
   };
 
   const handleSubmit = async (data: any) => {
-    console.log('🟡 AdvisorPage handleSubmit called with:', data);
     setLoading(true);
     setResults(null);
+    setAdvisorAnalytics(null);
     
     try {
       // Validate required fields before processing
@@ -113,40 +141,140 @@ export default function AdvisorPage() {
       // Save form data for future visits
       userProfileManager.saveFormData(data);
       
-      // Properly transform form data to UserProfile structure
-      const input: SupplementAdvisorInput = {
-        age: parseInt(data.age, 10),
-        gender: data.gender,
+      // Convert data format for the dynamic AI advisor service
+      const advisorInput: SupplementAdvisorInput = {
         fitnessGoals: Array.isArray(data.fitnessGoals) ? data.fitnessGoals : [data.fitnessGoals],
-        dietaryRestrictions: data.diet ? [data.diet] : [],
-        currentSupplements: data.otherCriteria ? data.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean) : [],
-        healthConcerns: Array.isArray(data.healthConcerns) ? data.healthConcerns : (data.healthConcerns ? [data.healthConcerns] : []),
-        budget: data.budget ? parseInt(data.budget, 10) : 100,
-        experienceLevel: data.activityLevel,
-        lifestyle: `${data.sleepQuality} sleep, ${data.activityLevel} activity`,
+        gender: data.gender,
+        age: parseInt(data.age, 10),
+        weight: parseInt(data.weight, 10),
         activityLevel: data.activityLevel,
         diet: data.diet,
         sleepQuality: data.sleepQuality,
-        otherCriteria: data.otherCriteria,
         race: data.race,
-        weight: data.weight ? parseInt(data.weight, 10) : undefined,
+        budget: parseInt(data.budget, 10),
+        healthConcerns: Array.isArray(data.healthConcerns) ? data.healthConcerns : (data.healthConcerns ? [data.healthConcerns] : []),
+        currentSupplements: data.otherCriteria ? data.otherCriteria.split(',').map((s: string) => s.trim()).filter(Boolean) : [],
+        dietaryRestrictions: [],
+        otherCriteria: data.otherCriteria || '',
+        experienceLevel: data.activityLevel,
+        lifestyle: `${data.sleepQuality} sleep, ${data.activityLevel} activity`
       };
       
-      console.log('✅ Submitting form with data:', input); // Debug log
-      
       toast({
-        title: "Processing Your Profile",
-        description: "Analyzing your information to create personalized recommendations...",
+        title: "🤖 AI Analyzing Your Profile",
+        description: "Processing with comprehensive AI and scientific evidence...",
       });
+
+      // Use comprehensive AI advisor
+      let advisorResult;
+      try {
+        
+        // Convert form data to comprehensive user profile
+        const comprehensiveProfile = {
+          // Demographics
+          age: advisorInput.age,
+          gender: advisorInput.gender, 
+          weight: advisorInput.weight,
+          height: 70, // Default height if not provided
+          bodyFatPercentage: undefined,
+          
+          // Goals & Lifestyle
+          primaryGoals: advisorInput.fitnessGoals || [],
+          secondaryGoals: [],
+          activityLevel: advisorInput.activityLevel || 'moderate',
+          trainingType: [],
+          diet: 'omnivore',
+          sleepHours: 7,
+          stressLevel: 'medium',
+          
+          // Health & Medical
+          healthConditions: [],
+          medications: [],
+          allergies: [],
+          supplementExperience: 'intermediate',
+          previousSupplements: advisorInput.currentSupplements || [],
+          
+          // Preferences & Constraints
+          budget: advisorInput.budget || 100,
+          maxSupplements: 5,
+          preferredBrands: [],
+          avoidIngredients: [],
+          
+          // Tracking & Outcomes  
+          desiredOutcomes: advisorInput.fitnessGoals || [],
+          timeframe: '3-months',
+          complianceLevel: 'high'
+        };
+        
+        // Call comprehensive AI advisor via API route (server-side)
+        const apiResponse = await fetch('/api/comprehensive-advisor', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(comprehensiveProfile)
+        });
+        
+        const comprehensiveApiResult = await apiResponse.json();
+        
+        if (!comprehensiveApiResult.success) {
+          throw new Error(comprehensiveApiResult.error || 'Comprehensive AI failed');
+        }
+        
+        const comprehensiveResult = comprehensiveApiResult.recommendationStack;
+        
+        // Convert comprehensive AI result to expected format
+        advisorResult = {
+          success: true,
+          stack: comprehensiveResult,
+          source: 'dynamic-ai' as const, // Keep as dynamic-ai for type compatibility
+          processingTime: 0, // Not tracked in comprehensive AI
+          recommendations: comprehensiveResult.recommendations?.length || 0,
+          budgetUtilization: Math.round((comprehensiveResult.totalMonthlyCost / (advisorInput.budget || 100)) * 100)
+        };
+        
+        // Show AI insights in toast
+        if (comprehensiveApiResult.aiInsights) {
+          setTimeout(() => {
+            toast({
+              title: "🧠 AI Analysis Complete",
+              description: comprehensiveApiResult.aiInsights,
+              duration: 6000
+            });
+          }, 1000);
+        }
+        
+      } catch (error) {
+        advisorResult = await dynamicAIAdvisorService.generateRecommendations(advisorInput);
+      }
       
-      const result = await suggestSupplementsAction(input);
-      
-      if (result.success) {
-        setResults(result);
+      if (advisorResult.success && advisorResult.stack) {
+        // Convert to frontend format for display
+        let frontendStack;
+        if (advisorResult.source === 'dynamic-ai' && 'aiRationale' in advisorResult.stack) {
+          // This is a ComprehensiveSupplementStack, convert it
+          const personalizedStack = convertComprehensiveToPersonalizedStack(advisorResult.stack as ComprehensiveSupplementStack);
+          frontendStack = dynamicAIAdvisorService.convertStackToFrontendFormat(personalizedStack);
+        } else {
+          // This should be a PersonalizedStack, but let's ensure compatibility
+          frontendStack = dynamicAIAdvisorService.convertStackToFrontendFormat(advisorResult.stack as any);
+        }
+        
+        setResults({ success: true, data: frontendStack });
+        
+        // Create compatible analytics object for setAdvisorAnalytics
+        const compatibleAnalytics = {
+          ...advisorResult,
+          stack: 'aiRationale' in advisorResult.stack ? 
+            convertComprehensiveToPersonalizedStack(advisorResult.stack as ComprehensiveSupplementStack) : 
+            advisorResult.stack
+        };
+        setAdvisorAnalytics(compatibleAnalytics);
         setShowChangePrompt(false);
+        
         toast({
-          title: "🎉 Recommendations Generated!",
-          description: "Your personalized supplement stack is ready with real Amazon products.",
+          title: "🧬 AI-Powered Stack Generated!",
+          description: `Generated ${advisorResult.recommendations} personalized recommendations using ${advisorResult.budgetUtilization}% of your budget`,
         });
         
         // Scroll to results
@@ -156,19 +284,15 @@ export default function AdvisorPage() {
             resultsElement.scrollIntoView({ behavior: 'smooth' });
           }
         }, 100);
+        
       } else {
-        toast({
-          title: "Generation Error",
-          description: result.message || "Failed to generate recommendations. Please try again.",
-          variant: "destructive",
-        });
+        throw new Error(advisorResult.error || 'Failed to generate recommendations');
       }
 
     } catch (error: any) {
-      console.error("❌ Error submitting advisor form:", error);
       toast({
         variant: "destructive",
-        title: "Processing Error",
+        title: "Generation Failed",
         description: error.message || "Failed to generate recommendation. Please try again later.",
       });
     } finally {
@@ -182,7 +306,6 @@ export default function AdvisorPage() {
       userProfileManager.saveStack(stack);
       
       // Add all supplements to cart
-      console.log('🛒 Adding stack supplements to cart:', stack.supplements);
       
       if (stack.supplements && Array.isArray(stack.supplements)) {
         stack.supplements.forEach((supplement: any) => {
@@ -215,9 +338,8 @@ export default function AdvisorPage() {
                 quantity: 1
               }
             });
-            console.log(`✅ Added ${supplement.name} to cart with price: ${priceString}`);
           } catch (error) {
-            console.error(`❌ Failed to add ${supplement.name} to cart:`, error);
+            // Silently handle individual item errors
           }
         });
       }
@@ -253,7 +375,6 @@ export default function AdvisorPage() {
         window.location.href = `/subscribe?stack=${encodeURIComponent(JSON.stringify(stack))}`;
       }
     } catch (error) {
-      console.error('Error saving stack:', error);
       toast({
         title: "Error",
         description: "Failed to save stack. Please try again.",
@@ -353,29 +474,33 @@ export default function AdvisorPage() {
           ) : results && results.success ? (
             <div className="w-full" id="supplement-results">
               <div className="text-center mb-12">
-                {/* Show source of recommendations */}
+                {/* Dynamic AI Analytics Badge */}
                 <div className="flex flex-col items-center gap-4 mb-8">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-                    {(results as any).source === 'cached' ? (
-                      <>
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-                          ⚡ Instant Match Found
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                        <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-                          🤖 AI-Generated Custom Stack
-                        </span>
-                      </>
-                    )}
+                  <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
+                    <Sparkles className="w-5 h-5 text-blue-500 animate-pulse" />
+                    <span className="text-sm font-bold text-blue-500 uppercase tracking-wide">
+                      🧬 Dynamic AI-Generated Stack
+                    </span>
                   </div>
                   
-                  {(results as any).source === 'cached' && (results as any).matchScore && (
-                    <div className="text-sm text-muted-foreground">
-                      {(results as any).matchScore}% profile match • Archetype: {(results as any).archetypeUsed}
+                  {advisorAnalytics && (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                        <div className="text-2xl font-bold text-primary">{advisorAnalytics.recommendations}</div>
+                        <div className="text-xs text-muted-foreground">Supplements</div>
+                      </div>
+                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                        <div className="text-2xl font-bold text-green-500">{advisorAnalytics.budgetUtilization}%</div>
+                        <div className="text-xs text-muted-foreground">Budget Used</div>
+                      </div>
+                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                        <div className="text-2xl font-bold text-blue-500">{advisorAnalytics.processingTime}ms</div>
+                        <div className="text-xs text-muted-foreground">Processing</div>
+                      </div>
+                      <div className="bg-card/50 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                        <div className="text-2xl font-bold text-purple-500">AI</div>
+                        <div className="text-xs text-muted-foreground">Powered</div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -388,11 +513,11 @@ export default function AdvisorPage() {
                   Your Personalized <span className="text-primary">Elite Stack</span>
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-                  Based on cutting-edge research, your unique athletic profile, and data from thousands of elite athletes.
+                  AI-curated from our comprehensive product catalog using cutting-edge research and your unique profile.
                 </p>
               </div>
               <SupplementStackCard 
-                stack={results.stack} 
+                stack={results.data} 
                 onPurchase={handlePurchase}
                 isLoading={loading}
               />

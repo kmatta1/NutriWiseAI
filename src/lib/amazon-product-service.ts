@@ -396,27 +396,30 @@ export class AmazonProductService {
       if (preferences.primeRequired && !product.availability.primeEligible) return false;
       
       // Brand preference
-      if (preferences.preferredBrands.length > 0) {
+      if (preferences.preferredBrands && preferences.preferredBrands.length > 0) {
         const matchesBrand = preferences.preferredBrands.some(brand => 
-          product.brand.toLowerCase().includes(brand.toLowerCase())
+          product.brand && product.brand.toLowerCase().includes(brand.toLowerCase())
         );
         if (!matchesBrand) return false;
       }
       
       // Dietary restrictions
-      if (preferences.dietaryRestrictions.includes('vegan')) {
-        const isVegan = product.features.some(feature => 
-          feature.toLowerCase().includes('vegan')
-        );
+      if (preferences.dietaryRestrictions && preferences.dietaryRestrictions.includes('vegan')) {
+        const isVegan = product.features && Array.isArray(product.features) &&
+          product.features.some(feature => 
+            feature && feature.toLowerCase().includes('vegan')
+          );
         if (!isVegan) return false;
       }
       
       // Avoid ingredients
-      const hasAvoidedIngredients = preferences.avoidIngredients.some(ingredient =>
-        product.features.some(feature => 
-          feature.toLowerCase().includes(ingredient.toLowerCase())
-        )
-      );
+      const hasAvoidedIngredients = preferences.avoidIngredients && 
+        preferences.avoidIngredients.some(ingredient =>
+          product.features && Array.isArray(product.features) &&
+          product.features.some(feature => 
+            feature && feature.toLowerCase().includes(ingredient.toLowerCase())
+          )
+        );
       if (hasAvoidedIngredients) return false;
       
       return true;

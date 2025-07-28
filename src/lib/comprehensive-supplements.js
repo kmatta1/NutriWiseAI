@@ -14,7 +14,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Essential for immune function, bone health, and mood regulation',
     asin: 'B000FGDIAI',
     amazonUrl: 'https://www.amazon.com/dp/B000FGDIAI?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/4F46E5/white?text=Vitamin+D3+2000',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 12.99,
     category: 'vitamin-d',
     targetGroups: ['general', 'elderly', 'low-sun-exposure']
@@ -28,7 +28,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Higher dose for severe deficiency and therapeutic benefits',
     asin: 'B0797G4Q7L',
     amazonUrl: 'https://www.amazon.com/dp/B0797G4Q7L?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/4F46E5/white?text=Vitamin+D3+5000',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 18.99,
     category: 'vitamin-d',
     targetGroups: ['deficient', 'athletes', 'winter-climate']
@@ -42,7 +42,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Gentle dose for maintenance and sensitive individuals',
     asin: 'B00280MC8W',
     amazonUrl: 'https://www.amazon.com/dp/B00280MC8W?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/4F46E5/white?text=Vitamin+D3+1000',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 14.99,
     category: 'vitamin-d',
     targetGroups: ['maintenance', 'children', 'sensitive']
@@ -58,7 +58,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Supports heart health, brain function, and reduces inflammation',
     asin: 'B00CAZAU62',
     amazonUrl: 'https://www.amazon.com/dp/B00CAZAU62?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/F59E0B/white?text=Omega-3+Fish',
+    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 29.95,
     category: 'omega-3',
     targetGroups: ['general', 'heart-health', 'brain-health']
@@ -72,7 +72,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Plant-based omega-3 for vegans and vegetarians',
     asin: 'B01MYE83TF',
     amazonUrl: 'https://www.amazon.com/dp/B01MYE83TF?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/F59E0B/white?text=Omega-3+Algae',
+    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 34.95,
     category: 'omega-3',
     targetGroups: ['vegan', 'vegetarian', 'fish-allergic']
@@ -86,7 +86,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Concentrated formula for therapeutic benefits',
     asin: 'B001LF39RO',
     amazonUrl: 'https://www.amazon.com/dp/B001LF39RO?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/F59E0B/white?text=High+Potency+Omega-3',
+    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 45.99,
     category: 'omega-3',
     targetGroups: ['therapeutic', 'high-inflammation', 'athletes']
@@ -102,7 +102,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Best absorbed form, promotes sleep and muscle relaxation',
     asin: 'B0013OUNRI',
     amazonUrl: 'https://www.amazon.com/dp/B0013OUNRI?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/10B981/white?text=Mg+Glycinate',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 18.99,
     category: 'magnesium',
     targetGroups: ['sleep-issues', 'muscle-tension', 'anxiety']
@@ -116,7 +116,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Good absorption, supports digestion and energy',
     asin: 'B000BD0RT0',
     amazonUrl: 'https://www.amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/10B981/white?text=Mg+Citrate',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 14.99,
     category: 'magnesium',
     targetGroups: ['digestive-issues', 'energy', 'budget-conscious']
@@ -130,7 +130,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'High elemental magnesium content, budget-friendly',
     asin: 'B00013YXA8',
     amazonUrl: 'https://www.amazon.com/dp/B00013YXA8?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/10B981/white?text=Mg+Oxide',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 9.99,
     category: 'magnesium',
     targetGroups: ['budget', 'high-dose-needed', 'basic-supplementation']
@@ -146,7 +146,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Fast-absorbing, low lactose, ideal for muscle building',
     asin: 'B000QSNYGI',
     amazonUrl: 'https://www.amazon.com/dp/B000QSNYGI?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/DC2626/white?text=Whey+Isolate',
+    imageUrl: 'https://images.unsplash.com/photo-1583500178690-594ce94555e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 54.99,
     category: 'protein',
     targetGroups: ['muscle-building', 'athletes', 'lactose-sensitive']
@@ -160,7 +160,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Complete amino acid profile from plants',
     asin: 'B00J074W94',
     amazonUrl: 'https://www.amazon.com/dp/B00J074W94?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/DC2626/white?text=Plant+Protein',
+    imageUrl: 'https://images.unsplash.com/photo-1583500178690-594ce94555e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 39.99,
     category: 'protein',
     targetGroups: ['vegan', 'vegetarian', 'dairy-free']
@@ -174,7 +174,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Slow-release protein for overnight muscle recovery',
     asin: 'B002DYJ0O6',
     amazonUrl: 'https://www.amazon.com/dp/B002DYJ0O6?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/DC2626/white?text=Casein',
+    imageUrl: 'https://images.unsplash.com/photo-1583500178690-594ce94555e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 49.99,
     category: 'protein',
     targetGroups: ['muscle-building', 'recovery', 'bedtime-supplementation']
@@ -190,7 +190,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Most researched form, enhances strength and power',
     asin: 'B002DYIZEO',
     amazonUrl: 'https://www.amazon.com/dp/B002DYIZEO?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/7C3AED/white?text=Creatine+Mono',
+    imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 27.99,
     category: 'creatine',
     targetGroups: ['strength-training', 'power-sports', 'muscle-building']
@@ -204,7 +204,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Better solubility, no loading phase needed',
     asin: 'B00PU9HWAE',
     amazonUrl: 'https://www.amazon.com/dp/B00PU9HWAE?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/7C3AED/white?text=Creatine+HCL',
+    imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 34.99,
     category: 'creatine',
     targetGroups: ['sensitive-stomach', 'premium', 'convenience']
@@ -220,7 +220,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Tailored nutrient profile for men\'s health needs',
     asin: 'B00280EAW0',
     amazonUrl: 'https://www.amazon.com/dp/B00280EAW0?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/059669/white?text=Men\'s+Multi',
+    imageUrl: 'https://images.unsplash.com/photo-1607619662634-3ac55ec8c2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 35.99,
     category: 'multivitamin',
     targetGroups: ['men', 'general-health', 'nutrient-gaps']
@@ -234,7 +234,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Higher iron and folate for women\'s specific needs',
     asin: 'B000056VJ2',
     amazonUrl: 'https://www.amazon.com/dp/B000056VJ2?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/059669/white?text=Women\'s+Multi',
+    imageUrl: 'https://images.unsplash.com/photo-1607619662634-3ac55ec8c2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 32.99,
     category: 'multivitamin',
     targetGroups: ['women', 'reproductive-health', 'energy']
@@ -248,7 +248,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Adjusted formulation for aging nutritional needs',
     asin: 'B001F0R6PC',
     amazonUrl: 'https://www.amazon.com/dp/B001F0R6PC?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/059669/white?text=Senior+Multi',
+    imageUrl: 'https://images.unsplash.com/photo-1607619662634-3ac55ec8c2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 24.99,
     category: 'multivitamin',
     targetGroups: ['seniors', 'elderly', 'cognitive-health']
@@ -264,7 +264,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Immune support and antioxidant protection',
     asin: 'B0013OQGO6',
     amazonUrl: 'https://www.amazon.com/dp/B0013OQGO6?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/FFA500/white?text=Vitamin+C',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 16.99,
     category: 'vitamin',
     targetGroups: ['immune-support', 'antioxidant', 'general-health']
@@ -278,7 +278,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Immune function, wound healing, and hormone production',
     asin: 'B0013HQJ0E',
     amazonUrl: 'https://www.amazon.com/dp/B0013HQJ0E?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/8B5CF6/white?text=Zinc',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 12.99,
     category: 'mineral',
     targetGroups: ['immune-support', 'skin-health', 'hormone-support']
@@ -292,7 +292,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Digestive health and immune system support',
     asin: 'B00Y8MP4G6',
     amazonUrl: 'https://www.amazon.com/dp/B00Y8MP4G6?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/22C55E/white?text=Probiotics',
+    imageUrl: 'https://images.unsplash.com/photo-1607619662634-3ac55ec8c2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 44.99,
     category: 'digestive',
     targetGroups: ['digestive-health', 'immune-support', 'gut-health']
@@ -306,7 +306,7 @@ const COMPREHENSIVE_SUPPLEMENTS = {
     reasoning: 'Energy metabolism and nervous system support',
     asin: 'B0797GWG7S',
     amazonUrl: 'https://www.amazon.com/dp/B0797GWG7S?tag=nutriwiseai-20',
-    imageUrl: 'https://via.placeholder.com/300x300/EF4444/white?text=B-Complex',
+    imageUrl: 'https://images.unsplash.com/photo-1550572017-edd951aa8f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80',
     currentPrice: 19.99,
     category: 'vitamin',
     targetGroups: ['energy', 'stress-support', 'nervous-system']

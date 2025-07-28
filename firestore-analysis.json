@@ -1,0 +1,4594 @@
+{
+  "collections": {
+    "aiStacks": {
+      "documentCount": 71,
+      "fields": {
+        "userProfile": {
+          "type": "object",
+          "examples": [
+            {
+              "age": 25,
+              "gender": "male",
+              "fitnessGoals": [
+                "endurance"
+              ],
+              "dietaryRestrictions": [
+                "gluten-free"
+              ],
+              "currentSupplements": [
+                "creatine"
+              ]
+            },
+            {
+              "age": 25,
+              "gender": "male",
+              "fitnessGoals": [
+                "endurance"
+              ],
+              "dietaryRestrictions": [
+                "vegan"
+              ],
+              "currentSupplements": [
+                "creatine"
+              ]
+            }
+          ],
+          "count": 71
+        },
+        "stack": {
+          "type": "object",
+          "examples": [
+            {
+              "id": "stack_1753378248251",
+              "name": "Young Male Endurance Stack",
+              "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+              "recommendations": [
+                {
+                  "product": {
+                    "id": "comprehensive_product_23",
+                    "targetAudience": [
+                      "bone_health",
+                      "immune_support",
+                      "mood_support"
+                    ],
+                    "isActive": true,
+                    "commissionRate": 0.08,
+                    "contraindications": [
+                      "hypercalcemia"
+                    ],
+                    "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                    "asin": "B002DTC0WQ",
+                    "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                    "costPerServing": 0.06,
+                    "name": "Vitamin D3 5000 IU by NOW Foods",
+                    "servingsPerContainer": 240,
+                    "subcategory": "vitamin-d3",
+                    "qualityFactors": {
+                      "gmpCertified": true,
+                      "allergenFree": true,
+                      "nonGmo": true,
+                      "thirdPartyTested": true,
+                      "organicCertified": false
+                    },
+                    "brand": "NOW Foods",
+                    "activeIngredients": [
+                      {
+                        "unit": "IU",
+                        "name": "Vitamin D3 (Cholecalciferol)",
+                        "amount": "5000"
+                      }
+                    ],
+                    "currentPrice": 16.95,
+                    "sideEffects": [],
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with a fat-containing meal for best absorption.",
+                      "amount": "1 softgel",
+                      "frequency": "daily"
+                    },
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                    ],
+                    "tags": [
+                      "vitamin-d3",
+                      "bone-health",
+                      "immune",
+                      "mood"
+                    ],
+                    "category": [
+                      "vitamins"
+                    ],
+                    "isAvailable": true,
+                    "rating": 4.6,
+                    "reviewCount": 37420,
+                    "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                    "drugInteractions": [
+                      "thiazide_diuretics"
+                    ],
+                    "servingSize": "1 softgel",
+                    "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                    "primeEligible": true,
+                    "evidenceLevel": "high",
+                    "studyCount": 156,
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                  "priority": 9,
+                  "synergies": [
+                    "Enhances calcium absorption",
+                    "Works synergistically with magnesium"
+                  ]
+                },
+                {
+                  "product": {
+                    "id": "comprehensive_product_22",
+                    "tags": [
+                      "omega-3",
+                      "fish-oil",
+                      "epa",
+                      "dha"
+                    ],
+                    "commissionRate": 0.08,
+                    "qualityFactors": {
+                      "allergenFree": false,
+                      "thirdPartyTested": true,
+                      "organicCertified": false,
+                      "nonGmo": true,
+                      "gmpCertified": true
+                    },
+                    "subcategory": "fish-oil",
+                    "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                    "costPerServing": 0.23,
+                    "activeIngredients": [
+                      {
+                        "amount": "360",
+                        "unit": "mg",
+                        "name": "EPA (Eicosapentaenoic Acid)"
+                      },
+                      {
+                        "unit": "mg",
+                        "amount": "240",
+                        "name": "DHA (Docosahexaenoic Acid)"
+                      }
+                    ],
+                    "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                    "servingSize": "2 softgels",
+                    "targetAudience": [
+                      "heart_health",
+                      "brain_health",
+                      "anti_inflammatory"
+                    ],
+                    "brand": "Nature Made",
+                    "isActive": true,
+                    "isAvailable": true,
+                    "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                    "contraindications": [
+                      "fish_allergies"
+                    ],
+                    "rating": 4.5,
+                    "servingsPerContainer": 100,
+                    "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                    "drugInteractions": [
+                      "blood_thinners"
+                    ],
+                    "evidenceLevel": "high",
+                    "sideEffects": [
+                      "fishy_aftertaste"
+                    ],
+                    "currentPrice": 18.74,
+                    "asin": "B004U3Y6N8",
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                    ],
+                    "studyCount": 127,
+                    "category": [
+                      "oils"
+                    ],
+                    "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                    "reviewCount": 45820,
+                    "primeEligible": true,
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with food to enhance absorption.",
+                      "frequency": "daily",
+                      "amount": "2 softgels"
+                    },
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                  "priority": 8,
+                  "synergies": [
+                    "Enhances vitamin D absorption",
+                    "Supports magnesium utilization",
+                    "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                  ]
+                }
+              ],
+              "totalMonthlyCost": 37.98,
+              "expectedResults": {
+                "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+                "benefits": [
+                  "General health support",
+                  "Nutritional supplementation"
+                ]
+              },
+              "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+              "safetyNotes": [
+                "hypercalcemia",
+                "Check for medication interactions with your healthcare provider",
+                "fish_allergies",
+                "Start with recommended doses and adjust based on individual response",
+                "Consult with healthcare provider before starting any new supplement regimen"
+              ],
+              "monitoringRecommendations": [
+                "Track energy levels, sleep quality, and overall well-being",
+                "Monitor for any adverse reactions during the first 2 weeks",
+                "Assess progress toward fitness goals after 4-6 weeks",
+                "Consider blood work to evaluate nutrient status after 3 months",
+                "Adjust dosages based on response and lifestyle changes"
+              ]
+            },
+            {
+              "id": "stack_1753378245081",
+              "name": "Young Male Endurance Stack",
+              "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+              "recommendations": [
+                {
+                  "product": {
+                    "id": "comprehensive_product_23",
+                    "targetAudience": [
+                      "bone_health",
+                      "immune_support",
+                      "mood_support"
+                    ],
+                    "isActive": true,
+                    "commissionRate": 0.08,
+                    "contraindications": [
+                      "hypercalcemia"
+                    ],
+                    "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                    "asin": "B002DTC0WQ",
+                    "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                    "costPerServing": 0.06,
+                    "name": "Vitamin D3 5000 IU by NOW Foods",
+                    "servingsPerContainer": 240,
+                    "subcategory": "vitamin-d3",
+                    "qualityFactors": {
+                      "gmpCertified": true,
+                      "allergenFree": true,
+                      "nonGmo": true,
+                      "thirdPartyTested": true,
+                      "organicCertified": false
+                    },
+                    "brand": "NOW Foods",
+                    "activeIngredients": [
+                      {
+                        "unit": "IU",
+                        "name": "Vitamin D3 (Cholecalciferol)",
+                        "amount": "5000"
+                      }
+                    ],
+                    "currentPrice": 16.95,
+                    "sideEffects": [],
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with a fat-containing meal for best absorption.",
+                      "amount": "1 softgel",
+                      "frequency": "daily"
+                    },
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                    ],
+                    "tags": [
+                      "vitamin-d3",
+                      "bone-health",
+                      "immune",
+                      "mood"
+                    ],
+                    "category": [
+                      "vitamins"
+                    ],
+                    "isAvailable": true,
+                    "rating": 4.6,
+                    "reviewCount": 37420,
+                    "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                    "drugInteractions": [
+                      "thiazide_diuretics"
+                    ],
+                    "servingSize": "1 softgel",
+                    "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                    "primeEligible": true,
+                    "evidenceLevel": "high",
+                    "studyCount": 156,
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                  "priority": 9,
+                  "synergies": [
+                    "Enhances calcium absorption",
+                    "Works synergistically with magnesium"
+                  ]
+                },
+                {
+                  "product": {
+                    "id": "comprehensive_product_22",
+                    "tags": [
+                      "omega-3",
+                      "fish-oil",
+                      "epa",
+                      "dha"
+                    ],
+                    "commissionRate": 0.08,
+                    "qualityFactors": {
+                      "allergenFree": false,
+                      "thirdPartyTested": true,
+                      "organicCertified": false,
+                      "nonGmo": true,
+                      "gmpCertified": true
+                    },
+                    "subcategory": "fish-oil",
+                    "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                    "costPerServing": 0.23,
+                    "activeIngredients": [
+                      {
+                        "amount": "360",
+                        "unit": "mg",
+                        "name": "EPA (Eicosapentaenoic Acid)"
+                      },
+                      {
+                        "unit": "mg",
+                        "amount": "240",
+                        "name": "DHA (Docosahexaenoic Acid)"
+                      }
+                    ],
+                    "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                    "servingSize": "2 softgels",
+                    "targetAudience": [
+                      "heart_health",
+                      "brain_health",
+                      "anti_inflammatory"
+                    ],
+                    "brand": "Nature Made",
+                    "isActive": true,
+                    "isAvailable": true,
+                    "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                    "contraindications": [
+                      "fish_allergies"
+                    ],
+                    "rating": 4.5,
+                    "servingsPerContainer": 100,
+                    "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                    "drugInteractions": [
+                      "blood_thinners"
+                    ],
+                    "evidenceLevel": "high",
+                    "sideEffects": [
+                      "fishy_aftertaste"
+                    ],
+                    "currentPrice": 18.74,
+                    "asin": "B004U3Y6N8",
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                    ],
+                    "studyCount": 127,
+                    "category": [
+                      "oils"
+                    ],
+                    "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                    "reviewCount": 45820,
+                    "primeEligible": true,
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with food to enhance absorption.",
+                      "frequency": "daily",
+                      "amount": "2 softgels"
+                    },
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                  "priority": 8,
+                  "synergies": [
+                    "Enhances vitamin D absorption",
+                    "Supports magnesium utilization",
+                    "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                  ]
+                }
+              ],
+              "totalMonthlyCost": 37.98,
+              "expectedResults": {
+                "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+                "benefits": [
+                  "General health support",
+                  "Nutritional supplementation"
+                ]
+              },
+              "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+              "safetyNotes": [
+                "hypercalcemia",
+                "Check for medication interactions with your healthcare provider",
+                "fish_allergies",
+                "Start with recommended doses and adjust based on individual response",
+                "Consult with healthcare provider before starting any new supplement regimen"
+              ],
+              "monitoringRecommendations": [
+                "Track energy levels, sleep quality, and overall well-being",
+                "Monitor for any adverse reactions during the first 2 weeks",
+                "Assess progress toward fitness goals after 4-6 weeks",
+                "Consider blood work to evaluate nutrient status after 3 months",
+                "Adjust dosages based on response and lifestyle changes"
+              ]
+            }
+          ],
+          "count": 71
+        },
+        "createdAt": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753378248,
+              "_nanoseconds": 919000000
+            },
+            {
+              "_seconds": 1753378245,
+              "_nanoseconds": 780000000
+            }
+          ],
+          "count": 71
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "0BScqkVpb26rrMt37NEe",
+          "data": {
+            "userProfile": {
+              "age": 25,
+              "gender": "male",
+              "fitnessGoals": [
+                "endurance"
+              ],
+              "dietaryRestrictions": [
+                "gluten-free"
+              ],
+              "currentSupplements": [
+                "creatine"
+              ]
+            },
+            "stack": {
+              "id": "stack_1753378248251",
+              "name": "Young Male Endurance Stack",
+              "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+              "recommendations": [
+                {
+                  "product": {
+                    "id": "comprehensive_product_23",
+                    "targetAudience": [
+                      "bone_health",
+                      "immune_support",
+                      "mood_support"
+                    ],
+                    "isActive": true,
+                    "commissionRate": 0.08,
+                    "contraindications": [
+                      "hypercalcemia"
+                    ],
+                    "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                    "asin": "B002DTC0WQ",
+                    "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                    "costPerServing": 0.06,
+                    "name": "Vitamin D3 5000 IU by NOW Foods",
+                    "servingsPerContainer": 240,
+                    "subcategory": "vitamin-d3",
+                    "qualityFactors": {
+                      "gmpCertified": true,
+                      "allergenFree": true,
+                      "nonGmo": true,
+                      "thirdPartyTested": true,
+                      "organicCertified": false
+                    },
+                    "brand": "NOW Foods",
+                    "activeIngredients": [
+                      {
+                        "unit": "IU",
+                        "name": "Vitamin D3 (Cholecalciferol)",
+                        "amount": "5000"
+                      }
+                    ],
+                    "currentPrice": 16.95,
+                    "sideEffects": [],
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with a fat-containing meal for best absorption.",
+                      "amount": "1 softgel",
+                      "frequency": "daily"
+                    },
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                    ],
+                    "tags": [
+                      "vitamin-d3",
+                      "bone-health",
+                      "immune",
+                      "mood"
+                    ],
+                    "category": [
+                      "vitamins"
+                    ],
+                    "isAvailable": true,
+                    "rating": 4.6,
+                    "reviewCount": 37420,
+                    "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                    "drugInteractions": [
+                      "thiazide_diuretics"
+                    ],
+                    "servingSize": "1 softgel",
+                    "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                    "primeEligible": true,
+                    "evidenceLevel": "high",
+                    "studyCount": 156,
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                  "priority": 9,
+                  "synergies": [
+                    "Enhances calcium absorption",
+                    "Works synergistically with magnesium"
+                  ]
+                },
+                {
+                  "product": {
+                    "id": "comprehensive_product_22",
+                    "tags": [
+                      "omega-3",
+                      "fish-oil",
+                      "epa",
+                      "dha"
+                    ],
+                    "commissionRate": 0.08,
+                    "qualityFactors": {
+                      "allergenFree": false,
+                      "thirdPartyTested": true,
+                      "organicCertified": false,
+                      "nonGmo": true,
+                      "gmpCertified": true
+                    },
+                    "subcategory": "fish-oil",
+                    "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                    "costPerServing": 0.23,
+                    "activeIngredients": [
+                      {
+                        "amount": "360",
+                        "unit": "mg",
+                        "name": "EPA (Eicosapentaenoic Acid)"
+                      },
+                      {
+                        "unit": "mg",
+                        "amount": "240",
+                        "name": "DHA (Docosahexaenoic Acid)"
+                      }
+                    ],
+                    "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                    "servingSize": "2 softgels",
+                    "targetAudience": [
+                      "heart_health",
+                      "brain_health",
+                      "anti_inflammatory"
+                    ],
+                    "brand": "Nature Made",
+                    "isActive": true,
+                    "isAvailable": true,
+                    "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                    "contraindications": [
+                      "fish_allergies"
+                    ],
+                    "rating": 4.5,
+                    "servingsPerContainer": 100,
+                    "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                    "drugInteractions": [
+                      "blood_thinners"
+                    ],
+                    "evidenceLevel": "high",
+                    "sideEffects": [
+                      "fishy_aftertaste"
+                    ],
+                    "currentPrice": 18.74,
+                    "asin": "B004U3Y6N8",
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                    ],
+                    "studyCount": 127,
+                    "category": [
+                      "oils"
+                    ],
+                    "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                    "reviewCount": 45820,
+                    "primeEligible": true,
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with food to enhance absorption.",
+                      "frequency": "daily",
+                      "amount": "2 softgels"
+                    },
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                  "priority": 8,
+                  "synergies": [
+                    "Enhances vitamin D absorption",
+                    "Supports magnesium utilization",
+                    "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                  ]
+                }
+              ],
+              "totalMonthlyCost": 37.98,
+              "expectedResults": {
+                "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+                "benefits": [
+                  "General health support",
+                  "Nutritional supplementation"
+                ]
+              },
+              "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+              "safetyNotes": [
+                "hypercalcemia",
+                "Check for medication interactions with your healthcare provider",
+                "fish_allergies",
+                "Start with recommended doses and adjust based on individual response",
+                "Consult with healthcare provider before starting any new supplement regimen"
+              ],
+              "monitoringRecommendations": [
+                "Track energy levels, sleep quality, and overall well-being",
+                "Monitor for any adverse reactions during the first 2 weeks",
+                "Assess progress toward fitness goals after 4-6 weeks",
+                "Consider blood work to evaluate nutrient status after 3 months",
+                "Adjust dosages based on response and lifestyle changes"
+              ]
+            },
+            "createdAt": {
+              "_seconds": 1753378248,
+              "_nanoseconds": 919000000
+            }
+          }
+        },
+        {
+          "id": "153C2PzNGB6jpkTdg4yW",
+          "data": {
+            "userProfile": {
+              "age": 25,
+              "gender": "male",
+              "fitnessGoals": [
+                "endurance"
+              ],
+              "dietaryRestrictions": [
+                "vegan"
+              ],
+              "currentSupplements": [
+                "creatine"
+              ]
+            },
+            "stack": {
+              "id": "stack_1753378245081",
+              "name": "Young Male Endurance Stack",
+              "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+              "recommendations": [
+                {
+                  "product": {
+                    "id": "comprehensive_product_23",
+                    "targetAudience": [
+                      "bone_health",
+                      "immune_support",
+                      "mood_support"
+                    ],
+                    "isActive": true,
+                    "commissionRate": 0.08,
+                    "contraindications": [
+                      "hypercalcemia"
+                    ],
+                    "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                    "asin": "B002DTC0WQ",
+                    "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                    "costPerServing": 0.06,
+                    "name": "Vitamin D3 5000 IU by NOW Foods",
+                    "servingsPerContainer": 240,
+                    "subcategory": "vitamin-d3",
+                    "qualityFactors": {
+                      "gmpCertified": true,
+                      "allergenFree": true,
+                      "nonGmo": true,
+                      "thirdPartyTested": true,
+                      "organicCertified": false
+                    },
+                    "brand": "NOW Foods",
+                    "activeIngredients": [
+                      {
+                        "unit": "IU",
+                        "name": "Vitamin D3 (Cholecalciferol)",
+                        "amount": "5000"
+                      }
+                    ],
+                    "currentPrice": 16.95,
+                    "sideEffects": [],
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with a fat-containing meal for best absorption.",
+                      "amount": "1 softgel",
+                      "frequency": "daily"
+                    },
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                    ],
+                    "tags": [
+                      "vitamin-d3",
+                      "bone-health",
+                      "immune",
+                      "mood"
+                    ],
+                    "category": [
+                      "vitamins"
+                    ],
+                    "isAvailable": true,
+                    "rating": 4.6,
+                    "reviewCount": 37420,
+                    "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                    "drugInteractions": [
+                      "thiazide_diuretics"
+                    ],
+                    "servingSize": "1 softgel",
+                    "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                    "primeEligible": true,
+                    "evidenceLevel": "high",
+                    "studyCount": 156,
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                  "priority": 9,
+                  "synergies": [
+                    "Enhances calcium absorption",
+                    "Works synergistically with magnesium"
+                  ]
+                },
+                {
+                  "product": {
+                    "id": "comprehensive_product_22",
+                    "tags": [
+                      "omega-3",
+                      "fish-oil",
+                      "epa",
+                      "dha"
+                    ],
+                    "commissionRate": 0.08,
+                    "qualityFactors": {
+                      "allergenFree": false,
+                      "thirdPartyTested": true,
+                      "organicCertified": false,
+                      "nonGmo": true,
+                      "gmpCertified": true
+                    },
+                    "subcategory": "fish-oil",
+                    "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                    "costPerServing": 0.23,
+                    "activeIngredients": [
+                      {
+                        "amount": "360",
+                        "unit": "mg",
+                        "name": "EPA (Eicosapentaenoic Acid)"
+                      },
+                      {
+                        "unit": "mg",
+                        "amount": "240",
+                        "name": "DHA (Docosahexaenoic Acid)"
+                      }
+                    ],
+                    "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                    "servingSize": "2 softgels",
+                    "targetAudience": [
+                      "heart_health",
+                      "brain_health",
+                      "anti_inflammatory"
+                    ],
+                    "brand": "Nature Made",
+                    "isActive": true,
+                    "isAvailable": true,
+                    "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                    "contraindications": [
+                      "fish_allergies"
+                    ],
+                    "rating": 4.5,
+                    "servingsPerContainer": 100,
+                    "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                    "drugInteractions": [
+                      "blood_thinners"
+                    ],
+                    "evidenceLevel": "high",
+                    "sideEffects": [
+                      "fishy_aftertaste"
+                    ],
+                    "currentPrice": 18.74,
+                    "asin": "B004U3Y6N8",
+                    "citations": [
+                      "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                    ],
+                    "studyCount": 127,
+                    "category": [
+                      "oils"
+                    ],
+                    "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                    "reviewCount": 45820,
+                    "primeEligible": true,
+                    "recommendedDosage": {
+                      "timing": "with-food",
+                      "instructions": "Take with food to enhance absorption.",
+                      "frequency": "daily",
+                      "amount": "2 softgels"
+                    },
+                    "targetGoals": [],
+                    "benefits": [],
+                    "healthBenefits": [],
+                    "createdAt": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastUpdated": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastPriceUpdate": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    },
+                    "lastVerified": {
+                      "_seconds": 1753378207,
+                      "_nanoseconds": 791000000
+                    }
+                  },
+                  "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                  "priority": 8,
+                  "synergies": [
+                    "Enhances vitamin D absorption",
+                    "Supports magnesium utilization",
+                    "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                  ]
+                }
+              ],
+              "totalMonthlyCost": 37.98,
+              "expectedResults": {
+                "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+                "benefits": [
+                  "General health support",
+                  "Nutritional supplementation"
+                ]
+              },
+              "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+              "safetyNotes": [
+                "hypercalcemia",
+                "Check for medication interactions with your healthcare provider",
+                "fish_allergies",
+                "Start with recommended doses and adjust based on individual response",
+                "Consult with healthcare provider before starting any new supplement regimen"
+              ],
+              "monitoringRecommendations": [
+                "Track energy levels, sleep quality, and overall well-being",
+                "Monitor for any adverse reactions during the first 2 weeks",
+                "Assess progress toward fitness goals after 4-6 weeks",
+                "Consider blood work to evaluate nutrient status after 3 months",
+                "Adjust dosages based on response and lifestyle changes"
+              ]
+            },
+            "createdAt": {
+              "_seconds": 1753378245,
+              "_nanoseconds": 780000000
+            }
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "0BScqkVpb26rrMt37NEe",
+          "userProfile": {
+            "age": 25,
+            "gender": "male",
+            "fitnessGoals": [
+              "endurance"
+            ],
+            "dietaryRestrictions": [
+              "gluten-free"
+            ],
+            "currentSupplements": [
+              "creatine"
+            ]
+          },
+          "stack": {
+            "id": "stack_1753378248251",
+            "name": "Young Male Endurance Stack",
+            "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+            "recommendations": [
+              {
+                "product": {
+                  "id": "comprehensive_product_23",
+                  "targetAudience": [
+                    "bone_health",
+                    "immune_support",
+                    "mood_support"
+                  ],
+                  "isActive": true,
+                  "commissionRate": 0.08,
+                  "contraindications": [
+                    "hypercalcemia"
+                  ],
+                  "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                  "asin": "B002DTC0WQ",
+                  "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                  "costPerServing": 0.06,
+                  "name": "Vitamin D3 5000 IU by NOW Foods",
+                  "servingsPerContainer": 240,
+                  "subcategory": "vitamin-d3",
+                  "qualityFactors": {
+                    "gmpCertified": true,
+                    "allergenFree": true,
+                    "nonGmo": true,
+                    "thirdPartyTested": true,
+                    "organicCertified": false
+                  },
+                  "brand": "NOW Foods",
+                  "activeIngredients": [
+                    {
+                      "unit": "IU",
+                      "name": "Vitamin D3 (Cholecalciferol)",
+                      "amount": "5000"
+                    }
+                  ],
+                  "currentPrice": 16.95,
+                  "sideEffects": [],
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with a fat-containing meal for best absorption.",
+                    "amount": "1 softgel",
+                    "frequency": "daily"
+                  },
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                  ],
+                  "tags": [
+                    "vitamin-d3",
+                    "bone-health",
+                    "immune",
+                    "mood"
+                  ],
+                  "category": [
+                    "vitamins"
+                  ],
+                  "isAvailable": true,
+                  "rating": 4.6,
+                  "reviewCount": 37420,
+                  "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                  "drugInteractions": [
+                    "thiazide_diuretics"
+                  ],
+                  "servingSize": "1 softgel",
+                  "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                  "primeEligible": true,
+                  "evidenceLevel": "high",
+                  "studyCount": 156,
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                "priority": 9,
+                "synergies": [
+                  "Enhances calcium absorption",
+                  "Works synergistically with magnesium"
+                ]
+              },
+              {
+                "product": {
+                  "id": "comprehensive_product_22",
+                  "tags": [
+                    "omega-3",
+                    "fish-oil",
+                    "epa",
+                    "dha"
+                  ],
+                  "commissionRate": 0.08,
+                  "qualityFactors": {
+                    "allergenFree": false,
+                    "thirdPartyTested": true,
+                    "organicCertified": false,
+                    "nonGmo": true,
+                    "gmpCertified": true
+                  },
+                  "subcategory": "fish-oil",
+                  "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                  "costPerServing": 0.23,
+                  "activeIngredients": [
+                    {
+                      "amount": "360",
+                      "unit": "mg",
+                      "name": "EPA (Eicosapentaenoic Acid)"
+                    },
+                    {
+                      "unit": "mg",
+                      "amount": "240",
+                      "name": "DHA (Docosahexaenoic Acid)"
+                    }
+                  ],
+                  "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                  "servingSize": "2 softgels",
+                  "targetAudience": [
+                    "heart_health",
+                    "brain_health",
+                    "anti_inflammatory"
+                  ],
+                  "brand": "Nature Made",
+                  "isActive": true,
+                  "isAvailable": true,
+                  "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                  "contraindications": [
+                    "fish_allergies"
+                  ],
+                  "rating": 4.5,
+                  "servingsPerContainer": 100,
+                  "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                  "drugInteractions": [
+                    "blood_thinners"
+                  ],
+                  "evidenceLevel": "high",
+                  "sideEffects": [
+                    "fishy_aftertaste"
+                  ],
+                  "currentPrice": 18.74,
+                  "asin": "B004U3Y6N8",
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                  ],
+                  "studyCount": 127,
+                  "category": [
+                    "oils"
+                  ],
+                  "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                  "reviewCount": 45820,
+                  "primeEligible": true,
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with food to enhance absorption.",
+                    "frequency": "daily",
+                    "amount": "2 softgels"
+                  },
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                "priority": 8,
+                "synergies": [
+                  "Enhances vitamin D absorption",
+                  "Supports magnesium utilization",
+                  "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                ]
+              }
+            ],
+            "totalMonthlyCost": 37.98,
+            "expectedResults": {
+              "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+              "benefits": [
+                "General health support",
+                "Nutritional supplementation"
+              ]
+            },
+            "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+            "safetyNotes": [
+              "hypercalcemia",
+              "Check for medication interactions with your healthcare provider",
+              "fish_allergies",
+              "Start with recommended doses and adjust based on individual response",
+              "Consult with healthcare provider before starting any new supplement regimen"
+            ],
+            "monitoringRecommendations": [
+              "Track energy levels, sleep quality, and overall well-being",
+              "Monitor for any adverse reactions during the first 2 weeks",
+              "Assess progress toward fitness goals after 4-6 weeks",
+              "Consider blood work to evaluate nutrient status after 3 months",
+              "Adjust dosages based on response and lifestyle changes"
+            ]
+          },
+          "createdAt": {
+            "_seconds": 1753378248,
+            "_nanoseconds": 919000000
+          }
+        },
+        {
+          "id": "153C2PzNGB6jpkTdg4yW",
+          "userProfile": {
+            "age": 25,
+            "gender": "male",
+            "fitnessGoals": [
+              "endurance"
+            ],
+            "dietaryRestrictions": [
+              "vegan"
+            ],
+            "currentSupplements": [
+              "creatine"
+            ]
+          },
+          "stack": {
+            "id": "stack_1753378245081",
+            "name": "Young Male Endurance Stack",
+            "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on endurance. Optimized for moderate activity level with a $100/month budget.",
+            "recommendations": [
+              {
+                "product": {
+                  "id": "comprehensive_product_23",
+                  "targetAudience": [
+                    "bone_health",
+                    "immune_support",
+                    "mood_support"
+                  ],
+                  "isActive": true,
+                  "commissionRate": 0.08,
+                  "contraindications": [
+                    "hypercalcemia"
+                  ],
+                  "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                  "asin": "B002DTC0WQ",
+                  "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                  "costPerServing": 0.06,
+                  "name": "Vitamin D3 5000 IU by NOW Foods",
+                  "servingsPerContainer": 240,
+                  "subcategory": "vitamin-d3",
+                  "qualityFactors": {
+                    "gmpCertified": true,
+                    "allergenFree": true,
+                    "nonGmo": true,
+                    "thirdPartyTested": true,
+                    "organicCertified": false
+                  },
+                  "brand": "NOW Foods",
+                  "activeIngredients": [
+                    {
+                      "unit": "IU",
+                      "name": "Vitamin D3 (Cholecalciferol)",
+                      "amount": "5000"
+                    }
+                  ],
+                  "currentPrice": 16.95,
+                  "sideEffects": [],
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with a fat-containing meal for best absorption.",
+                    "amount": "1 softgel",
+                    "frequency": "daily"
+                  },
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                  ],
+                  "tags": [
+                    "vitamin-d3",
+                    "bone-health",
+                    "immune",
+                    "mood"
+                  ],
+                  "category": [
+                    "vitamins"
+                  ],
+                  "isAvailable": true,
+                  "rating": 4.6,
+                  "reviewCount": 37420,
+                  "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                  "drugInteractions": [
+                    "thiazide_diuretics"
+                  ],
+                  "servingSize": "1 softgel",
+                  "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                  "primeEligible": true,
+                  "evidenceLevel": "high",
+                  "studyCount": 156,
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                "priority": 9,
+                "synergies": [
+                  "Enhances calcium absorption",
+                  "Works synergistically with magnesium"
+                ]
+              },
+              {
+                "product": {
+                  "id": "comprehensive_product_22",
+                  "tags": [
+                    "omega-3",
+                    "fish-oil",
+                    "epa",
+                    "dha"
+                  ],
+                  "commissionRate": 0.08,
+                  "qualityFactors": {
+                    "allergenFree": false,
+                    "thirdPartyTested": true,
+                    "organicCertified": false,
+                    "nonGmo": true,
+                    "gmpCertified": true
+                  },
+                  "subcategory": "fish-oil",
+                  "amazonUrl": "https://amazon.com/dp/B000BD0RT0?tag=nutriwiseai-20",
+                  "costPerServing": 0.23,
+                  "activeIngredients": [
+                    {
+                      "amount": "360",
+                      "unit": "mg",
+                      "name": "EPA (Eicosapentaenoic Acid)"
+                    },
+                    {
+                      "unit": "mg",
+                      "amount": "240",
+                      "name": "DHA (Docosahexaenoic Acid)"
+                    }
+                  ],
+                  "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+                  "servingSize": "2 softgels",
+                  "targetAudience": [
+                    "heart_health",
+                    "brain_health",
+                    "anti_inflammatory"
+                  ],
+                  "brand": "Nature Made",
+                  "isActive": true,
+                  "isAvailable": true,
+                  "imageUrl": "https://m.media-amazon.com/images/I/81H4xK2PFHL._AC_SX300_SY300_.jpg",
+                  "contraindications": [
+                    "fish_allergies"
+                  ],
+                  "rating": 4.5,
+                  "servingsPerContainer": 100,
+                  "affiliateUrl": "https://www.amazon.com/dp/B004U3Y6N8?tag=nutriwiseai-20",
+                  "drugInteractions": [
+                    "blood_thinners"
+                  ],
+                  "evidenceLevel": "high",
+                  "sideEffects": [
+                    "fishy_aftertaste"
+                  ],
+                  "currentPrice": 18.74,
+                  "asin": "B004U3Y6N8",
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/16841861/"
+                  ],
+                  "studyCount": 127,
+                  "category": [
+                    "oils"
+                  ],
+                  "description": "High-quality fish oil with EPA and DHA for heart and brain health",
+                  "reviewCount": 45820,
+                  "primeEligible": true,
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with food to enhance absorption.",
+                    "frequency": "daily",
+                    "amount": "2 softgels"
+                  },
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "EPA/DHA for cardiovascular health, brain function, and anti-inflammatory effects. Essential for endurance goals.",
+                "priority": 8,
+                "synergies": [
+                  "Enhances vitamin D absorption",
+                  "Supports magnesium utilization",
+                  "Fat-soluble vitamin D absorption enhanced by omega-3 fats"
+                ]
+              }
+            ],
+            "totalMonthlyCost": 37.98,
+            "expectedResults": {
+              "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+              "benefits": [
+                "General health support",
+                "Nutritional supplementation"
+              ]
+            },
+            "scientificRationale": "This stack is backed by 283+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+            "safetyNotes": [
+              "hypercalcemia",
+              "Check for medication interactions with your healthcare provider",
+              "fish_allergies",
+              "Start with recommended doses and adjust based on individual response",
+              "Consult with healthcare provider before starting any new supplement regimen"
+            ],
+            "monitoringRecommendations": [
+              "Track energy levels, sleep quality, and overall well-being",
+              "Monitor for any adverse reactions during the first 2 weeks",
+              "Assess progress toward fitness goals after 4-6 weeks",
+              "Consider blood work to evaluate nutrient status after 3 months",
+              "Adjust dosages based on response and lifestyle changes"
+            ]
+          },
+          "createdAt": {
+            "_seconds": 1753378245,
+            "_nanoseconds": 780000000
+          }
+        },
+        {
+          "id": "3kPyUAHvkjLY6g6ZKm11",
+          "userProfile": {
+            "age": 25,
+            "gender": "male",
+            "fitnessGoals": [
+              "muscle gain"
+            ],
+            "dietaryRestrictions": [
+              "gluten-free"
+            ],
+            "currentSupplements": [
+              "vitamin d3"
+            ]
+          },
+          "stack": {
+            "id": "stack_1753373576445",
+            "name": "Young Male Muscle gain Stack",
+            "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on muscle gain. Optimized for moderate activity level with a $100/month budget.",
+            "recommendations": [],
+            "totalMonthlyCost": 0,
+            "expectedResults": {
+              "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+              "benefits": [
+                "General health support",
+                "Nutritional supplementation"
+              ]
+            },
+            "scientificRationale": "This stack is backed by 0+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+            "safetyNotes": [
+              "Start with recommended doses and adjust based on individual response",
+              "Consult with healthcare provider before starting any new supplement regimen"
+            ],
+            "monitoringRecommendations": [
+              "Track energy levels, sleep quality, and overall well-being",
+              "Monitor for any adverse reactions during the first 2 weeks",
+              "Assess progress toward fitness goals after 4-6 weeks",
+              "Consider blood work to evaluate nutrient status after 3 months",
+              "Adjust dosages based on response and lifestyle changes"
+            ]
+          },
+          "createdAt": {
+            "_seconds": 1753373576,
+            "_nanoseconds": 446000000
+          }
+        },
+        {
+          "id": "450Dcm0tgrpORmUZFl7e",
+          "userProfile": {
+            "age": 25,
+            "gender": "male",
+            "fitnessGoals": [
+              "general health"
+            ],
+            "dietaryRestrictions": [],
+            "currentSupplements": []
+          },
+          "stack": {
+            "id": "stack_1753378231286",
+            "name": "Young Male General health Stack",
+            "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on general health. Optimized for moderate activity level with a $100/month budget.",
+            "recommendations": [
+              {
+                "product": {
+                  "id": "comprehensive_product_23",
+                  "targetAudience": [
+                    "bone_health",
+                    "immune_support",
+                    "mood_support"
+                  ],
+                  "isActive": true,
+                  "commissionRate": 0.08,
+                  "contraindications": [
+                    "hypercalcemia"
+                  ],
+                  "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                  "asin": "B002DTC0WQ",
+                  "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                  "costPerServing": 0.06,
+                  "name": "Vitamin D3 5000 IU by NOW Foods",
+                  "servingsPerContainer": 240,
+                  "subcategory": "vitamin-d3",
+                  "qualityFactors": {
+                    "gmpCertified": true,
+                    "allergenFree": true,
+                    "nonGmo": true,
+                    "thirdPartyTested": true,
+                    "organicCertified": false
+                  },
+                  "brand": "NOW Foods",
+                  "activeIngredients": [
+                    {
+                      "unit": "IU",
+                      "name": "Vitamin D3 (Cholecalciferol)",
+                      "amount": "5000"
+                    }
+                  ],
+                  "currentPrice": 16.95,
+                  "sideEffects": [],
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with a fat-containing meal for best absorption.",
+                    "amount": "1 softgel",
+                    "frequency": "daily"
+                  },
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                  ],
+                  "tags": [
+                    "vitamin-d3",
+                    "bone-health",
+                    "immune",
+                    "mood"
+                  ],
+                  "category": [
+                    "vitamins"
+                  ],
+                  "isAvailable": true,
+                  "rating": 4.6,
+                  "reviewCount": 37420,
+                  "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                  "drugInteractions": [
+                    "thiazide_diuretics"
+                  ],
+                  "servingSize": "1 softgel",
+                  "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                  "primeEligible": true,
+                  "evidenceLevel": "high",
+                  "studyCount": 156,
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                "priority": 9,
+                "synergies": [
+                  "Enhances calcium absorption",
+                  "Works synergistically with magnesium"
+                ]
+              }
+            ],
+            "totalMonthlyCost": 14.99,
+            "expectedResults": {
+              "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+              "benefits": [
+                "General health support",
+                "Nutritional supplementation"
+              ]
+            },
+            "scientificRationale": "This stack is backed by 156+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+            "safetyNotes": [
+              "hypercalcemia",
+              "Check for medication interactions with your healthcare provider",
+              "Start with recommended doses and adjust based on individual response",
+              "Consult with healthcare provider before starting any new supplement regimen"
+            ],
+            "monitoringRecommendations": [
+              "Track energy levels, sleep quality, and overall well-being",
+              "Monitor for any adverse reactions during the first 2 weeks",
+              "Assess progress toward fitness goals after 4-6 weeks",
+              "Consider blood work to evaluate nutrient status after 3 months",
+              "Adjust dosages based on response and lifestyle changes"
+            ]
+          },
+          "createdAt": {
+            "_seconds": 1753378231,
+            "_nanoseconds": 799000000
+          }
+        },
+        {
+          "id": "5pTpixYlcR2eIXqLy8Rj",
+          "userProfile": {
+            "age": 25,
+            "gender": "male",
+            "fitnessGoals": [
+              "muscle gain",
+              "fat loss"
+            ],
+            "dietaryRestrictions": [
+              "gluten-free"
+            ],
+            "currentSupplements": []
+          },
+          "stack": {
+            "id": "stack_1753378255310",
+            "name": "Young Male Muscle gain Stack",
+            "description": "Scientifically-formulated supplement stack designed for 25-year-old male focused on muscle gain, fat loss. Optimized for moderate activity level with a $100/month budget.",
+            "recommendations": [
+              {
+                "product": {
+                  "id": "comprehensive_product_23",
+                  "targetAudience": [
+                    "bone_health",
+                    "immune_support",
+                    "mood_support"
+                  ],
+                  "isActive": true,
+                  "commissionRate": 0.08,
+                  "contraindications": [
+                    "hypercalcemia"
+                  ],
+                  "amazonUrl": "https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20",
+                  "asin": "B002DTC0WQ",
+                  "description": "High-potency vitamin D3 for bone health, immune support, and mood",
+                  "costPerServing": 0.06,
+                  "name": "Vitamin D3 5000 IU by NOW Foods",
+                  "servingsPerContainer": 240,
+                  "subcategory": "vitamin-d3",
+                  "qualityFactors": {
+                    "gmpCertified": true,
+                    "allergenFree": true,
+                    "nonGmo": true,
+                    "thirdPartyTested": true,
+                    "organicCertified": false
+                  },
+                  "brand": "NOW Foods",
+                  "activeIngredients": [
+                    {
+                      "unit": "IU",
+                      "name": "Vitamin D3 (Cholecalciferol)",
+                      "amount": "5000"
+                    }
+                  ],
+                  "currentPrice": 16.95,
+                  "sideEffects": [],
+                  "recommendedDosage": {
+                    "timing": "with-food",
+                    "instructions": "Take with a fat-containing meal for best absorption.",
+                    "amount": "1 softgel",
+                    "frequency": "daily"
+                  },
+                  "citations": [
+                    "https://pubmed.ncbi.nlm.nih.gov/18400738/"
+                  ],
+                  "tags": [
+                    "vitamin-d3",
+                    "bone-health",
+                    "immune",
+                    "mood"
+                  ],
+                  "category": [
+                    "vitamins"
+                  ],
+                  "isAvailable": true,
+                  "rating": 4.6,
+                  "reviewCount": 37420,
+                  "imageUrl": "https://m.media-amazon.com/images/I/71gw9CkrLcL._AC_SX300_SY300_.jpg",
+                  "drugInteractions": [
+                    "thiazide_diuretics"
+                  ],
+                  "servingSize": "1 softgel",
+                  "affiliateUrl": "https://www.amazon.com/dp/B002DTC0WQ?tag=nutriwiseai-20",
+                  "primeEligible": true,
+                  "evidenceLevel": "high",
+                  "studyCount": 156,
+                  "targetGoals": [],
+                  "benefits": [],
+                  "healthBenefits": [],
+                  "createdAt": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastUpdated": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastPriceUpdate": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  },
+                  "lastVerified": {
+                    "_seconds": 1753378207,
+                    "_nanoseconds": 791000000
+                  }
+                },
+                "reasoning": "Essential for bone health, immune function, and mood regulation. Particularly important for moderate individuals.",
+                "priority": 9,
+                "synergies": [
+                  "Enhances calcium absorption",
+                  "Works synergistically with magnesium"
+                ]
+              }
+            ],
+            "totalMonthlyCost": 14.99,
+            "expectedResults": {
+              "timeline": "Initial benefits within 2-4 weeks, optimal results in 8-12 weeks with consistent use",
+              "benefits": [
+                "General health support",
+                "Nutritional supplementation"
+              ]
+            },
+            "scientificRationale": "This stack is backed by 156+ scientific studies. Each supplement was selected based on evidence-based research for efficacy, safety, and synergistic interactions.",
+            "safetyNotes": [
+              "hypercalcemia",
+              "Check for medication interactions with your healthcare provider",
+              "Start with recommended doses and adjust based on individual response",
+              "Consult with healthcare provider before starting any new supplement regimen"
+            ],
+            "monitoringRecommendations": [
+              "Track energy levels, sleep quality, and overall well-being",
+              "Monitor for any adverse reactions during the first 2 weeks",
+              "Assess progress toward fitness goals after 4-6 weeks",
+              "Consider blood work to evaluate nutrient status after 3 months",
+              "Adjust dosages based on response and lifestyle changes"
+            ]
+          },
+          "createdAt": {
+            "_seconds": 1753378256,
+            "_nanoseconds": 245000000
+          }
+        }
+      ]
+    },
+    "cachedStacks": {
+      "documentCount": 113,
+      "fields": {
+        "archetype": {
+          "type": "string",
+          "examples": [
+            "Athletic Performance",
+            "Cognitive Enhancement"
+          ],
+          "count": 6
+        },
+        "name": {
+          "type": "string",
+          "examples": [
+            "Athletic Performance Stack",
+            "Cognitive Enhancement Stack"
+          ],
+          "count": 113
+        },
+        "supplements": {
+          "type": "object",
+          "examples": [
+            [
+              "supplement_4",
+              "supplement_1",
+              "supplement_2",
+              "supplement_3"
+            ],
+            [
+              "supplement_13",
+              "supplement_15",
+              "supplement_14",
+              "supplement_16"
+            ]
+          ],
+          "count": 113
+        },
+        "supplementDetails": {
+          "type": "object",
+          "examples": [
+            [
+              {
+                "id": "supplement_4",
+                "name": "Pre-Workout Supplement by Legion Pulse",
+                "brand": "Legion Athletics",
+                "type": "Pre-Workout",
+                "imageUrl": "https://m.media-amazon.com/images/I/71dHlRxYzNL._AC_SL1500_.jpg",
+                "price": "$39.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUA?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUA",
+                "rating": 4.6,
+                "reviewCount": 5678,
+                "features": [
+                  "Clinically Dosed",
+                  "No Artificial Fillers",
+                  "Energy & Focus",
+                  "Natural Flavoring"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_1",
+                "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+                "brand": "Optimum Nutrition",
+                "type": "Protein",
+                "imageUrl": "https://m.media-amazon.com/images/I/71qVeA8rZ8L._AC_SL1500_.jpg",
+                "price": "$54.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B000QSNYGI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B000QSNYGI",
+                "rating": 4.5,
+                "reviewCount": 45632,
+                "features": [
+                  "24g Protein per Serving",
+                  "5.5g BCAAs",
+                  "4g Glutamine",
+                  "Banned Substance Tested"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_2",
+                "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+                "brand": "BulkSupplements",
+                "type": "Creatine",
+                "imageUrl": "https://m.media-amazon.com/images/I/61Zw8cHuIjL._AC_SL1500_.jpg",
+                "price": "$19.96",
+                "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+                "rating": 4.4,
+                "reviewCount": 12847,
+                "features": [
+                  "Pure Creatine Monohydrate",
+                  "Micronized for Better Mixing",
+                  "Supports Muscle Growth",
+                  "Third Party Tested"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_3",
+                "name": "BCAA Energy Amino Acid Supplement by Cellucor C4",
+                "brand": "Cellucor",
+                "type": "Amino Acid",
+                "imageUrl": "https://m.media-amazon.com/images/I/71XYzQ9AJOL._AC_SL1500_.jpg",
+                "price": "$24.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2BFZAI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2BFZAI",
+                "rating": 4.3,
+                "reviewCount": 8956,
+                "features": [
+                  "2:1:1 BCAA Ratio",
+                  "Natural Caffeine",
+                  "Zero Sugar",
+                  "Recovery Support"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              }
+            ],
+            [
+              {
+                "id": "supplement_13",
+                "name": "Lion's Mane Mushroom Extract by Host Defense",
+                "brand": "Host Defense",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/61Z9vqYvJHL._AC_SL1500_.jpg",
+                "price": "$26.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUH?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUH",
+                "rating": 4.4,
+                "reviewCount": 3456,
+                "features": [
+                  "Organic Lion's Mane",
+                  "Cognitive Support",
+                  "Nervous System Health",
+                  "Sustainably Grown"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_15",
+                "name": "Rhodiola Rosea Extract by NOW Foods",
+                "brand": "NOW Foods",
+                "type": "Adaptogen",
+                "imageUrl": "https://m.media-amazon.com/images/I/71bXpBjq7AL._AC_SL1500_.jpg",
+                "price": "$12.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B0013OQGO8?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B0013OQGO8",
+                "rating": 4.3,
+                "reviewCount": 4567,
+                "features": [
+                  "500mg Rhodiola",
+                  "3% Rosavins",
+                  "Stress Adaptation",
+                  "Energy Support"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_14",
+                "name": "Bacopa Monnieri Extract by Nutricost",
+                "brand": "Nutricost",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/61oHjNzFLfL._AC_SL1500_.jpg",
+                "price": "$15.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUI",
+                "rating": 4.2,
+                "reviewCount": 2345,
+                "features": [
+                  "500mg Bacopa Extract",
+                  "20% Bacosides",
+                  "Memory Support",
+                  "Third Party Tested"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_16",
+                "name": "Ginkgo Biloba Extract by Nature's Bounty",
+                "brand": "Nature's Bounty",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/71cQHYvvAqL._AC_SL1500_.jpg",
+                "price": "$8.49",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUJ?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUJ",
+                "rating": 4.1,
+                "reviewCount": 3678,
+                "features": [
+                  "120mg Ginkgo Extract",
+                  "24% Flavone Glycosides",
+                  "Cognitive Function",
+                  "Circulation Support"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              }
+            ]
+          ],
+          "count": 6
+        },
+        "averageRating": {
+          "type": "number",
+          "examples": [
+            4.45,
+            4.25
+          ],
+          "count": 113
+        },
+        "totalReviewCount": {
+          "type": "number",
+          "examples": [
+            73113,
+            14046
+          ],
+          "count": 113
+        },
+        "lastUpdated": {
+          "type": "string",
+          "examples": [
+            "2025-07-21T11:54:45.456Z",
+            "2025-07-21T11:54:45.459Z"
+          ],
+          "count": 113
+        },
+        "id": {
+          "type": "string",
+          "examples": [
+            "stack_1753237213659_39ucoatw3",
+            "stack_1753237213659_db4epbtjm"
+          ],
+          "count": 107
+        },
+        "description": {
+          "type": "string",
+          "examples": [
+            "AI-generated supplement stack optimized for muscle-building, strength, performance with 2 targeted health concerns",
+            "AI-generated supplement stack optimized for muscle-building, strength, performance with 2 targeted health concerns"
+          ],
+          "count": 107
+        },
+        "userProfile": {
+          "type": "object",
+          "examples": [
+            {
+              "demographics": {
+                "age": 23,
+                "gender": "male",
+                "activityLevel": "heavy",
+                "diet": "balanced",
+                "primaryGoals": [
+                  "muscle-building",
+                  "strength",
+                  "performance"
+                ],
+                "healthConcerns": [
+                  "stress-anxiety",
+                  "poor-digestion"
+                ]
+              }
+            },
+            {
+              "demographics": {
+                "age": 23,
+                "gender": "male",
+                "activityLevel": "heavy",
+                "diet": "balanced",
+                "primaryGoals": [
+                  "muscle-building",
+                  "strength",
+                  "performance"
+                ],
+                "healthConcerns": [
+                  "hormone-balance",
+                  "skin-hair"
+                ]
+              }
+            }
+          ],
+          "count": 107
+        },
+        "totalMonthlyCost": {
+          "type": "number",
+          "examples": [
+            84.93,
+            84.93
+          ],
+          "count": 107
+        },
+        "estimatedCommission": {
+          "type": "number",
+          "examples": [
+            6.7944,
+            6.7944
+          ],
+          "count": 107
+        },
+        "evidenceScore": {
+          "type": "number",
+          "examples": [
+            88,
+            85
+          ],
+          "count": 107
+        },
+        "userSuccessRate": {
+          "type": "number",
+          "examples": [
+            99,
+            83
+          ],
+          "count": 107
+        },
+        "timeline": {
+          "type": "string",
+          "examples": [
+            "Initial benefits within 2-4 weeks, full effects in 8-12 weeks",
+            "Initial benefits within 2-4 weeks, full effects in 8-12 weeks"
+          ],
+          "count": 107
+        },
+        "synergies": {
+          "type": "object",
+          "examples": [
+            [
+              "Vitamin D3 + Magnesium for enhanced absorption",
+              "Omega-3 + Vitamin D for anti-inflammatory effects",
+              "Probiotics + Magnesium for gut-brain axis support"
+            ],
+            [
+              "Vitamin D3 + Magnesium for enhanced absorption",
+              "Omega-3 + Vitamin D for anti-inflammatory effects",
+              "Probiotics + Magnesium for gut-brain axis support"
+            ]
+          ],
+          "count": 107
+        },
+        "contraindications": {
+          "type": "object",
+          "examples": [
+            [
+              "Consult healthcare provider if pregnant or nursing",
+              "Check for medication interactions",
+              "Start with lower doses if supplement-naive"
+            ],
+            [
+              "Consult healthcare provider if pregnant or nursing",
+              "Check for medication interactions",
+              "Start with lower doses if supplement-naive"
+            ]
+          ],
+          "count": 107
+        },
+        "scientificBacking": {
+          "type": "object",
+          "examples": [
+            {
+              "studyCount": 45,
+              "qualityScore": 88,
+              "citations": [
+                "https://pubmed.ncbi.nlm.nih.gov/28768407/",
+                "https://pubmed.ncbi.nlm.nih.gov/29080614/",
+                "https://pubmed.ncbi.nlm.nih.gov/31851936/"
+              ]
+            },
+            {
+              "studyCount": 45,
+              "qualityScore": 85,
+              "citations": [
+                "https://pubmed.ncbi.nlm.nih.gov/28768407/",
+                "https://pubmed.ncbi.nlm.nih.gov/29080614/",
+                "https://pubmed.ncbi.nlm.nih.gov/31851936/"
+              ]
+            }
+          ],
+          "count": 107
+        },
+        "createdAt": {
+          "type": "string",
+          "examples": [
+            "2025-07-23T02:20:13.659Z",
+            "2025-07-23T02:20:13.659Z"
+          ],
+          "count": 107
+        },
+        "allLinksValid": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 107
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "Athletic Performance",
+          "data": {
+            "archetype": "Athletic Performance",
+            "name": "Athletic Performance Stack",
+            "supplements": [
+              "supplement_4",
+              "supplement_1",
+              "supplement_2",
+              "supplement_3"
+            ],
+            "supplementDetails": [
+              {
+                "id": "supplement_4",
+                "name": "Pre-Workout Supplement by Legion Pulse",
+                "brand": "Legion Athletics",
+                "type": "Pre-Workout",
+                "imageUrl": "https://m.media-amazon.com/images/I/71dHlRxYzNL._AC_SL1500_.jpg",
+                "price": "$39.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUA?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUA",
+                "rating": 4.6,
+                "reviewCount": 5678,
+                "features": [
+                  "Clinically Dosed",
+                  "No Artificial Fillers",
+                  "Energy & Focus",
+                  "Natural Flavoring"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_1",
+                "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+                "brand": "Optimum Nutrition",
+                "type": "Protein",
+                "imageUrl": "https://m.media-amazon.com/images/I/71qVeA8rZ8L._AC_SL1500_.jpg",
+                "price": "$54.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B000QSNYGI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B000QSNYGI",
+                "rating": 4.5,
+                "reviewCount": 45632,
+                "features": [
+                  "24g Protein per Serving",
+                  "5.5g BCAAs",
+                  "4g Glutamine",
+                  "Banned Substance Tested"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_2",
+                "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+                "brand": "BulkSupplements",
+                "type": "Creatine",
+                "imageUrl": "https://m.media-amazon.com/images/I/61Zw8cHuIjL._AC_SL1500_.jpg",
+                "price": "$19.96",
+                "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+                "rating": 4.4,
+                "reviewCount": 12847,
+                "features": [
+                  "Pure Creatine Monohydrate",
+                  "Micronized for Better Mixing",
+                  "Supports Muscle Growth",
+                  "Third Party Tested"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_3",
+                "name": "BCAA Energy Amino Acid Supplement by Cellucor C4",
+                "brand": "Cellucor",
+                "type": "Amino Acid",
+                "imageUrl": "https://m.media-amazon.com/images/I/71XYzQ9AJOL._AC_SL1500_.jpg",
+                "price": "$24.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2BFZAI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2BFZAI",
+                "rating": 4.3,
+                "reviewCount": 8956,
+                "features": [
+                  "2:1:1 BCAA Ratio",
+                  "Natural Caffeine",
+                  "Zero Sugar",
+                  "Recovery Support"
+                ],
+                "category": "Athletic Performance",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              }
+            ],
+            "averageRating": 4.45,
+            "totalReviewCount": 73113,
+            "lastUpdated": "2025-07-21T11:54:45.456Z"
+          }
+        },
+        {
+          "id": "Cognitive Enhancement",
+          "data": {
+            "archetype": "Cognitive Enhancement",
+            "name": "Cognitive Enhancement Stack",
+            "supplements": [
+              "supplement_13",
+              "supplement_15",
+              "supplement_14",
+              "supplement_16"
+            ],
+            "supplementDetails": [
+              {
+                "id": "supplement_13",
+                "name": "Lion's Mane Mushroom Extract by Host Defense",
+                "brand": "Host Defense",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/61Z9vqYvJHL._AC_SL1500_.jpg",
+                "price": "$26.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUH?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUH",
+                "rating": 4.4,
+                "reviewCount": 3456,
+                "features": [
+                  "Organic Lion's Mane",
+                  "Cognitive Support",
+                  "Nervous System Health",
+                  "Sustainably Grown"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_15",
+                "name": "Rhodiola Rosea Extract by NOW Foods",
+                "brand": "NOW Foods",
+                "type": "Adaptogen",
+                "imageUrl": "https://m.media-amazon.com/images/I/71bXpBjq7AL._AC_SL1500_.jpg",
+                "price": "$12.99",
+                "affiliateUrl": "https://www.amazon.com/dp/B0013OQGO8?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B0013OQGO8",
+                "rating": 4.3,
+                "reviewCount": 4567,
+                "features": [
+                  "500mg Rhodiola",
+                  "3% Rosavins",
+                  "Stress Adaptation",
+                  "Energy Support"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_14",
+                "name": "Bacopa Monnieri Extract by Nutricost",
+                "brand": "Nutricost",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/61oHjNzFLfL._AC_SL1500_.jpg",
+                "price": "$15.95",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUI?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUI",
+                "rating": 4.2,
+                "reviewCount": 2345,
+                "features": [
+                  "500mg Bacopa Extract",
+                  "20% Bacosides",
+                  "Memory Support",
+                  "Third Party Tested"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              },
+              {
+                "id": "supplement_16",
+                "name": "Ginkgo Biloba Extract by Nature's Bounty",
+                "brand": "Nature's Bounty",
+                "type": "Nootropic",
+                "imageUrl": "https://m.media-amazon.com/images/I/71cQHYvvAqL._AC_SL1500_.jpg",
+                "price": "$8.49",
+                "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUJ?tag=nutri0ad-20",
+                "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUJ",
+                "rating": 4.1,
+                "reviewCount": 3678,
+                "features": [
+                  "120mg Ginkgo Extract",
+                  "24% Flavone Glycosides",
+                  "Cognitive Function",
+                  "Circulation Support"
+                ],
+                "category": "Cognitive Enhancement",
+                "verified": true,
+                "lastUpdated": "2025-07-20T18:30:00.000Z"
+              }
+            ],
+            "averageRating": 4.25,
+            "totalReviewCount": 14046,
+            "lastUpdated": "2025-07-21T11:54:45.459Z"
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "Athletic Performance",
+          "archetype": "Athletic Performance",
+          "name": "Athletic Performance Stack",
+          "supplements": [
+            "supplement_4",
+            "supplement_1",
+            "supplement_2",
+            "supplement_3"
+          ],
+          "supplementDetails": [
+            {
+              "id": "supplement_4",
+              "name": "Pre-Workout Supplement by Legion Pulse",
+              "brand": "Legion Athletics",
+              "type": "Pre-Workout",
+              "imageUrl": "https://m.media-amazon.com/images/I/71dHlRxYzNL._AC_SL1500_.jpg",
+              "price": "$39.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUA?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUA",
+              "rating": 4.6,
+              "reviewCount": 5678,
+              "features": [
+                "Clinically Dosed",
+                "No Artificial Fillers",
+                "Energy & Focus",
+                "Natural Flavoring"
+              ],
+              "category": "Athletic Performance",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_1",
+              "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+              "brand": "Optimum Nutrition",
+              "type": "Protein",
+              "imageUrl": "https://m.media-amazon.com/images/I/71qVeA8rZ8L._AC_SL1500_.jpg",
+              "price": "$54.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B000QSNYGI?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B000QSNYGI",
+              "rating": 4.5,
+              "reviewCount": 45632,
+              "features": [
+                "24g Protein per Serving",
+                "5.5g BCAAs",
+                "4g Glutamine",
+                "Banned Substance Tested"
+              ],
+              "category": "Athletic Performance",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_2",
+              "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+              "brand": "BulkSupplements",
+              "type": "Creatine",
+              "imageUrl": "https://m.media-amazon.com/images/I/61Zw8cHuIjL._AC_SL1500_.jpg",
+              "price": "$19.96",
+              "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+              "rating": 4.4,
+              "reviewCount": 12847,
+              "features": [
+                "Pure Creatine Monohydrate",
+                "Micronized for Better Mixing",
+                "Supports Muscle Growth",
+                "Third Party Tested"
+              ],
+              "category": "Athletic Performance",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_3",
+              "name": "BCAA Energy Amino Acid Supplement by Cellucor C4",
+              "brand": "Cellucor",
+              "type": "Amino Acid",
+              "imageUrl": "https://m.media-amazon.com/images/I/71XYzQ9AJOL._AC_SL1500_.jpg",
+              "price": "$24.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2BFZAI?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2BFZAI",
+              "rating": 4.3,
+              "reviewCount": 8956,
+              "features": [
+                "2:1:1 BCAA Ratio",
+                "Natural Caffeine",
+                "Zero Sugar",
+                "Recovery Support"
+              ],
+              "category": "Athletic Performance",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            }
+          ],
+          "averageRating": 4.45,
+          "totalReviewCount": 73113,
+          "lastUpdated": "2025-07-21T11:54:45.456Z"
+        },
+        {
+          "id": "Cognitive Enhancement",
+          "archetype": "Cognitive Enhancement",
+          "name": "Cognitive Enhancement Stack",
+          "supplements": [
+            "supplement_13",
+            "supplement_15",
+            "supplement_14",
+            "supplement_16"
+          ],
+          "supplementDetails": [
+            {
+              "id": "supplement_13",
+              "name": "Lion's Mane Mushroom Extract by Host Defense",
+              "brand": "Host Defense",
+              "type": "Nootropic",
+              "imageUrl": "https://m.media-amazon.com/images/I/61Z9vqYvJHL._AC_SL1500_.jpg",
+              "price": "$26.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUH?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUH",
+              "rating": 4.4,
+              "reviewCount": 3456,
+              "features": [
+                "Organic Lion's Mane",
+                "Cognitive Support",
+                "Nervous System Health",
+                "Sustainably Grown"
+              ],
+              "category": "Cognitive Enhancement",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_15",
+              "name": "Rhodiola Rosea Extract by NOW Foods",
+              "brand": "NOW Foods",
+              "type": "Adaptogen",
+              "imageUrl": "https://m.media-amazon.com/images/I/71bXpBjq7AL._AC_SL1500_.jpg",
+              "price": "$12.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B0013OQGO8?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B0013OQGO8",
+              "rating": 4.3,
+              "reviewCount": 4567,
+              "features": [
+                "500mg Rhodiola",
+                "3% Rosavins",
+                "Stress Adaptation",
+                "Energy Support"
+              ],
+              "category": "Cognitive Enhancement",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_14",
+              "name": "Bacopa Monnieri Extract by Nutricost",
+              "brand": "Nutricost",
+              "type": "Nootropic",
+              "imageUrl": "https://m.media-amazon.com/images/I/61oHjNzFLfL._AC_SL1500_.jpg",
+              "price": "$15.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUI?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUI",
+              "rating": 4.2,
+              "reviewCount": 2345,
+              "features": [
+                "500mg Bacopa Extract",
+                "20% Bacosides",
+                "Memory Support",
+                "Third Party Tested"
+              ],
+              "category": "Cognitive Enhancement",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_16",
+              "name": "Ginkgo Biloba Extract by Nature's Bounty",
+              "brand": "Nature's Bounty",
+              "type": "Nootropic",
+              "imageUrl": "https://m.media-amazon.com/images/I/71cQHYvvAqL._AC_SL1500_.jpg",
+              "price": "$8.49",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUJ?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUJ",
+              "rating": 4.1,
+              "reviewCount": 3678,
+              "features": [
+                "120mg Ginkgo Extract",
+                "24% Flavone Glycosides",
+                "Cognitive Function",
+                "Circulation Support"
+              ],
+              "category": "Cognitive Enhancement",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            }
+          ],
+          "averageRating": 4.25,
+          "totalReviewCount": 14046,
+          "lastUpdated": "2025-07-21T11:54:45.459Z"
+        },
+        {
+          "id": "General Wellness",
+          "archetype": "General Wellness",
+          "name": "General Wellness Stack",
+          "supplements": [
+            "supplement_10",
+            "supplement_11",
+            "supplement_9",
+            "supplement_12"
+          ],
+          "supplementDetails": [
+            {
+              "id": "supplement_10",
+              "name": "Vitamin D3 5000 IU by NOW Foods",
+              "brand": "NOW Foods",
+              "type": "Vitamin",
+              "imageUrl": "https://m.media-amazon.com/images/I/71XcVhNJTwL._AC_SL1500_.jpg",
+              "price": "$8.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B0013OQGO7?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B0013OQGO7",
+              "rating": 4.6,
+              "reviewCount": 12345,
+              "features": [
+                "5000 IU Vitamin D3",
+                "Immune Support",
+                "Bone Health",
+                "High Potency"
+              ],
+              "category": "General Wellness",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_11",
+              "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+              "brand": "Nature Made",
+              "type": "Omega-3",
+              "imageUrl": "https://m.media-amazon.com/images/I/81U8kHnRanL._AC_SL1500_.jpg",
+              "price": "$23.49",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUF?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUF",
+              "rating": 4.5,
+              "reviewCount": 15678,
+              "features": [
+                "1200mg Fish Oil",
+                "720mg Omega-3",
+                "Heart Health",
+                "Purified"
+              ],
+              "category": "General Wellness",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_9",
+              "name": "Whole Food Multivitamin by Garden of Life",
+              "brand": "Garden of Life",
+              "type": "Multivitamin",
+              "imageUrl": "https://m.media-amazon.com/images/I/81y7RQZPfrL._AC_SL1500_.jpg",
+              "price": "$32.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUE?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUE",
+              "rating": 4.4,
+              "reviewCount": 8901,
+              "features": [
+                "Whole Food Based",
+                "Organic Ingredients",
+                "Probiotics & Enzymes",
+                "Non-GMO Verified"
+              ],
+              "category": "General Wellness",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_12",
+              "name": "Probiotics 50 Billion CFU by Physician's Choice",
+              "brand": "Physician's Choice",
+              "type": "Probiotic",
+              "imageUrl": "https://m.media-amazon.com/images/I/71p8gY2EQSL._AC_SL1500_.jpg",
+              "price": "$29.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUG?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUG",
+              "rating": 4.3,
+              "reviewCount": 7890,
+              "features": [
+                "50 Billion CFU",
+                "10 Strains",
+                "Digestive Health",
+                "Shelf Stable"
+              ],
+              "category": "General Wellness",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            }
+          ],
+          "averageRating": 4.45,
+          "totalReviewCount": 44814,
+          "lastUpdated": "2025-07-21T11:54:45.459Z"
+        },
+        {
+          "id": "Joint & Bone Health",
+          "archetype": "Joint & Bone Health",
+          "name": "Joint & Bone Health Stack",
+          "supplements": [
+            "supplement_22",
+            "supplement_21",
+            "supplement_23",
+            "supplement_24"
+          ],
+          "supplementDetails": [
+            {
+              "id": "supplement_22",
+              "name": "Turmeric Curcumin with BioPerine by BioSchwartz",
+              "brand": "BioSchwartz",
+              "type": "Anti-Inflammatory",
+              "imageUrl": "https://m.media-amazon.com/images/I/71XkNzQyLHL._AC_SL1500_.jpg",
+              "price": "$19.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUO?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUO",
+              "rating": 4.5,
+              "reviewCount": 12456,
+              "features": [
+                "1500mg Turmeric",
+                "95% Curcuminoids",
+                "BioPerine for Absorption",
+                "Joint Health"
+              ],
+              "category": "Joint & Bone Health",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_21",
+              "name": "Glucosamine Chondroitin MSM by Kirkland Signature",
+              "brand": "Kirkland Signature",
+              "type": "Joint Support",
+              "imageUrl": "https://m.media-amazon.com/images/I/81qL7Z8r5tL._AC_SL1500_.jpg",
+              "price": "$24.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUN?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUN",
+              "rating": 4.4,
+              "reviewCount": 8765,
+              "features": [
+                "1500mg Glucosamine",
+                "1200mg Chondroitin",
+                "500mg MSM",
+                "Joint Mobility"
+              ],
+              "category": "Joint & Bone Health",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_23",
+              "name": "Collagen Peptides Powder by Vital Proteins",
+              "brand": "Vital Proteins",
+              "type": "Collagen",
+              "imageUrl": "https://m.media-amazon.com/images/I/71hq9kbWCBL._AC_SL1500_.jpg",
+              "price": "$43.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUP?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUP",
+              "rating": 4.3,
+              "reviewCount": 9876,
+              "features": [
+                "20g Collagen per Serving",
+                "Grass-Fed",
+                "Skin & Joint Health",
+                "Unflavored"
+              ],
+              "category": "Joint & Bone Health",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_24",
+              "name": "MSM Powder 1000mg by NOW Foods",
+              "brand": "NOW Foods",
+              "type": "Joint Support",
+              "imageUrl": "https://m.media-amazon.com/images/I/71dHlRxYzNL._AC_SL1500_.jpg",
+              "price": "$16.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B0013OQGOA?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B0013OQGOA",
+              "rating": 4.2,
+              "reviewCount": 4321,
+              "features": [
+                "1000mg MSM",
+                "Joint Support",
+                "Sulfur Compound",
+                "Connective Tissue Health"
+              ],
+              "category": "Joint & Bone Health",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            }
+          ],
+          "averageRating": 4.35,
+          "totalReviewCount": 35418,
+          "lastUpdated": "2025-07-21T11:54:45.459Z"
+        },
+        {
+          "id": "Recovery & Sleep",
+          "archetype": "Recovery & Sleep",
+          "name": "Recovery & Sleep Stack",
+          "supplements": [
+            "supplement_17",
+            "supplement_18",
+            "supplement_20",
+            "supplement_19"
+          ],
+          "supplementDetails": [
+            {
+              "id": "supplement_17",
+              "name": "Magnesium Glycinate 400mg by Doctor's Best",
+              "brand": "Doctor's Best",
+              "type": "Mineral",
+              "imageUrl": "https://m.media-amazon.com/images/I/71jKZaHXPNL._AC_SL1500_.jpg",
+              "price": "$14.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUK?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUK",
+              "rating": 4.5,
+              "reviewCount": 9876,
+              "features": [
+                "400mg Elemental Magnesium",
+                "Chelated Form",
+                "Sleep Support",
+                "High Absorption"
+              ],
+              "category": "Recovery & Sleep",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_18",
+              "name": "Ashwagandha Root Extract by Nutricost",
+              "brand": "Nutricost",
+              "type": "Adaptogen",
+              "imageUrl": "https://m.media-amazon.com/images/I/61X8RZqY1YL._AC_SL1500_.jpg",
+              "price": "$16.95",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUL?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUL",
+              "rating": 4.4,
+              "reviewCount": 6543,
+              "features": [
+                "600mg Ashwagandha",
+                "Stress Support",
+                "Mood Balance",
+                "Third Party Tested"
+              ],
+              "category": "Recovery & Sleep",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_20",
+              "name": "L-Theanine 200mg by NOW Foods",
+              "brand": "NOW Foods",
+              "type": "Amino Acid",
+              "imageUrl": "https://m.media-amazon.com/images/I/71nHhXpQu7L._AC_SL1500_.jpg",
+              "price": "$11.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B0013OQGO9?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B0013OQGO9",
+              "rating": 4.4,
+              "reviewCount": 5432,
+              "features": [
+                "200mg L-Theanine",
+                "Relaxation Support",
+                "Mental Clarity",
+                "Natural"
+              ],
+              "category": "Recovery & Sleep",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            },
+            {
+              "id": "supplement_19",
+              "name": "Melatonin 3mg by Nature Made",
+              "brand": "Nature Made",
+              "type": "Sleep Support",
+              "imageUrl": "https://m.media-amazon.com/images/I/71vHqY9RQZL._AC_SL1500_.jpg",
+              "price": "$7.99",
+              "affiliateUrl": "https://www.amazon.com/dp/B00K2R8DUM?tag=nutri0ad-20",
+              "amazonUrl": "https://www.amazon.com/dp/B00K2R8DUM",
+              "rating": 4.3,
+              "reviewCount": 11234,
+              "features": [
+                "3mg Melatonin",
+                "Sleep Support",
+                "Drug Free",
+                "Non-Habit Forming"
+              ],
+              "category": "Recovery & Sleep",
+              "verified": true,
+              "lastUpdated": "2025-07-20T18:30:00.000Z"
+            }
+          ],
+          "averageRating": 4.4,
+          "totalReviewCount": 33085,
+          "lastUpdated": "2025-07-21T11:54:45.459Z"
+        }
+      ]
+    },
+    "productCatalog": {
+      "documentCount": 33,
+      "fields": {
+        "id": {
+          "type": "string",
+          "examples": [
+            "B29FcipfZ9hXdcbGfVob",
+            "PQoFef1kRx5kxIMV5ppQ"
+          ],
+          "count": 3
+        },
+        "name": {
+          "type": "string",
+          "examples": [
+            "Creatine Monohydrate Powder Micronized by BulkSupplements",
+            "Omega-3 Fish Oil 1200mg by Nature Made"
+          ],
+          "count": 33
+        },
+        "brand": {
+          "type": "string",
+          "examples": [
+            "BulkSupplements",
+            "Nature Made"
+          ],
+          "count": 33
+        },
+        "category": {
+          "type": "string",
+          "examples": [
+            "performance",
+            "essential_fatty_acids"
+          ],
+          "count": 33
+        },
+        "subcategory": {
+          "type": "string",
+          "examples": [
+            "creatine",
+            "omega-3"
+          ],
+          "count": 33
+        },
+        "description": {
+          "type": "string",
+          "examples": [
+            "Pure micronized creatine monohydrate powder for enhanced athletic performance, muscle strength, and power output",
+            "High-potency omega-3 fish oil supplement providing 720mg of EPA and DHA per serving for heart and brain health"
+          ],
+          "count": 33
+        },
+        "servingSize": {
+          "type": "string",
+          "examples": [
+            "1 teaspoon (5g)",
+            "2 softgels"
+          ],
+          "count": 33
+        },
+        "servingsPerContainer": {
+          "type": "number",
+          "examples": [
+            200,
+            100
+          ],
+          "count": 33
+        },
+        "asin": {
+          "type": "string",
+          "examples": [
+            "B00E9M4XEE",
+            "B004U3Y8FE"
+          ],
+          "count": 33
+        },
+        "amazonUrl": {
+          "type": "string",
+          "examples": [
+            "https://www.amazon.com/dp/B00E9M4XEE",
+            "https://www.amazon.com/dp/B004U3Y8FE"
+          ],
+          "count": 33
+        },
+        "affiliateUrl": {
+          "type": "string",
+          "examples": [
+            "https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20",
+            "https://www.amazon.com/dp/B004U3Y8FE?tag=nutriwiseai-20"
+          ],
+          "count": 33
+        },
+        "currentPrice": {
+          "type": "number",
+          "examples": [
+            24.96,
+            19.44
+          ],
+          "count": 33
+        },
+        "primeEligible": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 33
+        },
+        "rating": {
+          "type": "number",
+          "examples": [
+            4.4,
+            4.6
+          ],
+          "count": 33
+        },
+        "reviewCount": {
+          "type": "number",
+          "examples": [
+            15267,
+            22841
+          ],
+          "count": 33
+        },
+        "isAvailable": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 33
+        },
+        "activeIngredients": {
+          "type": "object",
+          "examples": [
+            [
+              {
+                "name": "Creatine Monohydrate",
+                "amount": "5",
+                "unit": "g"
+              }
+            ],
+            [
+              {
+                "name": "EPA (Eicosapentaenoic Acid)",
+                "amount": "360",
+                "unit": "mg"
+              },
+              {
+                "name": "DHA (Docosahexaenoic Acid)",
+                "amount": "240",
+                "unit": "mg"
+              }
+            ]
+          ],
+          "count": 33
+        },
+        "recommendedDosage": {
+          "type": "object",
+          "examples": [
+            {
+              "amount": "5g",
+              "frequency": "daily",
+              "timing": "post-workout or anytime",
+              "instructions": "Mix with water, juice, or add to protein shake. Loading phase optional: 20g daily for 5 days, then 5g daily."
+            },
+            {
+              "amount": "2 softgels",
+              "frequency": "daily",
+              "timing": "with_meals",
+              "instructions": "Take with food to improve absorption and reduce fishy aftertaste."
+            }
+          ],
+          "count": 33
+        },
+        "evidenceLevel": {
+          "type": "string",
+          "examples": [
+            "very_high",
+            "very_high"
+          ],
+          "count": 33
+        },
+        "studyCount": {
+          "type": "number",
+          "examples": [
+            500,
+            300
+          ],
+          "count": 33
+        },
+        "citations": {
+          "type": "object",
+          "examples": [
+            [
+              "https://pubmed.ncbi.nlm.nih.gov/28615987/",
+              "https://pubmed.ncbi.nlm.nih.gov/28474650/"
+            ],
+            [
+              "https://pubmed.ncbi.nlm.nih.gov/29145752/",
+              "https://pubmed.ncbi.nlm.nih.gov/28900017/"
+            ]
+          ],
+          "count": 33
+        },
+        "qualityFactors": {
+          "type": "object",
+          "examples": [
+            {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "nonGmo": true,
+              "allergenFree": true
+            },
+            {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "nonGmo": true,
+              "allergenFree": false
+            }
+          ],
+          "count": 33
+        },
+        "targetAudience": {
+          "type": "object",
+          "examples": [
+            [
+              "strength_training",
+              "power_athletes",
+              "bodybuilders",
+              "high_intensity_sports"
+            ],
+            [
+              "heart_health",
+              "brain_health",
+              "anti_inflammatory",
+              "general_wellness"
+            ]
+          ],
+          "count": 33
+        },
+        "tags": {
+          "type": "object",
+          "examples": [
+            [
+              "creatine",
+              "strength",
+              "power",
+              "athletic-performance",
+              "muscle-building"
+            ],
+            [
+              "omega-3",
+              "fish-oil",
+              "heart-health",
+              "brain-health",
+              "anti-inflammatory"
+            ]
+          ],
+          "count": 33
+        },
+        "contraindications": {
+          "type": "object",
+          "examples": [
+            [
+              "kidney_disease",
+              "kidney_stones_history"
+            ],
+            [
+              "fish_allergy",
+              "bleeding_disorders"
+            ]
+          ],
+          "count": 33
+        },
+        "drugInteractions": {
+          "type": "object",
+          "examples": [
+            [
+              "nephrotoxic_drugs"
+            ],
+            [
+              "anticoagulants",
+              "antiplatelet_drugs"
+            ]
+          ],
+          "count": 33
+        },
+        "sideEffects": {
+          "type": "object",
+          "examples": [
+            [
+              "water_retention",
+              "stomach_upset_if_taken_empty_stomach"
+            ],
+            [
+              "fishy_aftertaste",
+              "digestive_upset",
+              "fishy_burps"
+            ]
+          ],
+          "count": 33
+        },
+        "commissionRate": {
+          "type": "number",
+          "examples": [
+            0.08,
+            0.08
+          ],
+          "count": 33
+        },
+        "costPerServing": {
+          "type": "number",
+          "examples": [
+            0.12,
+            0.19
+          ],
+          "count": 33
+        },
+        "isActive": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 33
+        },
+        "createdAt": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            }
+          ],
+          "count": 3
+        },
+        "lastPriceUpdate": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            }
+          ],
+          "count": 3
+        },
+        "lastVerified": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            }
+          ],
+          "count": 3
+        },
+        "imageUrl": {
+          "type": "string",
+          "examples": [
+            "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D",
+            "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/omega3_fish_oil_1200mg_by_nature_made.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=AD8M3GAuj%2FfnIjDSfk1FhK%2Fc6xiL5Zn9c%2BkqNT%2FC7vI16a16f9IWZGVmQc6m52y0obtTCDAIUnTm39yDr7EcfmqBpm2GasPhwOzvGyD5lVvFtcsSLxLl5c9WbZk%2BlnDJ6Kw3SjroRra%2Flod9E2XHTIwyEDagFr2cM4lVkSdoCoFQbzCjq4KO3FdKDe83c%2BuNYncarLg%2BbWiLAhwW3l%2BBSdgrcqA2Fs9tEW1Z%2F68QH0X15yqdXHef5Eidpz46czIOQrbf5n3yOHkpg8AFhECxnCORxqB4%2BOlteO848jx0i%2FzlXMAO7nd5VQqWEUnycrsIlB3rtubkp2KIvcwPjUP2sA%3D%3D"
+          ],
+          "count": 33
+        },
+        "matchType": {
+          "type": "string",
+          "examples": [
+            "specific-product",
+            "specific-product"
+          ],
+          "count": 32
+        },
+        "matchedKeyword": {
+          "type": "string",
+          "examples": [
+            "creatine monohydrate powder micronized by bulksupplements",
+            "omega-3 fish oil 1200mg by nature made"
+          ],
+          "count": 33
+        },
+        "originalImageUrl": {
+          "type": "string",
+          "examples": [
+            "https://m.media-amazon.com/images/I/7185n5K4LyL._UF350,350_QL80_.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fdaa6a3d-6b89-45c1-a826-d48ba115ac96.__CR0,0,2400,2400_PT0_SX300_V1___.jpg"
+          ],
+          "count": 33
+        },
+        "lastUpdated": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753632109,
+              "_nanoseconds": 480000000
+            },
+            {
+              "_seconds": 1753632109,
+              "_nanoseconds": 480000000
+            }
+          ],
+          "count": 33
+        },
+        "imageSource": {
+          "type": "string",
+          "examples": [
+            "exact-product-match",
+            "exact-product-match"
+          ],
+          "count": 33
+        },
+        "searchSource": {
+          "type": "string",
+          "examples": [
+            "google-images",
+            "google-images"
+          ],
+          "count": 33
+        },
+        "searchQuery": {
+          "type": "string",
+          "examples": [
+            "BulkSupplements Creatine Monohydrate Powder bag",
+            "Nature Made Omega-3 Fish Oil 1200mg softgels bottle"
+          ],
+          "count": 33
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "B29FcipfZ9hXdcbGfVob",
+          "data": {
+            "id": "B29FcipfZ9hXdcbGfVob",
+            "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+            "brand": "BulkSupplements",
+            "category": "performance",
+            "subcategory": "creatine",
+            "description": "Pure micronized creatine monohydrate powder for enhanced athletic performance, muscle strength, and power output",
+            "servingSize": "1 teaspoon (5g)",
+            "servingsPerContainer": 200,
+            "asin": "B00E9M4XEE",
+            "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+            "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20",
+            "currentPrice": 24.96,
+            "primeEligible": true,
+            "rating": 4.4,
+            "reviewCount": 15267,
+            "isAvailable": true,
+            "activeIngredients": [
+              {
+                "name": "Creatine Monohydrate",
+                "amount": "5",
+                "unit": "g"
+              }
+            ],
+            "recommendedDosage": {
+              "amount": "5g",
+              "frequency": "daily",
+              "timing": "post-workout or anytime",
+              "instructions": "Mix with water, juice, or add to protein shake. Loading phase optional: 20g daily for 5 days, then 5g daily."
+            },
+            "evidenceLevel": "very_high",
+            "studyCount": 500,
+            "citations": [
+              "https://pubmed.ncbi.nlm.nih.gov/28615987/",
+              "https://pubmed.ncbi.nlm.nih.gov/28474650/"
+            ],
+            "qualityFactors": {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "nonGmo": true,
+              "allergenFree": true
+            },
+            "targetAudience": [
+              "strength_training",
+              "power_athletes",
+              "bodybuilders",
+              "high_intensity_sports"
+            ],
+            "tags": [
+              "creatine",
+              "strength",
+              "power",
+              "athletic-performance",
+              "muscle-building"
+            ],
+            "contraindications": [
+              "kidney_disease",
+              "kidney_stones_history"
+            ],
+            "drugInteractions": [
+              "nephrotoxic_drugs"
+            ],
+            "sideEffects": [
+              "water_retention",
+              "stomach_upset_if_taken_empty_stomach"
+            ],
+            "commissionRate": 0.08,
+            "costPerServing": 0.12,
+            "isActive": true,
+            "createdAt": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "lastPriceUpdate": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "lastVerified": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D",
+            "matchType": "specific-product",
+            "matchedKeyword": "creatine monohydrate powder micronized by bulksupplements",
+            "originalImageUrl": "https://m.media-amazon.com/images/I/7185n5K4LyL._UF350,350_QL80_.jpg",
+            "lastUpdated": {
+              "_seconds": 1753632109,
+              "_nanoseconds": 480000000
+            },
+            "imageSource": "exact-product-match",
+            "searchSource": "google-images",
+            "searchQuery": "BulkSupplements Creatine Monohydrate Powder bag"
+          }
+        },
+        {
+          "id": "PQoFef1kRx5kxIMV5ppQ",
+          "data": {
+            "id": "PQoFef1kRx5kxIMV5ppQ",
+            "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+            "brand": "Nature Made",
+            "category": "essential_fatty_acids",
+            "subcategory": "omega-3",
+            "description": "High-potency omega-3 fish oil supplement providing 720mg of EPA and DHA per serving for heart and brain health",
+            "servingSize": "2 softgels",
+            "servingsPerContainer": 100,
+            "asin": "B004U3Y8FE",
+            "amazonUrl": "https://www.amazon.com/dp/B004U3Y8FE",
+            "affiliateUrl": "https://www.amazon.com/dp/B004U3Y8FE?tag=nutriwiseai-20",
+            "currentPrice": 19.44,
+            "primeEligible": true,
+            "rating": 4.6,
+            "reviewCount": 22841,
+            "isAvailable": true,
+            "activeIngredients": [
+              {
+                "name": "EPA (Eicosapentaenoic Acid)",
+                "amount": "360",
+                "unit": "mg"
+              },
+              {
+                "name": "DHA (Docosahexaenoic Acid)",
+                "amount": "240",
+                "unit": "mg"
+              }
+            ],
+            "recommendedDosage": {
+              "amount": "2 softgels",
+              "frequency": "daily",
+              "timing": "with_meals",
+              "instructions": "Take with food to improve absorption and reduce fishy aftertaste."
+            },
+            "evidenceLevel": "very_high",
+            "studyCount": 300,
+            "citations": [
+              "https://pubmed.ncbi.nlm.nih.gov/29145752/",
+              "https://pubmed.ncbi.nlm.nih.gov/28900017/"
+            ],
+            "qualityFactors": {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "nonGmo": true,
+              "allergenFree": false
+            },
+            "targetAudience": [
+              "heart_health",
+              "brain_health",
+              "anti_inflammatory",
+              "general_wellness"
+            ],
+            "tags": [
+              "omega-3",
+              "fish-oil",
+              "heart-health",
+              "brain-health",
+              "anti-inflammatory"
+            ],
+            "contraindications": [
+              "fish_allergy",
+              "bleeding_disorders"
+            ],
+            "drugInteractions": [
+              "anticoagulants",
+              "antiplatelet_drugs"
+            ],
+            "sideEffects": [
+              "fishy_aftertaste",
+              "digestive_upset",
+              "fishy_burps"
+            ],
+            "commissionRate": 0.08,
+            "costPerServing": 0.19,
+            "isActive": true,
+            "createdAt": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "lastPriceUpdate": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "lastVerified": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 577000000
+            },
+            "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/omega3_fish_oil_1200mg_by_nature_made.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=AD8M3GAuj%2FfnIjDSfk1FhK%2Fc6xiL5Zn9c%2BkqNT%2FC7vI16a16f9IWZGVmQc6m52y0obtTCDAIUnTm39yDr7EcfmqBpm2GasPhwOzvGyD5lVvFtcsSLxLl5c9WbZk%2BlnDJ6Kw3SjroRra%2Flod9E2XHTIwyEDagFr2cM4lVkSdoCoFQbzCjq4KO3FdKDe83c%2BuNYncarLg%2BbWiLAhwW3l%2BBSdgrcqA2Fs9tEW1Z%2F68QH0X15yqdXHef5Eidpz46czIOQrbf5n3yOHkpg8AFhECxnCORxqB4%2BOlteO848jx0i%2FzlXMAO7nd5VQqWEUnycrsIlB3rtubkp2KIvcwPjUP2sA%3D%3D",
+            "matchType": "specific-product",
+            "matchedKeyword": "omega-3 fish oil 1200mg by nature made",
+            "originalImageUrl": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fdaa6a3d-6b89-45c1-a826-d48ba115ac96.__CR0,0,2400,2400_PT0_SX300_V1___.jpg",
+            "lastUpdated": {
+              "_seconds": 1753632109,
+              "_nanoseconds": 480000000
+            },
+            "imageSource": "exact-product-match",
+            "searchSource": "google-images",
+            "searchQuery": "Nature Made Omega-3 Fish Oil 1200mg softgels bottle"
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "B29FcipfZ9hXdcbGfVob",
+          "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+          "brand": "BulkSupplements",
+          "category": "performance",
+          "subcategory": "creatine",
+          "description": "Pure micronized creatine monohydrate powder for enhanced athletic performance, muscle strength, and power output",
+          "servingSize": "1 teaspoon (5g)",
+          "servingsPerContainer": 200,
+          "asin": "B00E9M4XEE",
+          "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+          "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20",
+          "currentPrice": 24.96,
+          "primeEligible": true,
+          "rating": 4.4,
+          "reviewCount": 15267,
+          "isAvailable": true,
+          "activeIngredients": [
+            {
+              "name": "Creatine Monohydrate",
+              "amount": "5",
+              "unit": "g"
+            }
+          ],
+          "recommendedDosage": {
+            "amount": "5g",
+            "frequency": "daily",
+            "timing": "post-workout or anytime",
+            "instructions": "Mix with water, juice, or add to protein shake. Loading phase optional: 20g daily for 5 days, then 5g daily."
+          },
+          "evidenceLevel": "very_high",
+          "studyCount": 500,
+          "citations": [
+            "https://pubmed.ncbi.nlm.nih.gov/28615987/",
+            "https://pubmed.ncbi.nlm.nih.gov/28474650/"
+          ],
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "nonGmo": true,
+            "allergenFree": true
+          },
+          "targetAudience": [
+            "strength_training",
+            "power_athletes",
+            "bodybuilders",
+            "high_intensity_sports"
+          ],
+          "tags": [
+            "creatine",
+            "strength",
+            "power",
+            "athletic-performance",
+            "muscle-building"
+          ],
+          "contraindications": [
+            "kidney_disease",
+            "kidney_stones_history"
+          ],
+          "drugInteractions": [
+            "nephrotoxic_drugs"
+          ],
+          "sideEffects": [
+            "water_retention",
+            "stomach_upset_if_taken_empty_stomach"
+          ],
+          "commissionRate": 0.08,
+          "costPerServing": 0.12,
+          "isActive": true,
+          "createdAt": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "lastPriceUpdate": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "lastVerified": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D",
+          "matchType": "specific-product",
+          "matchedKeyword": "creatine monohydrate powder micronized by bulksupplements",
+          "originalImageUrl": "https://m.media-amazon.com/images/I/7185n5K4LyL._UF350,350_QL80_.jpg",
+          "lastUpdated": {
+            "_seconds": 1753632109,
+            "_nanoseconds": 480000000
+          },
+          "imageSource": "exact-product-match",
+          "searchSource": "google-images",
+          "searchQuery": "BulkSupplements Creatine Monohydrate Powder bag"
+        },
+        {
+          "id": "PQoFef1kRx5kxIMV5ppQ",
+          "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+          "brand": "Nature Made",
+          "category": "essential_fatty_acids",
+          "subcategory": "omega-3",
+          "description": "High-potency omega-3 fish oil supplement providing 720mg of EPA and DHA per serving for heart and brain health",
+          "servingSize": "2 softgels",
+          "servingsPerContainer": 100,
+          "asin": "B004U3Y8FE",
+          "amazonUrl": "https://www.amazon.com/dp/B004U3Y8FE",
+          "affiliateUrl": "https://www.amazon.com/dp/B004U3Y8FE?tag=nutriwiseai-20",
+          "currentPrice": 19.44,
+          "primeEligible": true,
+          "rating": 4.6,
+          "reviewCount": 22841,
+          "isAvailable": true,
+          "activeIngredients": [
+            {
+              "name": "EPA (Eicosapentaenoic Acid)",
+              "amount": "360",
+              "unit": "mg"
+            },
+            {
+              "name": "DHA (Docosahexaenoic Acid)",
+              "amount": "240",
+              "unit": "mg"
+            }
+          ],
+          "recommendedDosage": {
+            "amount": "2 softgels",
+            "frequency": "daily",
+            "timing": "with_meals",
+            "instructions": "Take with food to improve absorption and reduce fishy aftertaste."
+          },
+          "evidenceLevel": "very_high",
+          "studyCount": 300,
+          "citations": [
+            "https://pubmed.ncbi.nlm.nih.gov/29145752/",
+            "https://pubmed.ncbi.nlm.nih.gov/28900017/"
+          ],
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "nonGmo": true,
+            "allergenFree": false
+          },
+          "targetAudience": [
+            "heart_health",
+            "brain_health",
+            "anti_inflammatory",
+            "general_wellness"
+          ],
+          "tags": [
+            "omega-3",
+            "fish-oil",
+            "heart-health",
+            "brain-health",
+            "anti-inflammatory"
+          ],
+          "contraindications": [
+            "fish_allergy",
+            "bleeding_disorders"
+          ],
+          "drugInteractions": [
+            "anticoagulants",
+            "antiplatelet_drugs"
+          ],
+          "sideEffects": [
+            "fishy_aftertaste",
+            "digestive_upset",
+            "fishy_burps"
+          ],
+          "commissionRate": 0.08,
+          "costPerServing": 0.19,
+          "isActive": true,
+          "createdAt": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "lastPriceUpdate": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "lastVerified": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 577000000
+          },
+          "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/omega3_fish_oil_1200mg_by_nature_made.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=AD8M3GAuj%2FfnIjDSfk1FhK%2Fc6xiL5Zn9c%2BkqNT%2FC7vI16a16f9IWZGVmQc6m52y0obtTCDAIUnTm39yDr7EcfmqBpm2GasPhwOzvGyD5lVvFtcsSLxLl5c9WbZk%2BlnDJ6Kw3SjroRra%2Flod9E2XHTIwyEDagFr2cM4lVkSdoCoFQbzCjq4KO3FdKDe83c%2BuNYncarLg%2BbWiLAhwW3l%2BBSdgrcqA2Fs9tEW1Z%2F68QH0X15yqdXHef5Eidpz46czIOQrbf5n3yOHkpg8AFhECxnCORxqB4%2BOlteO848jx0i%2FzlXMAO7nd5VQqWEUnycrsIlB3rtubkp2KIvcwPjUP2sA%3D%3D",
+          "matchType": "specific-product",
+          "matchedKeyword": "omega-3 fish oil 1200mg by nature made",
+          "originalImageUrl": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fdaa6a3d-6b89-45c1-a826-d48ba115ac96.__CR0,0,2400,2400_PT0_SX300_V1___.jpg",
+          "lastUpdated": {
+            "_seconds": 1753632109,
+            "_nanoseconds": 480000000
+          },
+          "imageSource": "exact-product-match",
+          "searchSource": "google-images",
+          "searchQuery": "Nature Made Omega-3 Fish Oil 1200mg softgels bottle"
+        },
+        {
+          "id": "ai_product_1",
+          "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+          "brand": "Optimum Nutrition",
+          "category": "protein",
+          "subcategory": "whey-protein",
+          "description": "24g of high-quality whey protein isolates and concentrates per serving with 5.5g BCAAs and 4g glutamine",
+          "servingSize": "1 scoop (30g)",
+          "servingsPerContainer": 74,
+          "asin": "B000QSNYGI",
+          "amazonUrl": "https://www.amazon.com/dp/B000QSNYGI",
+          "affiliateUrl": "https://www.amazon.com/dp/B000QSNYGI?tag=nutriwiseai-20",
+          "currentPrice": 54.99,
+          "primeEligible": true,
+          "rating": 4.5,
+          "reviewCount": 89432,
+          "isAvailable": true,
+          "activeIngredients": [
+            {
+              "name": "Whey Protein Isolate",
+              "amount": "24",
+              "unit": "g"
+            },
+            {
+              "name": "BCAAs",
+              "amount": "5.5",
+              "unit": "g"
+            }
+          ],
+          "recommendedDosage": {
+            "amount": "1 scoop (30g)",
+            "frequency": "1-2 times daily",
+            "timing": "post-workout",
+            "instructions": "Mix with 6-8 oz of cold water or milk."
+          },
+          "evidenceLevel": "high",
+          "studyCount": 127,
+          "citations": [
+            "https://pubmed.ncbi.nlm.nih.gov/28642676/"
+          ],
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "nonGmo": true,
+            "allergenFree": false
+          },
+          "targetAudience": [
+            "muscle_building",
+            "post_workout_recovery",
+            "athletes"
+          ],
+          "tags": [
+            "protein",
+            "whey",
+            "muscle-building",
+            "post-workout"
+          ],
+          "contraindications": [
+            "lactose_intolerance"
+          ],
+          "drugInteractions": [],
+          "sideEffects": [],
+          "commissionRate": 0.08,
+          "costPerServing": 0.74,
+          "isActive": true,
+          "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/optimum_nutrition_gold_standard_100_whey.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=UuEFKqS4Z4GhZ%2BGIHkFrvivLE20VJ7FmRmytzVLCkb3OQGArvUeoeMr8N7FN9BLDvl0uaWHXMCOBI31MsuN78qcLyDfJ3j89LWsGW%2F9VPkdnxE7jybkc%2Bm6%2B1s4IN8MxQqT9BQLb7YZHDqlLoibKNtZBQlUYRlYP1E%2BFtlUPZySEp5%2BNjipgY98A1GmuHx5JjQyOPmTKK%2BCP15FNorHqK%2F0h2dBiwrXHTEUHssuRa5qK1Gc8cyLH6VLNn7Y5l%2B5GppETdQL7NaEjj0S9Jj9TffpRZK9Fp9iWBgW3oc8sDZE%2FbQIpmUJDDwmFoVPZnUXQRVmofBBTNQrpX1MpmoBufw%3D%3D",
+          "matchType": "specific-product",
+          "matchedKeyword": "optimum nutrition gold standard 100% whey protein powder - vanilla",
+          "originalImageUrl": "https://images-na.ssl-images-amazon.com/images/I/81il8kfvUbL._AC_UL210_SR210,210_.jpg",
+          "lastUpdated": {
+            "_seconds": 1753632109,
+            "_nanoseconds": 480000000
+          },
+          "imageSource": "exact-product-match",
+          "searchSource": "google-images",
+          "searchQuery": "Optimum Nutrition Gold Standard Whey Protein Vanilla 5lb container"
+        },
+        {
+          "id": "ai_product_2",
+          "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+          "brand": "BulkSupplements",
+          "category": "performance",
+          "subcategory": "creatine",
+          "description": "Pure micronized creatine monohydrate powder for enhanced athletic performance and muscle strength",
+          "servingSize": "1 teaspoon (5g)",
+          "servingsPerContainer": 200,
+          "asin": "B00E9M4XEE",
+          "amazonUrl": "https://www.amazon.com/dp/B00E9M4XEE",
+          "affiliateUrl": "https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20",
+          "currentPrice": 24.96,
+          "primeEligible": true,
+          "rating": 4.4,
+          "reviewCount": 15267,
+          "isAvailable": true,
+          "activeIngredients": [
+            {
+              "name": "Creatine Monohydrate",
+              "amount": "5",
+              "unit": "g"
+            }
+          ],
+          "recommendedDosage": {
+            "amount": "1 teaspoon (5g)",
+            "frequency": "daily",
+            "timing": "post-workout",
+            "instructions": "Mix with water or juice."
+          },
+          "evidenceLevel": "high",
+          "studyCount": 200,
+          "citations": [
+            "https://pubmed.ncbi.nlm.nih.gov/12701815/"
+          ],
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "nonGmo": true,
+            "allergenFree": true
+          },
+          "targetAudience": [
+            "strength_training",
+            "power_athletes",
+            "muscle_building"
+          ],
+          "tags": [
+            "creatine",
+            "strength",
+            "power",
+            "performance"
+          ],
+          "contraindications": [],
+          "drugInteractions": [],
+          "sideEffects": [],
+          "commissionRate": 0.08,
+          "costPerServing": 0.12,
+          "isActive": true,
+          "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D",
+          "matchType": "specific-product",
+          "matchedKeyword": "creatine monohydrate powder micronized by bulksupplements",
+          "originalImageUrl": "https://m.media-amazon.com/images/I/7185n5K4LyL._UF350,350_QL80_.jpg",
+          "lastUpdated": {
+            "_seconds": 1753632109,
+            "_nanoseconds": 480000000
+          },
+          "imageSource": "exact-product-match",
+          "searchSource": "google-images",
+          "searchQuery": "BulkSupplements Creatine Monohydrate Powder bag"
+        },
+        {
+          "id": "ai_product_3",
+          "name": "Green Tea Extract Supplement by NOW Foods",
+          "brand": "NOW Foods",
+          "category": "herbs",
+          "subcategory": "green-tea",
+          "description": "Standardized green tea extract with EGCG for metabolism support and antioxidant benefits",
+          "servingSize": "1 capsule",
+          "servingsPerContainer": 100,
+          "asin": "B0013OXD38",
+          "amazonUrl": "https://www.amazon.com/dp/B0013OXD38",
+          "affiliateUrl": "https://www.amazon.com/dp/B0013OXD38?tag=nutriwiseai-20",
+          "currentPrice": 12.99,
+          "primeEligible": true,
+          "rating": 4.3,
+          "reviewCount": 5842,
+          "isAvailable": true,
+          "activeIngredients": [
+            {
+              "name": "Green Tea Extract",
+              "amount": "400",
+              "unit": "mg"
+            },
+            {
+              "name": "EGCG",
+              "amount": "200",
+              "unit": "mg"
+            }
+          ],
+          "recommendedDosage": {
+            "amount": "1 capsule",
+            "frequency": "2 times daily",
+            "timing": "between-meals",
+            "instructions": "Take with water between meals."
+          },
+          "evidenceLevel": "moderate",
+          "studyCount": 45,
+          "citations": [
+            "https://pubmed.ncbi.nlm.nih.gov/19906797/"
+          ],
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "nonGmo": true,
+            "allergenFree": true
+          },
+          "targetAudience": [
+            "weight_loss",
+            "metabolism_support",
+            "antioxidants"
+          ],
+          "tags": [
+            "green-tea",
+            "fat-loss",
+            "metabolism",
+            "antioxidants"
+          ],
+          "contraindications": [
+            "caffeine_sensitivity"
+          ],
+          "drugInteractions": [
+            "blood_thinners"
+          ],
+          "sideEffects": [
+            "mild_stomach_upset"
+          ],
+          "commissionRate": 0.08,
+          "costPerServing": 0.13,
+          "isActive": true,
+          "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/green_tea_extract_supplement_by_now_food.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Wru3nUtB1CMf1u8RPUG4bI3lt%2BxHIq2Zzi4%2F9uY1dk19vwqRXjSpEZzuU3RdoHEhY0%2B7n0f2HsrONoZvYc%2BMT1r0M4bcMAD%2FvUTRqSPGxIbpn5MLUDKt9GhzlRmsV%2FRQwUsv0TKmuI0lT4L9dqHoSbc7T10ku2BpFJKAQnmjNF8DLFRVZe8VGkq%2FPuMboWkTa3%2FTYRbB%2BorbB7ZX%2BWWiB4e00xG8wBy90tYQfbe4mtT0V5FTOh8QySQAiBFUKoZkThGU4FtjXWPDNs36N9RNdb0ZjI4gxSJwj8TXsenouXFrSwkzPwIj6FQvgblaPmUwuUOmubfmwN1EKPwYm4XZag%3D%3D",
+          "matchType": "specific-product",
+          "matchedKeyword": "vitamin d3 now foods",
+          "originalImageUrl": "https://www.elwebkala.com/wp-content/uploads/2023/07/%D8%A7%D9%82%D8%B1%D8%A7%D8%B5-%D8%AC%D8%B1%D9%8A%D9%86-%D8%AA%D9%89-NOW-Foods-Thermo-Green-Tea-Capsules-1-220x300.jpg",
+          "lastUpdated": {
+            "_seconds": 1753632109,
+            "_nanoseconds": 480000000
+          },
+          "imageSource": "exact-product-match",
+          "searchSource": "google-images",
+          "searchQuery": "NOW Foods Green Tea Extract supplement bottle"
+        }
+      ]
+    },
+    "supplements": {
+      "documentCount": 32,
+      "fields": {
+        "id": {
+          "type": "string",
+          "examples": [
+            "ashwagandha-nutricost",
+            "creatine-monohydrate-bulk"
+          ],
+          "count": 32
+        },
+        "name": {
+          "type": "string",
+          "examples": [
+            "Ashwagandha Root Extract 600mg by Nutricost",
+            "Creatine Monohydrate Powder Micronized by BulkSupplements"
+          ],
+          "count": 32
+        },
+        "brand": {
+          "type": "string",
+          "examples": [
+            "Nutricost",
+            "BulkSupplements"
+          ],
+          "count": 32
+        },
+        "category": {
+          "type": "string",
+          "examples": [
+            "Adaptogens",
+            "Performance"
+          ],
+          "count": 32
+        },
+        "dosage": {
+          "type": "string",
+          "examples": [
+            "1 capsule (600mg)",
+            "5g"
+          ],
+          "count": 8
+        },
+        "timing": {
+          "type": "string",
+          "examples": [
+            "With dinner",
+            "Daily, any time"
+          ],
+          "count": 8
+        },
+        "reasoning": {
+          "type": "string",
+          "examples": [
+            "Adaptogenic herb supporting stress reduction, cortisol balance, and overall resilience to physical and mental stress.",
+            "Pure creatine monohydrate to increase muscle power, strength, and size. Most researched supplement for athletic performance."
+          ],
+          "count": 8
+        },
+        "asin": {
+          "type": "string",
+          "examples": [
+            "B01D9SQZQM",
+            "B00E9M4XEE"
+          ],
+          "count": 8
+        },
+        "amazonUrl": {
+          "type": "string",
+          "examples": [
+            "https://amazon.com/dp/B01D9SQZQM",
+            "https://amazon.com/dp/B00E9M4XEE"
+          ],
+          "count": 32
+        },
+        "affiliateUrl": {
+          "type": "string",
+          "examples": [
+            "https://amazon.com/dp/B01D9SQZQM?tag=nutriwise-20",
+            "https://amazon.com/dp/B00E9M4XEE?tag=nutriwise-20"
+          ],
+          "count": 32
+        },
+        "imageUrl": {
+          "type": "string",
+          "examples": [
+            "https://m.media-amazon.com/images/I/71fBQqmKpL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61QzBQqmKpL._AC_SL1500_.jpg"
+          ],
+          "count": 32
+        },
+        "price": {
+          "type": "number",
+          "examples": [
+            16.95,
+            19.99
+          ],
+          "count": 32
+        },
+        "primeEligible": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 8
+        },
+        "rating": {
+          "type": "number",
+          "examples": [
+            4.4,
+            4.6
+          ],
+          "count": 32
+        },
+        "reviewCount": {
+          "type": "number",
+          "examples": [
+            34567,
+            35624
+          ],
+          "count": 32
+        },
+        "isAvailable": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 8
+        },
+        "qualityFactors": {
+          "type": "object",
+          "examples": [
+            {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "allergenFree": true,
+              "bioavailableForm": true
+            },
+            {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "allergenFree": true,
+              "bioavailableForm": true
+            }
+          ],
+          "count": 8
+        },
+        "lastVerified": {
+          "type": "string",
+          "examples": [
+            "2025-07-23T02:20:13.545Z",
+            "2025-07-23T02:20:12.845Z"
+          ],
+          "count": 8
+        },
+        "linkStatus": {
+          "type": "string",
+          "examples": [
+            "verified",
+            "verified"
+          ],
+          "count": 8
+        },
+        "imageStatus": {
+          "type": "string",
+          "examples": [
+            "verified",
+            "verified"
+          ],
+          "count": 8
+        },
+        "type": {
+          "type": "string",
+          "examples": [
+            "Protein",
+            "Vitamin"
+          ],
+          "count": 24
+        },
+        "features": {
+          "type": "object",
+          "examples": [
+            [
+              "24g Protein per Serving",
+              "5.5g BCAAs",
+              "4g Glutamine",
+              "Banned Substance Tested"
+            ],
+            [
+              "5000 IU Vitamin D3",
+              "Immune Support",
+              "Bone Health",
+              "High Potency"
+            ]
+          ],
+          "count": 24
+        },
+        "verified": {
+          "type": "boolean",
+          "examples": [
+            true,
+            true
+          ],
+          "count": 24
+        },
+        "lastUpdated": {
+          "type": "string",
+          "examples": [
+            "2025-07-21T03:32:13.207Z",
+            "2025-07-21T03:33:39.975Z"
+          ],
+          "count": 24
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "ashwagandha-nutricost",
+          "data": {
+            "id": "ashwagandha-nutricost",
+            "name": "Ashwagandha Root Extract 600mg by Nutricost",
+            "brand": "Nutricost",
+            "category": "Adaptogens",
+            "dosage": "1 capsule (600mg)",
+            "timing": "With dinner",
+            "reasoning": "Adaptogenic herb supporting stress reduction, cortisol balance, and overall resilience to physical and mental stress.",
+            "asin": "B01D9SQZQM",
+            "amazonUrl": "https://amazon.com/dp/B01D9SQZQM",
+            "affiliateUrl": "https://amazon.com/dp/B01D9SQZQM?tag=nutriwise-20",
+            "imageUrl": "https://m.media-amazon.com/images/I/71fBQqmKpL._AC_SL1500_.jpg",
+            "price": 16.95,
+            "primeEligible": true,
+            "rating": 4.4,
+            "reviewCount": 34567,
+            "isAvailable": true,
+            "qualityFactors": {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "allergenFree": true,
+              "bioavailableForm": true
+            },
+            "lastVerified": "2025-07-23T02:20:13.545Z",
+            "linkStatus": "verified",
+            "imageStatus": "verified"
+          }
+        },
+        {
+          "id": "creatine-monohydrate-bulk",
+          "data": {
+            "id": "creatine-monohydrate-bulk",
+            "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+            "brand": "BulkSupplements",
+            "category": "Performance",
+            "dosage": "5g",
+            "timing": "Daily, any time",
+            "reasoning": "Pure creatine monohydrate to increase muscle power, strength, and size. Most researched supplement for athletic performance.",
+            "asin": "B00E9M4XEE",
+            "amazonUrl": "https://amazon.com/dp/B00E9M4XEE",
+            "affiliateUrl": "https://amazon.com/dp/B00E9M4XEE?tag=nutriwise-20",
+            "imageUrl": "https://m.media-amazon.com/images/I/61QzBQqmKpL._AC_SL1500_.jpg",
+            "price": 19.99,
+            "primeEligible": true,
+            "rating": 4.6,
+            "reviewCount": 35624,
+            "isAvailable": true,
+            "qualityFactors": {
+              "thirdPartyTested": true,
+              "gmpCertified": true,
+              "organicCertified": false,
+              "allergenFree": true,
+              "bioavailableForm": true
+            },
+            "lastVerified": "2025-07-23T02:20:12.845Z",
+            "linkStatus": "verified",
+            "imageStatus": "verified"
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "ashwagandha-nutricost",
+          "name": "Ashwagandha Root Extract 600mg by Nutricost",
+          "brand": "Nutricost",
+          "category": "Adaptogens",
+          "dosage": "1 capsule (600mg)",
+          "timing": "With dinner",
+          "reasoning": "Adaptogenic herb supporting stress reduction, cortisol balance, and overall resilience to physical and mental stress.",
+          "asin": "B01D9SQZQM",
+          "amazonUrl": "https://amazon.com/dp/B01D9SQZQM",
+          "affiliateUrl": "https://amazon.com/dp/B01D9SQZQM?tag=nutriwise-20",
+          "imageUrl": "https://m.media-amazon.com/images/I/71fBQqmKpL._AC_SL1500_.jpg",
+          "price": 16.95,
+          "primeEligible": true,
+          "rating": 4.4,
+          "reviewCount": 34567,
+          "isAvailable": true,
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "allergenFree": true,
+            "bioavailableForm": true
+          },
+          "lastVerified": "2025-07-23T02:20:13.545Z",
+          "linkStatus": "verified",
+          "imageStatus": "verified"
+        },
+        {
+          "id": "creatine-monohydrate-bulk",
+          "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+          "brand": "BulkSupplements",
+          "category": "Performance",
+          "dosage": "5g",
+          "timing": "Daily, any time",
+          "reasoning": "Pure creatine monohydrate to increase muscle power, strength, and size. Most researched supplement for athletic performance.",
+          "asin": "B00E9M4XEE",
+          "amazonUrl": "https://amazon.com/dp/B00E9M4XEE",
+          "affiliateUrl": "https://amazon.com/dp/B00E9M4XEE?tag=nutriwise-20",
+          "imageUrl": "https://m.media-amazon.com/images/I/61QzBQqmKpL._AC_SL1500_.jpg",
+          "price": 19.99,
+          "primeEligible": true,
+          "rating": 4.6,
+          "reviewCount": 35624,
+          "isAvailable": true,
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "allergenFree": true,
+            "bioavailableForm": true
+          },
+          "lastVerified": "2025-07-23T02:20:12.845Z",
+          "linkStatus": "verified",
+          "imageStatus": "verified"
+        },
+        {
+          "id": "magnesium-glycinate-doctors-best",
+          "name": "Magnesium Glycinate 200mg by Doctors Best",
+          "brand": "Doctors Best",
+          "category": "Minerals",
+          "dosage": "2 tablets (400mg)",
+          "timing": "Before bedtime",
+          "reasoning": "Highly bioavailable form of magnesium for sleep quality, muscle relaxation, and stress reduction.",
+          "asin": "B000BD0RYI",
+          "amazonUrl": "https://amazon.com/dp/B000BD0RYI",
+          "affiliateUrl": "https://amazon.com/dp/B000BD0RYI?tag=nutriwise-20",
+          "imageUrl": "https://m.media-amazon.com/images/I/71cBQqmKpL._AC_SL1500_.jpg",
+          "price": 18.99,
+          "primeEligible": true,
+          "rating": 4.5,
+          "reviewCount": 23654,
+          "isAvailable": true,
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "allergenFree": true,
+            "bioavailableForm": true
+          },
+          "lastVerified": "2025-07-23T02:20:13.167Z",
+          "linkStatus": "verified",
+          "imageStatus": "verified"
+        },
+        {
+          "id": "multivitamin-garden-life",
+          "name": "Vitamin Code Men/Women by Garden of Life",
+          "brand": "Garden of Life",
+          "category": "Multivitamins",
+          "dosage": "4 capsules",
+          "timing": "With breakfast",
+          "reasoning": "Comprehensive whole food multivitamin providing essential nutrients in bioavailable forms.",
+          "asin": "B002IEVJRY",
+          "amazonUrl": "https://amazon.com/dp/B002IEVJRY",
+          "affiliateUrl": "https://amazon.com/dp/B002IEVJRY?tag=nutriwise-20",
+          "imageUrl": "https://m.media-amazon.com/images/I/71dBQqmKpL._AC_SL1500_.jpg",
+          "price": 42.99,
+          "primeEligible": true,
+          "rating": 4.3,
+          "reviewCount": 18743,
+          "isAvailable": true,
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": true,
+            "allergenFree": false,
+            "bioavailableForm": true
+          },
+          "lastVerified": "2025-07-23T02:20:13.280Z",
+          "linkStatus": "verified",
+          "imageStatus": "verified"
+        },
+        {
+          "id": "omega3-nordic-naturals",
+          "name": "Omega-3 Fish Oil 1200mg by Nordic Naturals",
+          "brand": "Nordic Naturals",
+          "category": "Essential Fatty Acids",
+          "dosage": "2 softgels (1200mg)",
+          "timing": "With meals",
+          "reasoning": "High-quality fish oil providing EPA and DHA for cardiovascular health, brain function, and inflammation reduction.",
+          "asin": "B002CQU5DY",
+          "amazonUrl": "https://amazon.com/dp/B002CQU5DY",
+          "affiliateUrl": "https://amazon.com/dp/B002CQU5DY?tag=nutriwise-20",
+          "imageUrl": "https://m.media-amazon.com/images/I/71zBQqmKpL._AC_SL1500_.jpg",
+          "price": 32.95,
+          "primeEligible": true,
+          "rating": 4.4,
+          "reviewCount": 12875,
+          "isAvailable": true,
+          "qualityFactors": {
+            "thirdPartyTested": true,
+            "gmpCertified": true,
+            "organicCertified": false,
+            "allergenFree": false,
+            "bioavailableForm": true
+          },
+          "lastVerified": "2025-07-23T02:20:12.950Z",
+          "linkStatus": "verified",
+          "imageStatus": "verified"
+        }
+      ]
+    },
+    "test": {
+      "documentCount": 1,
+      "fields": {
+        "timestamp": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1753277888,
+              "_nanoseconds": 14000000
+            }
+          ],
+          "count": 1
+        },
+        "status": {
+          "type": "string",
+          "examples": [
+            "connected"
+          ],
+          "count": 1
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "connection",
+          "data": {
+            "timestamp": {
+              "_seconds": 1753277888,
+              "_nanoseconds": 14000000
+            },
+            "status": "connected"
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "connection",
+          "timestamp": {
+            "_seconds": 1753277888,
+            "_nanoseconds": 14000000
+          },
+          "status": "connected"
+        }
+      ]
+    },
+    "users": {
+      "documentCount": 1,
+      "fields": {
+        "email": {
+          "type": "string",
+          "examples": [
+            "ramakrismatta@gmail.com"
+          ],
+          "count": 1
+        },
+        "displayName": {
+          "type": "string",
+          "examples": [
+            "kris m"
+          ],
+          "count": 1
+        },
+        "photoURL": {
+          "type": "string",
+          "examples": [
+            "https://ui-avatars.com/api/?name=kris%20m&background=random&color=fff"
+          ],
+          "count": 1
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "examples": [
+            false
+          ],
+          "count": 1
+        },
+        "createdAt": {
+          "type": "object",
+          "examples": [
+            {
+              "_seconds": 1752809283,
+              "_nanoseconds": 167000000
+            }
+          ],
+          "count": 1
+        },
+        "subscription": {
+          "type": "object",
+          "examples": [
+            {
+              "price": "$12.00",
+              "plan": "monthly",
+              "status": "active",
+              "endDate": "2025-08-19T00:56:42.894Z",
+              "startDate": "2025-07-19T00:56:42.894Z"
+            }
+          ],
+          "count": 1
+        }
+      },
+      "sampleDocuments": [
+        {
+          "id": "RXygXXj9jWQR7LPkXmSGDyrqnJe2",
+          "data": {
+            "email": "ramakrismatta@gmail.com",
+            "displayName": "kris m",
+            "photoURL": "https://ui-avatars.com/api/?name=kris%20m&background=random&color=fff",
+            "isAdmin": false,
+            "createdAt": {
+              "_seconds": 1752809283,
+              "_nanoseconds": 167000000
+            },
+            "subscription": {
+              "price": "$12.00",
+              "plan": "monthly",
+              "status": "active",
+              "endDate": "2025-08-19T00:56:42.894Z",
+              "startDate": "2025-07-19T00:56:42.894Z"
+            }
+          }
+        }
+      ],
+      "allDocuments": [
+        {
+          "id": "RXygXXj9jWQR7LPkXmSGDyrqnJe2",
+          "email": "ramakrismatta@gmail.com",
+          "displayName": "kris m",
+          "photoURL": "https://ui-avatars.com/api/?name=kris%20m&background=random&color=fff",
+          "isAdmin": false,
+          "createdAt": {
+            "_seconds": 1752809283,
+            "_nanoseconds": 167000000
+          },
+          "subscription": {
+            "price": "$12.00",
+            "plan": "monthly",
+            "status": "active",
+            "endDate": "2025-08-19T00:56:42.894Z",
+            "startDate": "2025-07-19T00:56:42.894Z"
+          }
+        }
+      ]
+    }
+  },
+  "totalDocuments": 251,
+  "issues": [],
+  "recommendations": [
+    "Consolidate stack collections for consistent AI recommendations"
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "timestamp": "2025-07-27T15:06:30.654Z",
+  "totalProducts": 33,
+  "totalImages": 0,
+  "mappedCount": 0,
+  "renameMap": [],
+  "remainingProducts": [
+    {
+      "id": "B29FcipfZ9hXdcbGfVob",
+      "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+      "brand": "BulkSupplements",
+      "needsImage": true
+    },
+    {
+      "id": "PQoFef1kRx5kxIMV5ppQ",
+      "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+      "brand": "Nature Made",
+      "needsImage": true
+    },
+    {
+      "id": "ai_product_1",
+      "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+      "brand": "Optimum Nutrition",
+      "needsImage": true
+    },
+    {
+      "id": "ai_product_2",
+      "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+      "brand": "BulkSupplements",
+      "needsImage": true
+    },
+    {
+      "id": "ai_product_3",
+      "name": "Green Tea Extract Supplement by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "ai_product_4",
+      "name": "L-Theanine 200mg by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "ai_product_5",
+      "name": "Melatonin 3mg by Nature Made",
+      "brand": "Nature Made",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_1",
+      "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+      "brand": "Optimum Nutrition",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_10",
+      "name": "CLA 1250 Safflower Oil by Sports Research",
+      "brand": "Sports Research",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_11",
+      "name": "Garcinia Cambogia Extract by Nature's Bounty",
+      "brand": "Nature's Bounty",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_12",
+      "name": "Caffeine Pills 200mg by ProLab",
+      "brand": "ProLab",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_13",
+      "name": "L-Theanine 200mg by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_14",
+      "name": "Lion's Mane Mushroom Extract by Host Defense",
+      "brand": "Host Defense",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_15",
+      "name": "Bacopa Monnieri Extract by Nutricost",
+      "brand": "Nutricost",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_16",
+      "name": "Ginkgo Biloba Extract by Nature's Bounty",
+      "brand": "Nature's Bounty",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_17",
+      "name": "Ashwagandha Root Extract by Nutricost",
+      "brand": "Nutricost",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_18",
+      "name": "Melatonin 3mg by Nature Made",
+      "brand": "Nature Made",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_19",
+      "name": "ZMA Zinc Magnesium by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_2",
+      "name": "Dymatize ISO100 Hydrolyzed Whey Protein Isolate",
+      "brand": "Dymatize",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_20",
+      "name": "Magnesium Glycinate 400mg by Doctor's Best",
+      "brand": "Doctor's Best",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_21",
+      "name": "Turmeric Curcumin with BioPerine by BioSchwartz",
+      "brand": "BioSchwartz",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_22",
+      "name": "Omega-3 Fish Oil 1200mg by Nature Made",
+      "brand": "Nature Made",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_23",
+      "name": "Vitamin D3 5000 IU by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_24",
+      "name": "Probiotics 50 Billion CFU by Physician's Choice",
+      "brand": "Physician's Choice",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_25",
+      "name": "Multivitamin by Garden of Life Vitamin Code Men",
+      "brand": "Garden of Life",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_3",
+      "name": "Garden of Life Sport Organic Plant-Based Protein - Vanilla",
+      "brand": "Garden of Life",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_4",
+      "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+      "brand": "BulkSupplements",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_5",
+      "name": "Pre-Workout Supplement by Legion Pulse",
+      "brand": "Legion",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_6",
+      "name": "BCAA Energy Amino Acid Supplement by Cellucor C4",
+      "brand": "Cellucor",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_7",
+      "name": "Collagen Peptides Powder by Vital Proteins",
+      "brand": "Vital Proteins",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_8",
+      "name": "Green Tea Extract Supplement by NOW Foods",
+      "brand": "NOW Foods",
+      "needsImage": true
+    },
+    {
+      "id": "comprehensive_product_9",
+      "name": "L-Carnitine 1000mg by Nutricost",
+      "brand": "Nutricost",
+      "needsImage": true
+    },
+    {
+      "id": "ezPL45Q8VQnSLJYuVg1T",
+      "name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla",
+      "brand": "Optimum Nutrition",
+      "needsImage": true
+    }
+  ]
+}

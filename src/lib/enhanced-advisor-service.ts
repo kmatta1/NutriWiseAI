@@ -2,6 +2,7 @@ import { fetchVerifiedStacks } from './cached-stack-service.ts';
 import { fallbackAI } from './fallback-ai.ts';
 import type { SupplementAdvisorInput } from './actions.ts';
 import { CachedSupplementStack } from './cached-stacks-schema.ts';
+import { enhanceSupplementStack } from './product-data-loader';
 
 export interface EnhancedSupplementAdvisorResult {
   success: boolean;
@@ -65,10 +66,15 @@ export class EnhancedAdvisorService {
     if (matchedStack) {
       // Convert cached stack to the format expected by the frontend
       const convertedStack = this.convertCachedStackToAdvisorFormat(matchedStack, input);
+      
+      // Enhance the stack with real product data from Firestore
+      console.log('🔄 Enhancing cached stack with real product data...');
+      const enhancedStack = await enhanceSupplementStack(convertedStack);
+      console.log('✅ Stack enhanced with Firestore data');
 
       return {
         success: true,
-        stack: convertedStack,
+        stack: enhancedStack,
         source: 'cached',
         matchScore: this.calculateMatchScore(matchedStack, input),
         archetypeUsed: matchedStack.archetypeId

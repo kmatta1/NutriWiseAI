@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-07-27T16:01:49.471Z",
+  "method": "exact-product-image-search",
+  "successfulDownloads": 33,
+  "notFound": 0,
+  "sources": {
+    "google": 33,
+    "bing": 0
+  },
+  "errors": []
+}

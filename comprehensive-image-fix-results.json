@@ -1,0 +1,297 @@
+{
+  "timestamp": "2025-07-28T01:07:18.041Z",
+  "totalProducts": 653,
+  "results": {
+    "processed": 653,
+    "imagesDownloaded": 557,
+    "imagesFailed": 56,
+    "urlsFixed": 557,
+    "duplicatesSkipped": 0,
+    "errors": [
+      {
+        "productId": "adaptogens_ashwagandha_powder_1753660852377_qf9fp",
+        "productName": "Nutricost Ashwagandha Powder",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "adaptogens_ashwagandha_powder_1753660852377_xxcfh",
+        "productName": "Nutricost Ashwagandha Powder",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "adaptogens_ginseng_extract_1753660852386_h4xfd",
+        "productName": "NOW Foods Ginseng Extract",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "adaptogens_ginseng_extract_1753660852386_idcwc",
+        "productName": "NOW Foods Ginseng Extract",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "amino_acids_arginine_capsules_1753660852365_eywmn",
+        "productName": "Optimum Nutrition Arginine Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_arginine_powder_1753660852365_fmx5f",
+        "productName": "NOW Sports Arginine Powder",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "amino_acids_beta-alanine_capsules_1753660852362_31kjo",
+        "productName": "Optimum Nutrition Beta-Alanine Powder Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_beta-alanine_capsules_1753660852362_tltn1",
+        "productName": "NOW Sports Beta-Alanine Powder Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_beta-alanine_powder_1753660852362_ayjyr",
+        "productName": "NOW Sports Beta-Alanine Powder Powder",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_citrulline_capsules_1753660852363_mzl9f",
+        "productName": "Optimum Nutrition Citrulline Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_eaa_capsules_1753660852358_9zxli",
+        "productName": "Optimum Nutrition Eaa Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "amino_acids_glutamine_capsules_1753660852360_22ans",
+        "productName": "Optimum Nutrition Glutamine Capsules",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "creatine_creatine-monohydrate_micronized_1753660852253_qn868",
+        "productName": "Optimum Nutrition Pure Creatine Monohydrate Micronized - Fruit Punch",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "dBtp2O9Y0a9FOtJccaXF",
+        "productName": "NOW Sports Beta-Alanine Tablets",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "fatburners_carb-blocker_non-stimulant_1753660852354_ifiax",
+        "productName": "Evlution Nutrition Carb Blocker Non Stimulant",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "fatburners_carb-blocker_stimulant_1753660852353_l4ssp",
+        "productName": "Hydroxycut Carb Blocker Stimulant",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "fatburners_carb-blocker_stimulant_1753660852354_e37oy",
+        "productName": "Cellucor Carb Blocker Stimulant",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "fatburners_thermogenic_non-stimulant_1753660852350_72xno",
+        "productName": "Hydroxycut Thermogenic Non Stimulant",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "fatburners_thermogenic_stimulant_1753660852350_m5f2n",
+        "productName": "Hydroxycut Thermogenic Stimulant",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "minerals_calcium_citrate_1753660852306_90wkk",
+        "productName": "NOW Foods Calcium Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_calcium_citrate_1753660852306_yqppu",
+        "productName": "NOW Foods Calcium Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_calcium_glycinate_1753660852306_19xpj",
+        "productName": "NOW Foods Calcium Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_calcium_glycinate_1753660852306_9iy7b",
+        "productName": "NOW Foods Calcium Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_calcium_glycinate_1753660852307_oqpzk",
+        "productName": "Thorne Calcium Glycinate",
+        "error": "Request failed with status code 405"
+      },
+      {
+        "productId": "minerals_calcium_glycinate_1753660852307_qq39o",
+        "productName": "Thorne Calcium Glycinate",
+        "error": "Request failed with status code 405"
+      },
+      {
+        "productId": "minerals_iron_citrate_1753660852308_8pthn",
+        "productName": "Doctors Best Iron Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_iron_citrate_1753660852308_ysr5a",
+        "productName": "Doctors Best Iron Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_iron_glycinate_1753660852308_59nxr",
+        "productName": "Doctors Best Iron Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_iron_glycinate_1753660852308_h9498",
+        "productName": "Doctors Best Iron Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_magnesium_citrate_1753660852299_lh8xx",
+        "productName": "Doctors Best High Absorption Magnesium Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_magnesium_citrate_1753660852300_i405n",
+        "productName": "Doctors Best High Absorption Magnesium Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_magnesium_glycinate_1753660852299_eg691",
+        "productName": "Doctors Best High Absorption Magnesium Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_magnesium_glycinate_1753660852299_l4fu3",
+        "productName": "Doctors Best High Absorption Magnesium Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_zinc_citrate_1753660852304_m6pgs",
+        "productName": "NOW Foods Zinc Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_zinc_citrate_1753660852304_npvii",
+        "productName": "NOW Foods Zinc Citrate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_zinc_glycinate_1753660852303_lyatj",
+        "productName": "NOW Foods Zinc Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "minerals_zinc_glycinate_1753660852304_tmtg7",
+        "productName": "NOW Foods Zinc Glycinate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "omega_algae-oil_concentrated_1753660852325_pj3jc",
+        "productName": "Nordic Naturals Algae Oil Concentrated",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "omega_algae-oil_concentrated_1753660852326_m5k52",
+        "productName": "Nordic Naturals Algae Oil Concentrated",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "omega_algae-oil_concentrated_1753660852328_bugra",
+        "productName": "Carlson Algae Oil Concentrated",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "omega_algae-oil_concentrated_1753660852328_c9hlg",
+        "productName": "Carlson Algae Oil Concentrated",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "omega_flax-oil_regular_1753660852330_jc6rh",
+        "productName": "Nordic Naturals Flax Oil",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "omega_flax-oil_regular_1753660852330_lok2s",
+        "productName": "Nordic Naturals Flax Oil",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "preworkout_endurance_capsules_1753660852347_6fa8w",
+        "productName": "Legion Endurance Capsules - Watermelon",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "preworkout_non-stimulant_capsules_1753660852337_5cf6m",
+        "productName": "Legion Non Stimulant Capsules - Blue Raspberry",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "preworkout_non-stimulant_capsules_1753660852337_sspyq",
+        "productName": "Legion Non Stimulant Capsules - Watermelon",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "preworkout_stimulant_capsules_1753660852334_csv91",
+        "productName": "Legion Stimulant Capsules - Blue Raspberry",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "preworkout_stimulant_powder_1753660852333_x7oxt",
+        "productName": "Legion Stimulant Powder - Watermelon",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "probiotics_single-strain_powder_1753660852371_xuoss",
+        "productName": "Culturelle Single Strain Powder",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "probiotics_single-strain_powder_1753660852372_b945i",
+        "productName": "Culturelle Single Strain Powder",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "productId": "protein_egg-protein_concentrate_1753660852248_uyh3s",
+        "productName": "Dymatize Egg Protein Concentrate - Chocolate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "protein_egg-protein_isolate_1753660852247_j6d2x",
+        "productName": "Dymatize Egg Protein Isolate - Chocolate",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "vitamins_b-complex_tablets_1753660852284_3d1dx",
+        "productName": "NOW Foods B-Complex Tablets",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "vitamins_b-complex_tablets_1753660852284_5ln96",
+        "productName": "NOW Foods B-Complex Tablets",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "vitamins_vitamin-k_tablets_1753660852294_nyezn",
+        "productName": "Garden of Life Vitamin K Tablets",
+        "error": "Request failed with status code 403"
+      },
+      {
+        "productId": "vitamins_vitamin-k_tablets_1753660852294_vs0uc",
+        "productName": "Garden of Life Vitamin K Tablets",
+        "error": "Request failed with status code 403"
+      }
+    ]
+  },
+  "summary": {
+    "successRate": "85.3%",
+    "failureRate": "8.6%"
+  }
+}

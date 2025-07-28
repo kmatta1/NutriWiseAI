@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-07-28T01:18:52.311Z",
+  "totalProducts": 653,
+  "results": {
+    "totalAnalyzed": 653,
+    "professionalImages": 653,
+    "unprofessionalImages": 0,
+    "needsReplacement": 0,
+    "upgraded": 0,
+    "failed": 0,
+    "unprofessionalList": [],
+    "errors": []
+  },
+  "summary": {
+    "professionalRate": "100.0%",
+    "unprofessionalRate": "0.0%",
+    "upgradeRate": "NaN%"
+  },
+  "unprofessionalImages": []
+}

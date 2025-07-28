@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Concerns Checkbox Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .checkbox-item:hover {
+            background-color: #f8fafc;
+            border-color: #3b82f6;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .checkbox-item label {
+            cursor: pointer;
+            font-weight: 500;
+            color: #374151;
+            user-select: none;
+        }
+        .test-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .selected-items {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ecfdf5;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        button {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Health Concerns Checkbox Test</h1>
+        <p>This test verifies that health concern checkboxes are working properly.</p>
+        
+        <form id="healthForm">
+            <h2>Health Concerns (Optional)</h2>
+            <div class="checkbox-grid" id="checkboxGrid">
+                <!-- Checkboxes will be generated here -->
+            </div>
+            
+            <button type="button" onclick="testCheckboxes()">Test Checkbox Functionality</button>
+        </form>
+        
+        <div class="test-results" id="testResults" style="display: none;">
+            <h3>🧪 Test Results</h3>
+            <div id="resultsContent"></div>
+        </div>
+        
+        <div class="selected-items" id="selectedItems" style="display: none;">
+            <h3>✅ Currently Selected Items</h3>
+            <div id="selectedContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const healthConcerns = [
+            { id: "joint-pain", label: "Joint Pain/Arthritis" },
+            { id: "low-energy", label: "Low Energy/Fatigue" },
+            { id: "stress-anxiety", label: "Stress/Anxiety" },
+            { id: "poor-digestion", label: "Poor Digestion" },
+            { id: "focus-memory", label: "Focus/Memory Issues" },
+            { id: "sleep-issues", label: "Sleep Issues" },
+            { id: "immune-system", label: "Weak Immune System" },
+            { id: "inflammation", label: "Chronic Inflammation" },
+            { id: "heart-health", label: "Heart Health Concerns" },
+            { id: "bone-health", label: "Bone Health/Osteoporosis" },
+            { id: "hormone-balance", label: "Hormonal Imbalances" },
+            { id: "skin-hair", label: "Skin/Hair Issues" }
+        ];
+
+        let selectedConcerns = [];
+
+        // Generate checkboxes
+        function generateCheckboxes() {
+            const grid = document.getElementById('checkboxGrid');
+            
+            healthConcerns.forEach(concern => {
+                const div = document.createElement('div');
+                div.className = 'checkbox-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = concern.id;
+                checkbox.addEventListener('change', handleCheckboxChange);
+                
+                const label = document.createElement('label');
+                label.htmlFor = concern.id;
+                label.textContent = concern.label;
+                
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                grid.appendChild(div);
+            });
+        }
+
+        function handleCheckboxChange(event) {
+            const checkboxId = event.target.id;
+            const isChecked = event.target.checked;
+            
+            console.log('Checkbox changed:', checkboxId, isChecked);
+            
+            if (isChecked) {
+                if (!selectedConcerns.includes(checkboxId)) {
+                    selectedConcerns.push(checkboxId);
+                }
+            } else {
+                selectedConcerns = selectedConcerns.filter(id => id !== checkboxId);
+            }
+            
+            updateSelectedDisplay();
+        }
+
+        function updateSelectedDisplay() {
+            const selectedDiv = document.getElementById('selectedItems');
+            const selectedContent = document.getElementById('selectedContent');
+            
+            if (selectedConcerns.length > 0) {
+                selectedDiv.style.display = 'block';
+                const selectedLabels = selectedConcerns.map(id => {
+                    const concern = healthConcerns.find(c => c.id === id);
+                    return concern ? concern.label : id;
+                });
+                selectedContent.innerHTML = `<ul>${selectedLabels.map(label => `<li>${label}</li>`).join('')}</ul>`;
+            } else {
+                selectedDiv.style.display = 'none';
+            }
+        }
+
+        function testCheckboxes() {
+            const results = document.getElementById('testResults');
+            const resultsContent = document.getElementById('resultsContent');
+            
+            let testsPassed = 0;
+            let totalTests = 0;
+            let testLog = [];
+            
+            // Test 1: Can checkboxes be clicked?
+            totalTests++;
+            const firstCheckbox = document.querySelector('input[type="checkbox"]');
+            if (firstCheckbox && !firstCheckbox.disabled) {
+                testsPassed++;
+                testLog.push('✅ Checkboxes are not disabled');
+            } else {
+                testLog.push('❌ Checkboxes are disabled or not found');
+            }
+            
+            // Test 2: Do checkboxes respond to programmatic changes?
+            totalTests++;
+            const testCheckbox = document.getElementById('joint-pain');
+            if (testCheckbox) {
+                const originalState = testCheckbox.checked;
+                testCheckbox.checked = true;
+                testCheckbox.dispatchEvent(new Event('change'));
+                
+                if (selectedConcerns.includes('joint-pain')) {
+                    testsPassed++;
+                    testLog.push('✅ Checkbox change events work');
+                } else {
+                    testLog.push('❌ Checkbox change events not working');
+                }
+                
+                // Reset
+                testCheckbox.checked = originalState;
+                testCheckbox.dispatchEvent(new Event('change'));
+            } else {
+                testLog.push('❌ Test checkbox not found');
+            }
+            
+            // Test 3: Are labels clickable?
+            totalTests++;
+            const firstLabel = document.querySelector('label');
+            if (firstLabel && firstLabel.htmlFor) {
+                testsPassed++;
+                testLog.push('✅ Labels are properly associated with checkboxes');
+            } else {
+                testLog.push('❌ Labels are not properly associated');
+            }
+            
+            // Display results
+            results.style.display = 'block';
+            resultsContent.innerHTML = `
+                <p><strong>Tests Passed: ${testsPassed}/${totalTests}</strong></p>
+                <ul>${testLog.map(log => `<li>${log}</li>`).join('')}</ul>
+                <p><strong>Instructions:</strong></p>
+                <ol>
+                    <li>Try clicking on the checkboxes directly</li>
+                    <li>Try clicking on the labels</li>
+                    <li>Check if selected items appear below</li>
+                    <li>Open browser console to see change events</li>
+                </ol>
+            `;
+        }
+
+        // Initialize the page
+        generateCheckboxes();
+        console.log('Health concerns checkbox test page loaded');
+        console.log('Available concerns:', healthConcerns);
+    </script>
+</body>
+</html>

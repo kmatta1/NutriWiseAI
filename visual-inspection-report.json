@@ -1,0 +1,568 @@
+{
+  "timestamp": "2025-07-28T01:21:47.828Z",
+  "sampleSize": 50,
+  "results": {
+    "totalSampled": 50,
+    "downloaded": 49,
+    "suspicious": 0,
+    "needsReplacement": 0,
+    "upgraded": 0,
+    "failed": 0,
+    "suspiciousList": [],
+    "downloadedSamples": [
+      {
+        "filename": "sample_1_NOW_Foods_Cordyceps_Powder_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_1_NOW_Foods_Cordyceps_Powder_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_powder_1753660852389_1jrs1",
+          "name": "NOW Foods Cordyceps Powder",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_cordyceps_powder_63772091.jpg"
+      },
+      {
+        "filename": "sample_2_NOW_Foods_Reishi_Tablets_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_2_NOW_Foods_Reishi_Tablets_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455874_t1101xu0e",
+          "name": "NOW Foods Reishi Tablets",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_reishi_tablets_63733676.jpg"
+      },
+      {
+        "filename": "sample_3_MuscleTech_Gold_Standard_Whey_Protein_Isolate___Strawberry_MuscleTech.jpg",
+        "filepath": "image-samples\\sample_3_MuscleTech_Gold_Standard_Whey_Protein_Isolate___Strawberry_MuscleTech.jpg",
+        "productInfo": {
+          "id": "protein_whey-protein_isolate_1753660852224_njlo8",
+          "name": "MuscleTech Gold Standard Whey Protein Isolate - Strawberry",
+          "brand": "MuscleTech",
+          "category": "protein"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/muscletech_muscletech_gold_standard_whey_protein_is_64694389.jpg"
+      },
+      {
+        "filename": "sample_4_Gaia_Herbs_Cordyceps_Tablets_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_4_Gaia_Herbs_Cordyceps_Tablets_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "1753661455874_h4mkh31kd",
+          "name": "Gaia Herbs Cordyceps Tablets",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_cordyceps_tablets_63704221.jpg"
+      },
+      {
+        "filename": "sample_5_Gaia_Herbs_Ashwagandha_Extract_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_5_Gaia_Herbs_Ashwagandha_Extract_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852379_qbo1k",
+          "name": "Gaia Herbs Ashwagandha Extract",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ashwagandha_extract_63744430.jpg"
+      },
+      {
+        "filename": "sample_6_NOW_Foods_Cordyceps_Capsules_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_6_NOW_Foods_Cordyceps_Capsules_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455873_iqewuyb14",
+          "name": "NOW Foods Cordyceps Capsules",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_cordyceps_capsules_63737330.jpg"
+      },
+      {
+        "filename": "sample_7_NOW_Foods_Ashwagandha_Extract_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_7_NOW_Foods_Ashwagandha_Extract_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852378_urybi",
+          "name": "NOW Foods Ashwagandha Extract",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ashwagandha_extract_63743440.jpg"
+      },
+      {
+        "filename": "sample_8_Optimum_Nutrition_2_1_1_BCAA_Tablets_Optimum_Nutrition.jpg",
+        "filepath": "image-samples\\sample_8_Optimum_Nutrition_2_1_1_BCAA_Tablets_Optimum_Nutrition.jpg",
+        "productInfo": {
+          "id": "1753661455888_cerepikvo",
+          "name": "Optimum Nutrition 2:1:1 BCAA Tablets",
+          "brand": "Optimum Nutrition",
+          "category": "protein"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/optimum_nutrition_gold_standard_100_whey.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=UuEFKqS4Z4GhZ%2BGIHkFrvivLE20VJ7FmRmytzVLCkb3OQGArvUeoeMr8N7FN9BLDvl0uaWHXMCOBI31MsuN78qcLyDfJ3j89LWsGW%2F9VPkdnxE7jybkc%2Bm6%2B1s4IN8MxQqT9BQLb7YZHDqlLoibKNtZBQlUYRlYP1E%2BFtlUPZySEp5%2BNjipgY98A1GmuHx5JjQyOPmTKK%2BCP15FNorHqK%2F0h2dBiwrXHTEUHssuRa5qK1Gc8cyLH6VLNn7Y5l%2B5GppETdQL7NaEjj0S9Jj9TffpRZK9Fp9iWBgW3oc8sDZE%2FbQIpmUJDDwmFoVPZnUXQRVmofBBTNQrpX1MpmoBufw%3D%3D"
+      },
+      {
+        "filename": "sample_9_Nutricost_Ashwagandha_Extract_Nutricost.jpg",
+        "filepath": "image-samples\\sample_9_Nutricost_Ashwagandha_Extract_Nutricost.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852376_8x5z5",
+          "name": "Nutricost Ashwagandha Extract",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_ashwagandha_extract_63738461.jpg"
+      },
+      {
+        "filename": "sample_10_Nutricost_Rhodiola_Capsules_Nutricost.jpg",
+        "filepath": "image-samples\\sample_10_Nutricost_Rhodiola_Capsules_Nutricost.jpg",
+        "productInfo": {
+          "id": "1753661455875_6scvnmcqs",
+          "name": "Nutricost Rhodiola Capsules",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_rhodiola_capsules_63720132.jpg"
+      },
+      {
+        "filename": "sample_11_Gaia_Herbs_Rhodiola_Tablets_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_11_Gaia_Herbs_Rhodiola_Tablets_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "1753661455875_ijttzqfsh",
+          "name": "Gaia Herbs Rhodiola Tablets",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_rhodiola_tablets_63727450.jpg"
+      },
+      {
+        "filename": "sample_12_NOW_Foods_Cordyceps_Extract_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_12_NOW_Foods_Cordyceps_Extract_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_extract_1753660852389_gzcfs",
+          "name": "NOW Foods Cordyceps Extract",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_cordyceps_extract_63768397.jpg"
+      },
+      {
+        "filename": "sample_13_Gaia_Herbs_Ashwagandha_Capsules_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_13_Gaia_Herbs_Ashwagandha_Capsules_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "1753661455873_wg8ofcw5m",
+          "name": "Gaia Herbs Ashwagandha Capsules",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ashwagandha_capsules_63717707.jpg"
+      },
+      {
+        "filename": "sample_14_NOW_Foods_Cordyceps_Tablets_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_14_NOW_Foods_Cordyceps_Tablets_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455873_e05ki7l7v",
+          "name": "NOW Foods Cordyceps Tablets",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_cordyceps_tablets_63722527.jpg"
+      },
+      {
+        "filename": "sample_15_NOW_Foods_Reishi_Capsules_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_15_NOW_Foods_Reishi_Capsules_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455874_y7h954p2t",
+          "name": "NOW Foods Reishi Capsules",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_reishi_capsules_63710463.jpg"
+      },
+      {
+        "filename": "sample_16_NOW_Foods_Ashwagandha_Extract_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_16_NOW_Foods_Ashwagandha_Extract_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852378_lz155",
+          "name": "NOW Foods Ashwagandha Extract",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ashwagandha_extract_63742451.jpg"
+      },
+      {
+        "filename": "sample_17_NOW_Foods_Ginseng_Tablets_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_17_NOW_Foods_Ginseng_Tablets_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455874_91gjzekdv",
+          "name": "NOW Foods Ginseng Tablets",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ginseng_tablets_63726174.jpg"
+      },
+      {
+        "filename": "sample_18_Nutricost_Ashwagandha_Extract_Nutricost.jpg",
+        "filepath": "image-samples\\sample_18_Nutricost_Ashwagandha_Extract_Nutricost.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852377_k1c53",
+          "name": "Nutricost Ashwagandha Extract",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_ashwagandha_extract_63740934.jpg"
+      },
+      {
+        "filename": "sample_19_Nutricost_Cordyceps_Extract_Nutricost.jpg",
+        "filepath": "image-samples\\sample_19_Nutricost_Cordyceps_Extract_Nutricost.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_extract_1753660852388_yx6r5",
+          "name": "Nutricost Cordyceps Extract",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_cordyceps_extract_63761633.jpg"
+      },
+      {
+        "filename": "sample_20_NOW_Foods_Ashwagandha_Tablets_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_20_NOW_Foods_Ashwagandha_Tablets_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455873_ageh1d892",
+          "name": "NOW Foods Ashwagandha Tablets",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ashwagandha_tablets_63708021.jpg"
+      },
+      {
+        "filename": "sample_21_Gaia_Herbs_Cordyceps_Extract_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_21_Gaia_Herbs_Cordyceps_Extract_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_extract_1753660852389_57q81",
+          "name": "Gaia Herbs Cordyceps Extract",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_cordyceps_extract_63762330.jpg"
+      },
+      {
+        "filename": "sample_22_NOW_Foods_Rhodiola_Capsules_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_22_NOW_Foods_Rhodiola_Capsules_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "1753661455875_qjbrz3fzn",
+          "name": "NOW Foods Rhodiola Capsules",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_rhodiola_capsules_63725136.jpg"
+      },
+      {
+        "filename": "sample_23_NOW_Foods_Ashwagandha_Powder_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_23_NOW_Foods_Ashwagandha_Powder_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_powder_1753660852379_42iw3",
+          "name": "NOW Foods Ashwagandha Powder",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ashwagandha_powder_63755759.jpg"
+      },
+      {
+        "filename": "sample_24_Gaia_Herbs_Ashwagandha_Extract_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_24_Gaia_Herbs_Ashwagandha_Extract_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_extract_1753660852380_r9q53",
+          "name": "Gaia Herbs Ashwagandha Extract",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ashwagandha_extract_63745504.jpg"
+      },
+      {
+        "filename": "sample_26_NOW_Foods_Ashwagandha_Powder_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_26_NOW_Foods_Ashwagandha_Powder_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_powder_1753660852379_q8xbk",
+          "name": "NOW Foods Ashwagandha Powder",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_ashwagandha_powder_63756852.jpg"
+      },
+      {
+        "filename": "sample_27_Nutricost_Cordyceps_Powder_Nutricost.jpg",
+        "filepath": "image-samples\\sample_27_Nutricost_Cordyceps_Powder_Nutricost.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_powder_1753660852388_4ul4b",
+          "name": "Nutricost Cordyceps Powder",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_cordyceps_powder_63770371.jpg"
+      },
+      {
+        "filename": "sample_28_Nutricost_Cordyceps_Tablets_Nutricost.jpg",
+        "filepath": "image-samples\\sample_28_Nutricost_Cordyceps_Tablets_Nutricost.jpg",
+        "productInfo": {
+          "id": "1753661455873_6y9jn6d03",
+          "name": "Nutricost Cordyceps Tablets",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_cordyceps_tablets_63709036.jpg"
+      },
+      {
+        "filename": "sample_29_Gaia_Herbs_Ginseng_Extract_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_29_Gaia_Herbs_Ginseng_Extract_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_ginseng_extract_1753660852387_n7apg",
+          "name": "Gaia Herbs Ginseng Extract",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ginseng_extract_63787259.jpg"
+      },
+      {
+        "filename": "sample_30_Gaia_Herbs_Ashwagandha_Powder_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_30_Gaia_Herbs_Ashwagandha_Powder_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_ashwagandha_powder_1753660852381_xezv4",
+          "name": "Gaia Herbs Ashwagandha Powder",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ashwagandha_powder_63758799.jpg"
+      },
+      {
+        "filename": "sample_31_Nutricost_Reishi_Powder_Nutricost.jpg",
+        "filepath": "image-samples\\sample_31_Nutricost_Reishi_Powder_Nutricost.jpg",
+        "productInfo": {
+          "id": "adaptogens_reishi_powder_1753660852391_2yzrf",
+          "name": "Nutricost Reishi Powder",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_reishi_powder_63807593.jpg"
+      },
+      {
+        "filename": "sample_32_Nutricost_Ashwagandha_Tablets_Nutricost.jpg",
+        "filepath": "image-samples\\sample_32_Nutricost_Ashwagandha_Tablets_Nutricost.jpg",
+        "productInfo": {
+          "id": "1753661455872_7jf5sntyw",
+          "name": "Nutricost Ashwagandha Tablets",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_ashwagandha_tablets_63724174.jpg"
+      },
+      {
+        "filename": "sample_33_MuscleTech_Buffered_Creatine_Micronized___Blue_Raspberry_MuscleTech.jpg",
+        "filepath": "image-samples\\sample_33_MuscleTech_Buffered_Creatine_Micronized___Blue_Raspberry_MuscleTech.jpg",
+        "productInfo": {
+          "id": "creatine_buffered-creatine_micronized_1753660852270_z5arz",
+          "name": "MuscleTech Buffered Creatine Micronized - Blue Raspberry",
+          "brand": "MuscleTech",
+          "category": "creatine"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/muscletech_muscletech_buffered_creatine_micronized__63950137.jpg"
+      },
+      {
+        "filename": "sample_34_Scivation_Arginine_Capsules_Scivation.jpg",
+        "filepath": "image-samples\\sample_34_Scivation_Arginine_Capsules_Scivation.jpg",
+        "productInfo": {
+          "id": "amino_acids_arginine_capsules_1753660852364_dtsyc",
+          "name": "Scivation Arginine Capsules",
+          "brand": "Scivation",
+          "category": "amino_acids"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/scivation_scivation_arginine_capsules_63838557.jpg"
+      },
+      {
+        "filename": "sample_35_Gaia_Herbs_Ginseng_Capsules_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_35_Gaia_Herbs_Ginseng_Capsules_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "1753661455874_cj8evrbqu",
+          "name": "Gaia Herbs Ginseng Capsules",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_ginseng_capsules_63702278.jpg"
+      },
+      {
+        "filename": "sample_36_Creatine_Monohydrate_Powder_Micronized_by_BulkSupplements_BulkSupplements.jpg",
+        "filepath": "image-samples\\sample_36_Creatine_Monohydrate_Powder_Micronized_by_BulkSupplements_BulkSupplements.jpg",
+        "productInfo": {
+          "id": "comprehensive_product_4",
+          "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+          "brand": "BulkSupplements",
+          "category": "performance"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D"
+      },
+      {
+        "filename": "sample_37_Garcinia_Cambogia_Extract_by_Nature_s_Bounty_Nature_s_Bounty.jpg",
+        "filepath": "image-samples\\sample_37_Garcinia_Cambogia_Extract_by_Nature_s_Bounty_Nature_s_Bounty.jpg",
+        "productInfo": {
+          "id": "comprehensive_product_11",
+          "name": "Garcinia Cambogia Extract by Nature's Bounty",
+          "brand": "Nature's Bounty",
+          "category": "herbs"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/garcinia_cambogia_extract_by_natures_bou.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Tc25ENzAdiVD%2FBvtgoaPHN27iC%2BZbfJe2NDcqJ0mDQBqs1L2w1Gri%2FVJLKebVRDOzEpANKfHjVP9mGH6uQHDpLjhylX1sTeWj6PTuR3txhKzYD%2BUoDTJruoQUbDf1MMi9AXDbOcAH3wxQxG80PW1BnwINYs8dwoQehFBzGeLN744%2BnH73MHsaKN1QCQpAYOWAdpHHGsE853nCCs0aXhjFR2kyyvKXNhvA6zCTp5Hd%2FuEHr7BZxDifgwGQblMolUwEAns1yMWh%2BbaVfMQ3nbdXfmz1GYTZpTKf1eW90RJeKNCC4lrBvO7PMa9PR03yaWlUpIazAvzprXvWh2CKsdr5A%3D%3D"
+      },
+      {
+        "filename": "sample_38_Creatine_Monohydrate_Powder_Micronized_by_BulkSupplements_BulkSupplements.jpg",
+        "filepath": "image-samples\\sample_38_Creatine_Monohydrate_Powder_Micronized_by_BulkSupplements_BulkSupplements.jpg",
+        "productInfo": {
+          "id": "B29FcipfZ9hXdcbGfVob",
+          "name": "Creatine Monohydrate Powder Micronized by BulkSupplements",
+          "brand": "BulkSupplements",
+          "category": "performance"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/creatine_monohydrate_powder_micronized_b.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=Z5OfxouqzsPLLZ3QLhvczia9NC%2Bhbf4FFs%2BiYOTfqyd%2BjHawjBoqvtUSui6eJfLGzaMRddtbRVk2UWA51BTPEZY1Gj74zboZPVgs%2FRUTHZO0YWkaZdB5kPzBrreTLF2321Eas4TluC46Td2NASXCwnyB4GltJqOMN7JGtjyTlNp9YHRop2tS%2BHNfImryetegmVWylDBUnyFcl6DYNITp0%2FBCBdiGk0FarKsay8KwBKxPzBVHRJB6WYgklOa0sAsWy7vU466Nk45HDUPPcuC3RUHlaQVFQRvlcViT1oyI98rxAc3PgsOdrQRXjaylWexJX4Fp0QdFtmzZcaKs%2Bipw1g%3D%3D"
+      },
+      {
+        "filename": "sample_39_NOW_Sports_Arginine_Tablets_NOW_Sports.jpg",
+        "filepath": "image-samples\\sample_39_NOW_Sports_Arginine_Tablets_NOW_Sports.jpg",
+        "productInfo": {
+          "id": "1753661455887_s2x9og8g6",
+          "name": "NOW Sports Arginine Tablets",
+          "brand": "NOW Sports",
+          "category": "amino_acids"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowsports_now_sports_arginine_tablets_63711589.jpg"
+      },
+      {
+        "filename": "sample_40_Gaia_Herbs_Rhodiola_Extract_Gaia_Herbs.jpg",
+        "filepath": "image-samples\\sample_40_Gaia_Herbs_Rhodiola_Extract_Gaia_Herbs.jpg",
+        "productInfo": {
+          "id": "adaptogens_rhodiola_extract_1753660852384_ewyjf",
+          "name": "Gaia Herbs Rhodiola Extract",
+          "brand": "Gaia Herbs",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/gaiaherbs_gaia_herbs_rhodiola_extract_63826360.jpg"
+      },
+      {
+        "filename": "sample_41_NOW_Foods_Cordyceps_Extract_NOW_Foods.jpg",
+        "filepath": "image-samples\\sample_41_NOW_Foods_Cordyceps_Extract_NOW_Foods.jpg",
+        "productInfo": {
+          "id": "adaptogens_cordyceps_extract_1753660852388_lekqq",
+          "name": "NOW Foods Cordyceps Extract",
+          "brand": "NOW Foods",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nowfoods_now_foods_cordyceps_extract_63759754.jpg"
+      },
+      {
+        "filename": "sample_42_Scivation_Beta_Alanine_Powder_Powder_Scivation.jpg",
+        "filepath": "image-samples\\sample_42_Scivation_Beta_Alanine_Powder_Powder_Scivation.jpg",
+        "productInfo": {
+          "id": "amino_acids_beta-alanine_powder_1753660852361_v7lyw",
+          "name": "Scivation Beta-Alanine Powder Powder",
+          "brand": "Scivation",
+          "category": "amino_acids"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/scivation_scivation_betaalanine_powder_powder_63876017.jpg"
+      },
+      {
+        "filename": "sample_43_MuscleTech_Buffered_Creatine_Micronized___Fruit_Punch_MuscleTech.jpg",
+        "filepath": "image-samples\\sample_43_MuscleTech_Buffered_Creatine_Micronized___Fruit_Punch_MuscleTech.jpg",
+        "productInfo": {
+          "id": "creatine_buffered-creatine_micronized_1753660852270_n1d95",
+          "name": "MuscleTech Buffered Creatine Micronized - Fruit Punch",
+          "brand": "MuscleTech",
+          "category": "creatine"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/muscletech_muscletech_buffered_creatine_micronized__63949113.jpg"
+      },
+      {
+        "filename": "sample_44_BulkSupplements_Buffered_Creatine___Fruit_Punch_BulkSupplements.jpg",
+        "filepath": "image-samples\\sample_44_BulkSupplements_Buffered_Creatine___Fruit_Punch_BulkSupplements.jpg",
+        "productInfo": {
+          "id": "creatine_buffered-creatine_regular_1753660852267_cl7aq",
+          "name": "BulkSupplements Buffered Creatine - Fruit Punch",
+          "brand": "BulkSupplements",
+          "category": "creatine"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_buffered_creatine_fruit__63951792.jpg"
+      },
+      {
+        "filename": "sample_45_Ghost_Non_Stimulant_Powder___Watermelon_Ghost.jpg",
+        "filepath": "image-samples\\sample_45_Ghost_Non_Stimulant_Powder___Watermelon_Ghost.jpg",
+        "productInfo": {
+          "id": "preworkout_non-stimulant_powder_1753660852338_pzdvw",
+          "name": "Ghost Non Stimulant Powder - Watermelon",
+          "brand": "Ghost",
+          "category": "preworkout"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/ghost_ghost_non_stimulant_powder_watermelon_64393042.jpg"
+      },
+      {
+        "filename": "sample_46_Scivation_Beta_Alanine_Powder_Capsules_Scivation.jpg",
+        "filepath": "image-samples\\sample_46_Scivation_Beta_Alanine_Powder_Capsules_Scivation.jpg",
+        "productInfo": {
+          "id": "amino_acids_beta-alanine_capsules_1753660852362_qheio",
+          "name": "Scivation Beta-Alanine Powder Capsules",
+          "brand": "Scivation",
+          "category": "amino_acids"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/scivation_scivation_betaalanine_powder_capsules_63872518.jpg"
+      },
+      {
+        "filename": "sample_47_C4_Pump_Powder___Watermelon_C4.jpg",
+        "filepath": "image-samples\\sample_47_C4_Pump_Powder___Watermelon_C4.jpg",
+        "productInfo": {
+          "id": "preworkout_pump_powder_1753660852345_ktmo1",
+          "name": "C4 Pump Powder - Watermelon",
+          "brand": "C4",
+          "category": "preworkout"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/c4_c4_pump_powder_watermelon_64430818.jpg"
+      },
+      {
+        "filename": "sample_48_Legion_Endurance_Capsules___Fruit_Punch_Legion.jpg",
+        "filepath": "image-samples\\sample_48_Legion_Endurance_Capsules___Fruit_Punch_Legion.jpg",
+        "productInfo": {
+          "id": "preworkout_endurance_capsules_1753660852347_sahtt",
+          "name": "Legion Endurance Capsules - Fruit Punch",
+          "brand": "Legion",
+          "category": "preworkout"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/legion_legion_endurance_capsules_fruit_punch_64339064.jpg"
+      },
+      {
+        "filename": "sample_49_Nutricost_Ginseng_Capsules_Nutricost.jpg",
+        "filepath": "image-samples\\sample_49_Nutricost_Ginseng_Capsules_Nutricost.jpg",
+        "productInfo": {
+          "id": "1753661455874_b90hjfexe",
+          "name": "Nutricost Ginseng Capsules",
+          "brand": "Nutricost",
+          "category": "adaptogens"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/nutricost_nutricost_ginseng_capsules_63705958.jpg"
+      },
+      {
+        "filename": "sample_50_Ashwagandha_Root_Extract_by_Nutricost_Nutricost.jpg",
+        "filepath": "image-samples\\sample_50_Ashwagandha_Root_Extract_by_Nutricost_Nutricost.jpg",
+        "productInfo": {
+          "id": "comprehensive_product_17",
+          "name": "Ashwagandha Root Extract by Nutricost",
+          "brand": "Nutricost",
+          "category": "herbs"
+        },
+        "imageUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/ashwagandha_root_extract_by_nutricost.jpg?GoogleAccessId=firebase-adminsdk-fbsvc%40nutriwise-ai-3fmvs.iam.gserviceaccount.com&Expires=16447035600&Signature=I0Mac%2FAXVSeksVq3dRDC3s147iKG29t5fpaX72m7JM8FZLAGiHRI4iJGmaOF0qr64QtBUqhsAu4xjHPOGC%2FCpu2%2FjOspAgALvXy2YruRX0CmFvNlmLe0VSybBSkGFub0SdI39h6OmwnsIl2g0UXzKx0J8E8%2F7bo5X3ffIoWBBqzwDS93%2BTwOiObfUso8VSwL4IBX%2BZeGjPvLRdJkMncjoQiITFFVphA9FENuOazSnyWaVs1SV9VfSV3nFFieMoVFyNNzKtLNwdt2chHB7ZtWB4cyzoR0eNJ5WNnuBIfykjdfmUWXo191ueB04jtEathDMJYQ7WAjjwBa6w4zmeJCRQ%3D%3D"
+      }
+    ],
+    "errors": []
+  },
+  "downloadFolder": "./image-samples/",
+  "instructions": {
+    "manualReview": "Please manually review the downloaded images in ./image-samples/",
+    "criteria": [
+      "Image shows ONLY the supplement bottle/container",
+      "Clean, white or neutral background",
+      "No hands, people, or lifestyle elements",
+      "Product label is clearly visible and readable",
+      "Professional lighting and composition",
+      "High resolution and sharp focus"
+    ],
+    "action": "If any images don't meet criteria, run the replacement script for those specific products"
+  }
+}

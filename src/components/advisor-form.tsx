@@ -33,14 +33,14 @@ import { useToast } from "@/hooks/use-toast";
 const formSchema = z.object({
   fitnessGoals: z.string().min(1, "Please select a fitness goal."),
   gender: z.string().min(1, "Please select your gender."),
+  race: z.string().optional(),
   age: z.string().min(1, "Age is required.").max(3),
   weight: z.string().min(1, "Weight is required.").max(4),
   activityLevel: z.string().min(1, "Please select your activity level."),
   diet: z.string().min(1, "Please select your diet."),
   sleepQuality: z.string().min(1, "Please select your sleep quality."),
   healthConcerns: z.array(z.string()).optional(),
-  race: z.string().min(1, "Please select your race/ethnicity."),
-  budget: z.string().min(1, "Monthly budget is required for personalized recommendations."),
+  budget: z.string().optional(),
   otherCriteria: z.string().optional(),
 });
 
@@ -57,6 +57,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
   const { toast } = useToast();
   const [hasLoadedProfile, setHasLoadedProfile] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [formState, setFormState] = useState('idle');
 
   // Ensure we're on the client side before accessing localStorage
   useEffect(() => {
@@ -188,6 +189,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
 
   // Enhanced submit handler with profile saving
   const handleSubmit = async (data: FormData) => {
+    setFormState('submitting');
     console.log('🔴 AdvisorForm handleSubmit called with:', data);
     try {
       // Save form data for future use
@@ -214,6 +216,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
       
       // Call the original onSubmit
       await onSubmit(data);
+      setFormState('submitted');
     } catch (error) {
       console.error("Error handling form submission:", error);
       toast({
@@ -221,6 +224,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
         description: "There was an issue processing your request. Please try again.",
         variant: "destructive",
       });
+      setFormState('error');
     }
   };
 
@@ -404,6 +408,35 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
               
               <FormField
                 control={form.control}
+                name="race"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-lg font-bold text-slate-900 mb-3 block">Race/Ethnicity <span className="text-slate-500 font-normal">(Optional)</span></FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="h-14 text-base bg-white border-2 border-slate-300 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-200 transition-all text-slate-900 font-semibold shadow-sm">
+                          <SelectValue placeholder="Select race/ethnicity" className="text-slate-800 font-semibold" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-white border-2 border-slate-200 shadow-2xl">
+                        <SelectItem value="asian" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Asian</SelectItem>
+                        <SelectItem value="black" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Black or African American</SelectItem>
+                        <SelectItem value="hispanic" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Hispanic or Latino</SelectItem>
+                        <SelectItem value="white" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">White</SelectItem>
+                        <SelectItem value="native_american" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Native American</SelectItem>
+                        <SelectItem value="pacific_islander" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Pacific Islander</SelectItem>
+                        <SelectItem value="mixed" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Mixed Race</SelectItem>
+                        <SelectItem value="other" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Other</SelectItem>
+                        <SelectItem value="prefer_not_to_say" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-4 text-base">Prefer not to say</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-red-600 font-medium" />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
                 name="age"
                 render={({ field }) => (
                   <FormItem>
@@ -440,34 +473,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="race"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-lg font-bold text-slate-900 mb-3 block">Race/Ethnicity</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="h-14 text-base bg-white border-2 border-slate-300 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-200 transition-all text-slate-900 font-semibold shadow-sm">
-                          <SelectValue placeholder="Select ethnicity" className="text-slate-800 font-semibold" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="bg-white border-2 border-slate-200 shadow-2xl">
-                        <SelectItem value="white" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Caucasian/White</SelectItem>
-                        <SelectItem value="black" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Black/African American</SelectItem>
-                        <SelectItem value="hispanic" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Hispanic/Latino</SelectItem>
-                        <SelectItem value="asian" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Asian</SelectItem>
-                        <SelectItem value="native" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Native American</SelectItem>
-                        <SelectItem value="pacific" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Pacific Islander</SelectItem>
-                        <SelectItem value="mixed" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Mixed Race</SelectItem>
-                        <SelectItem value="other" className="hover:bg-blue-50 focus:bg-blue-100 text-slate-900 font-semibold py-3">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage className="text-red-600 font-medium" />
-                  </FormItem>
-                )}
-              />
-            </div>
+                          </div>
           </div>
 
           {/* Lifestyle Section */}
@@ -551,51 +557,80 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
               <FormField
                 control={form.control}
                 name="healthConcerns"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-lg font-bold text-slate-900 mb-3 block">Health Concerns (Optional)</FormLabel>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { id: "joint-pain", label: "Joint Pain/Arthritis" },
-                        { id: "low-energy", label: "Low Energy/Fatigue" },
-                        { id: "stress-anxiety", label: "Stress/Anxiety" },
-                        { id: "poor-digestion", label: "Poor Digestion" },
-                        { id: "focus-memory", label: "Focus/Memory Issues" },
-                        { id: "sleep-issues", label: "Sleep Issues" },
-                        { id: "immune-system", label: "Weak Immune System" },
-                        { id: "inflammation", label: "Chronic Inflammation" },
-                        { id: "heart-health", label: "Heart Health Concerns" },
-                        { id: "bone-health", label: "Bone Health/Osteoporosis" },
-                        { id: "hormone-balance", label: "Hormonal Imbalances" },
-                        { id: "skin-hair", label: "Skin/Hair Issues" }
-                      ].map((concern) => (
-                        <div key={concern.id} className="flex items-center space-x-2">
-                          <Checkbox
-                            id={concern.id}
-                            checked={field.value?.includes(concern.id)}
-                            onCheckedChange={(checked: boolean) => {
-                              const current = field.value || [];
-                              let updated;
-                              if (checked) {
-                                updated = [...current, concern.id];
-                              } else {
-                                updated = current.filter((id) => id !== concern.id);
-                              }
-                              console.log('Health concern changed:', concern.id, checked, updated);
-                              field.onChange(updated);
-                            }}
-                            className="border-2 border-slate-300"
-                            disabled={isLoading ? true : false}
-                          />
-                          <label htmlFor={concern.id} className="text-sm font-medium text-slate-700">
-                            {concern.label}
-                          </label>
+                render={({ field }) => {
+                  // Ensure field.value is always an array
+                  const selectedConcerns = field.value || [];
+                  
+                  const handleConcernChange = (concernId: string, isChecked: boolean) => {
+                    let updatedConcerns;
+                    if (isChecked) {
+                      // Add concern if not already present
+                      updatedConcerns = selectedConcerns.includes(concernId) 
+                        ? selectedConcerns 
+                        : [...selectedConcerns, concernId];
+                    } else {
+                      // Remove concern
+                      updatedConcerns = selectedConcerns.filter(id => id !== concernId);
+                    }
+                    
+                    console.log('Updating health concerns:', {
+                      concernId,
+                      isChecked,
+                      before: selectedConcerns,
+                      after: updatedConcerns
+                    });
+                    
+                    // Update form field
+                    field.onChange(updatedConcerns);
+                  };
+
+                  return (
+                    <FormItem>
+                      <FormLabel className="text-lg font-bold text-slate-900 mb-3 block">Health Concerns (Optional)</FormLabel>
+                      <FormControl>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            { id: "joint-pain", label: "Joint Pain/Arthritis" },
+                            { id: "low-energy", label: "Low Energy/Fatigue" },
+                            { id: "stress-anxiety", label: "Stress/Anxiety" },
+                            { id: "poor-digestion", label: "Poor Digestion" },
+                            { id: "focus-memory", label: "Focus/Memory Issues" },
+                            { id: "sleep-issues", label: "Sleep Issues" },
+                            { id: "immune-system", label: "Weak Immune System" },
+                            { id: "inflammation", label: "Chronic Inflammation" },
+                            { id: "heart-health", label: "Heart Health Concerns" },
+                            { id: "bone-health", label: "Bone Health/Osteoporosis" },
+                            { id: "hormone-balance", label: "Hormonal Imbalances" },
+                            { id: "skin-hair", label: "Skin/Hair Issues" }
+                          ].map((concern) => {
+                            const isChecked = selectedConcerns.includes(concern.id);
+                            
+                            return (
+                              <div key={concern.id} className="flex items-center space-x-2">
+                                <Checkbox
+                                  id={concern.id}
+                                  checked={isChecked}
+                                  onCheckedChange={(checked) => {
+                                    handleConcernChange(concern.id, checked === true);
+                                  }}
+                                  className="border-2 border-slate-300 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                                  disabled={isLoading || formState === 'submitting'}
+                                />
+                                <label 
+                                  htmlFor={concern.id} 
+                                  className="text-sm font-medium text-slate-700 cursor-pointer select-none"
+                                >
+                                  {concern.label}
+                                </label>
+                              </div>
+                            );
+                          })}
                         </div>
-                      ))}
-                    </div>
-                    <FormMessage className="text-red-600 font-medium" />
-                  </FormItem>
-                )}
+                      </FormControl>
+                      <FormMessage className="text-red-600 font-medium" />
+                    </FormItem>
+                  );
+                }}
               />
 
               <FormField
@@ -641,7 +676,7 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
           <div className="flex justify-center pt-8">
             <Button 
               type="submit" 
-              disabled={isLoading}
+              disabled={isLoading || formState === 'submitting'}
               onClick={() => {
                 console.log('🔵 Submit button clicked');
                 console.log('🔵 Form errors:', form.formState.errors);

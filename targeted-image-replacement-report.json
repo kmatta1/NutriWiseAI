@@ -1,0 +1,205 @@
+{
+  "timestamp": "2025-07-28T01:57:11.678Z",
+  "summary": {
+    "totalProducts": 653,
+    "problematicFound": 31,
+    "successfulReplacements": 12,
+    "failedReplacements": 19,
+    "successRate": 39
+  },
+  "replacedImages": [
+    {
+      "productId": "creatine_creatine-blend_micronized_1753660852271_ykjti",
+      "productName": "BulkSupplements Creatine Blend Micronized",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_micronize_63963964.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_725381.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-blend_micronized_1753660852272_7t93w",
+      "productName": "BulkSupplements Creatine Blend Micronized - Blue Raspberry",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_micronize_63966777.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_728942.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-blend_micronized_1753660852272_gcizx",
+      "productName": "BulkSupplements Creatine Blend Micronized - Fruit Punch",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_micronize_63967886.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_732290.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-blend_regular_1753660852272_zkc8u",
+      "productName": "BulkSupplements Creatine Blend",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_63985453.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_735466.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-blend_regular_1753660852273_543jt",
+      "productName": "BulkSupplements Creatine Blend - Blue Raspberry",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_blue_rasp_63986511.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_738970.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-blend_regular_1753660852273_epj7q",
+      "productName": "BulkSupplements Creatine Blend - Fruit Punch",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_creatine_blend_fruit_pun_63987720.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_creatine_blend_744380.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_micronized_1753660852251_53j47",
+      "productName": "BulkSupplements Pure Creatine Monohydrate Micronized - Fruit Punch",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64037460.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__747673.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_micronized_1753660852251_dcjti",
+      "productName": "BulkSupplements Pure Creatine Monohydrate Micronized - Blue Raspberry",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64038573.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__750927.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_micronized_1753660852251_yqckj",
+      "productName": "BulkSupplements Pure Creatine Monohydrate Micronized",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64039512.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__754123.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_regular_1753660852252_an0e3",
+      "productName": "BulkSupplements Pure Creatine Monohydrate",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64058833.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__757400.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_regular_1753660852252_f9fhu",
+      "productName": "BulkSupplements Pure Creatine Monohydrate - Fruit Punch",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64059724.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__760647.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    },
+    {
+      "productId": "creatine_creatine-monohydrate_regular_1753660852252_ldu94",
+      "productName": "BulkSupplements Pure Creatine Monohydrate - Blue Raspberry",
+      "brand": "BulkSupplements",
+      "oldUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/bulksupplements_bulksupplements_pure_creatine_monohydrat_64060658.jpg",
+      "newUrl": "https://storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/images/supplements/professional/clean_bulksupplements_bulksupplements_pure_creatine__763906.jpg",
+      "reason": "Potentially unprofessional image replaced"
+    }
+  ],
+  "errors": [
+    {
+      "productId": "comprehensive_product_5",
+      "productName": "Pre-Workout Supplement by Legion Pulse",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_micronized_1753660852265_cuuq4",
+      "productName": "BulkSupplements Buffered Creatine Micronized - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_micronized_1753660852265_m0zjz",
+      "productName": "BulkSupplements Buffered Creatine Micronized",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_micronized_1753660852266_1aimw",
+      "productName": "BulkSupplements Buffered Creatine Micronized - Blue Raspberry",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_regular_1753660852266_99mhx",
+      "productName": "BulkSupplements Buffered Creatine",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_regular_1753660852267_cl7aq",
+      "productName": "BulkSupplements Buffered Creatine - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "creatine_buffered-creatine_regular_1753660852267_whlci",
+      "productName": "BulkSupplements Buffered Creatine - Blue Raspberry",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_endurance_powder_1753660852348_ovlid",
+      "productName": "C4 Endurance Powder - Blue Raspberry",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_endurance_powder_1753660852349_igff8",
+      "productName": "C4 Endurance Powder - Watermelon",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_endurance_powder_1753660852349_m2e96",
+      "productName": "C4 Endurance Powder - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_non-stimulant_powder_1753660852339_bynko",
+      "productName": "C4 Non Stimulant Powder - Watermelon",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_non-stimulant_powder_1753660852339_xsy5q",
+      "productName": "C4 Non Stimulant Powder - Blue Raspberry",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_non-stimulant_powder_1753660852340_4s9cy",
+      "productName": "C4 Non Stimulant Powder - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_pump_powder_1753660852345_76njh",
+      "productName": "C4 Pump Powder - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_pump_powder_1753660852345_ktmo1",
+      "productName": "C4 Pump Powder - Watermelon",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_pump_powder_1753660852345_m93g0",
+      "productName": "C4 Pump Powder - Blue Raspberry",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_stimulant_powder_1753660852336_4qozl",
+      "productName": "C4 Stimulant Powder - Watermelon",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_stimulant_powder_1753660852336_inesq",
+      "productName": "C4 Stimulant Powder - Fruit Punch",
+      "error": "No clean replacement found"
+    },
+    {
+      "productId": "preworkout_stimulant_powder_1753660852336_m0utc",
+      "productName": "C4 Stimulant Powder - Blue Raspberry",
+      "error": "No clean replacement found"
+    }
+  ]
+}

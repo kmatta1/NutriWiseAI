@@ -1,0 +1,9 @@
+<!-- SVG Placeholder for Generic Supplement -->
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#f8fafc"/>
+  <rect x="80" y="100" width="240" height="280" rx="20" fill="#e2e8f0"/>
+  <rect x="100" y="120" width="200" height="240" rx="10" fill="#cbd5e1"/>
+  <circle cx="200" cy="180" r="30" fill="#64748b"/>
+  <text x="200" y="240" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="16" font-weight="bold">SUPPLEMENT</text>
+  <text x="200" y="260" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="12">PREMIUM QUALITY</text>
+</svg>

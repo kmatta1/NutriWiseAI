@@ -3,6 +3,17 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
   
+    // Test Collection - Allow all operations for testing
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  
+    // Product Catalog Collection - Allow reads and admin writes for seeding
+    match /productCatalog/{productId} {
+      allow read: if true;
+      allow write: if true; // Temporary for data import and seeding
+    }
+  
     // Supplements Collection - Allow reads and admin writes
     match /supplements/{supplementId} {
       allow read: if true;

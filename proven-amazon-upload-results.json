@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-07-27T14:26:44.078Z",
+  "method": "amazon-proven-integration",
+  "amazonProductsUsed": 9,
+  "processed": 9,
+  "successful": 0,
+  "failed": 9,
+  "errors": [
+    "Multivitamin by Garden of Life Vitamin Code Men: HTTP 404 from Amazon",
+    "Garden of Life Sport Organic Plant-Based Protein - Vanilla: HTTP 404 from Amazon",
+    "Creatine Monohydrate Powder Micronized by BulkSupplements: HTTP 404 from Amazon",
+    "Pre-Workout Supplement by Legion Pulse: HTTP 404 from Amazon",
+    "BCAA Energy Amino Acid Supplement by Cellucor C4: HTTP 404 from Amazon",
+    "Collagen Peptides Powder by Vital Proteins: HTTP 404 from Amazon",
+    "Green Tea Extract Supplement by NOW Foods: HTTP 404 from Amazon",
+    "L-Carnitine 1000mg by Nutricost: HTTP 404 from Amazon",
+    "Optimum Nutrition Gold Standard 100% Whey Protein Powder - Vanilla: HTTP 404 from Amazon"
+  ]
+}

@@ -1,165 +1,162 @@
 import { SupplementStack } from './fallback-ai';
+import { fetchAllSupplements, findSupplementByName, FirestoreSupplementData } from '@/services/firestore-supplements';
 
-// Load product data from JSON files
-const productDataMap = new Map<string, any>();
+// Simple similarity function using Levenshtein distance
+function similarity(a: string, b: string): number {
+  const matrix = [];
+  const aLen = a.length;
+  const bLen = b.length;
 
-// Initialize product data mapping
-const initializeProductData = async () => {
-  if (productDataMap.size > 0) return; // Already loaded
-  
-  try {
-    // List of product data files (based on the files in the workspace)
-    const productFiles = [
-      'Ashwagandha_Root_Extract_by_Nutricost',
-      'Bacopa_Monnieri_Extract_by_Nutricost',
-      'BCAA_Energy_Amino_Acid_Supplement_by_Cellucor_C4',
-      'CLA_1250_Safflower_Oil_by_Sports_Research',
-      'Collagen_Peptides_Powder_by_Vital_Proteins',
-      'Creatine_Monohydrate_Powder_Micronized_by_BulkSupplements',
-      'Creatine_Monohydrate',
-      'Garcinia_Cambogia_Extract_by_Nature\'s_Bounty',
-      'Ginkgo_Biloba_Extract_by_Nature\'s_Bounty',
-      'Glucosamine_Chondroitin_MSM_by_Kirkland_Signature',
-      'Green_Tea_Extract_Supplement_by_NOW_Foods',
-      'L-Carnitine_1000mg_by_Nutricost',
-      'L-Theanine_200mg_by_NOW_Foods',
-      'Lion\'s_Mane_Mushroom_Extract_by_Host_Defense',
-      'Magnesium_Glycinate_400mg_by_Doctor\'s_Best',
-      'Melatonin_3mg_by_Nature_Made',
-      'MSM_Powder_1000mg_by_NOW_Foods',
-      'Omega-3_Fish_Oil_1200mg_by_Nature_Made',
-      'Optimum_Nutrition_Gold_Standard_100%_Whey_Protein_Powder_-_Vanilla',
-      'Pre-Workout_Supplement_by_Legion_Pulse',
-      'Probiotics_50_Billion_CFU_by_Physician\'s_Choice',
-      'Rhodiola_Rosea_Extract_by_NOW_Foods',
-      'Turmeric_Curcumin_with_BioPerine_by_BioSchwartz',
-      'Vitamin_D3_5000_IU_by_NOW_Foods',
-      'Whole_Food_Multivitamin_by_Garden_of_Life'
-    ];
+  if (aLen === 0) return bLen === 0 ? 1 : 0;
+  if (bLen === 0) return 0;
 
-    for (const filename of productFiles) {
-      try {
-        const response = await fetch(`/product-data-${filename}.json`);
-        if (response.ok) {
-          const data = await response.json();
-          // Create searchable key from filename
-          const key = filename.toLowerCase().replace(/_/g, ' ').replace(/'/g, '');
-          productDataMap.set(key, data);
-          console.log(`✅ Loaded product data for: ${filename}`);
-        }
-      } catch (error) {
-        console.warn(`⚠️ Could not load product data for: ${filename}`, error);
+  // Create matrix
+  for (let i = 0; i <= bLen; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= aLen; j++) {
+    matrix[0][j] = j;
+  }
+
+  // Calculate distances
+  for (let i = 1; i <= bLen; i++) {
+    for (let j = 1; j <= aLen; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
       }
     }
-    
-    console.log(`📦 Loaded ${productDataMap.size} product data files`);
+  }
+
+  const maxLen = Math.max(aLen, bLen);
+  return (maxLen - matrix[bLen][aLen]) / maxLen;
+}
+
+// Cache for Firestore supplement data
+let supplementsCache: FirestoreSupplementData[] = [];
+let cacheInitialized = false;
+
+// Initialize supplement data from Firestore
+const initializeProductData = async () => {
+  if (cacheInitialized) return; // Already loaded
+  
+  try {
+    console.log('📦 Loading supplement data from Firestore...');
+    supplementsCache = await fetchAllSupplements();
+    cacheInitialized = true;
+    console.log(`✅ Loaded ${supplementsCache.length} supplements from Firestore`);
   } catch (error) {
-    console.error('❌ Error initializing product data:', error);
+    console.error('❌ Error initializing supplement data from Firestore:', error);
   }
 };
 
-// Find product data by supplement name
-export const findProductData = (supplementName: string): any | null => {
-  const searchName = supplementName.toLowerCase().trim();
+// Find product data by supplement name using Firestore
+export const findProductData = async (supplementName: string): Promise<FirestoreSupplementData | null> => {
+  // Ensure data is initialized
+  if (!cacheInitialized) {
+    await initializeProductData();
+  }
   
-  // Direct key match
-  for (const [key, data] of productDataMap.entries()) {
-    if (key.includes(searchName) || searchName.includes(key)) {
-      return data;
+  try {
+    // First try to find exact match in database
+    const databaseMatch = await findSupplementByName(supplementName);
+    if (databaseMatch) {
+      console.log(`✅ Found exact match in Firestore for: ${supplementName}`);
+      return databaseMatch;
     }
-  }
-  
-  // Fuzzy matching for common supplement names
-  const commonMappings: { [key: string]: string } = {
-    'turmeric': 'turmeric curcumin with bioperine by bioschwartz',
-    'curcumin': 'turmeric curcumin with bioperine by bioschwartz',
-    'whey protein': 'optimum nutrition gold standard 100% whey protein powder - vanilla',
-    'protein powder': 'optimum nutrition gold standard 100% whey protein powder - vanilla',
-    'optimum nutrition': 'optimum nutrition gold standard 100% whey protein powder - vanilla',
-    'creatine': 'creatine monohydrate powder micronized by bulksupplements',
-    'ashwagandha': 'ashwagandha root extract by nutricost',
-    'omega 3': 'omega-3 fish oil 1200mg by nature made',
-    'fish oil': 'omega-3 fish oil 1200mg by nature made',
-    'vitamin d': 'vitamin d3 5000 iu by now foods',
-    'vitamin d3': 'vitamin d3 5000 iu by now foods',
-    'magnesium': 'magnesium glycinate 400mg by doctors best',
-    'probiotics': 'probiotics 50 billion cfu by physicians choice',
-    'melatonin': 'melatonin 3mg by nature made',
-    'collagen': 'collagen peptides powder by vital proteins',
-    'bcaa': 'bcaa energy amino acid supplement by cellucor c4',
-    'pre workout': 'pre-workout supplement by legion pulse',
-    'pulse': 'pre-workout supplement by legion pulse',
-    'legion': 'pre-workout supplement by legion pulse'
-  };
-  
-  for (const [common, key] of Object.entries(commonMappings)) {
-    if (searchName.includes(common)) {
-      const data = productDataMap.get(key);
-      if (data) return data;
+    
+    // If no exact match, try fuzzy matching from cache
+    const searchName = supplementName.toLowerCase().trim();
+    let bestMatch = null;
+    let bestScore = 0;
+
+    for (const supplement of supplementsCache) {
+      const suppName = supplement.name?.toLowerCase() || '';
+      const suppBrand = supplement.brand?.toLowerCase() || '';
+
+      // Calculate a similarity score (e.g., using Jaro-Winkler or Levenshtein distance)
+      const score = similarity(searchName, suppName);
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = supplement;
+      }
     }
+
+    if (bestScore > 0.8) { // Adjust threshold as needed
+      console.log(`✅ Found fuzzy match in Firestore for: ${supplementName} -> ${bestMatch.name}`);
+      return bestMatch;
+    }
+    
+    console.log(`⚠️ No match found in Firestore for: ${supplementName}`);
+    return null;
+    
+  } catch (error) {
+    console.error(`❌ Error finding product data for ${supplementName}:`, error);
+    return null;
   }
-  
-  return null;
 };
 
-// Parse price from string to number
-export const parsePrice = (priceString: string | null): number => {
-  if (!priceString || priceString === '' || priceString === 'null') {
-    return 0; // Will be handled later to show fallback price
-  }
-  if (typeof priceString === 'number') return priceString;
-  
-  // Remove $ and parse as float
-  const numericPrice = priceString.replace(/[$,]/g, '');
-  const price = parseFloat(numericPrice);
-  return isNaN(price) ? 0 : price;
-};
-
-// Enhance supplement stack with real product data
+// Enhance supplement stack with real product data from Firestore
 export const enhanceSupplementStack = async (stack: SupplementStack): Promise<SupplementStack> => {
-  await initializeProductData();
-  
-  const enhancedSupplements = stack.supplements.map(supplement => {
-    const productData = findProductData(supplement.name);
+  // Ensure data is initialized
+  if (!cacheInitialized) {
+    await initializeProductData();
+  }
+
+  const enhancedSupplements = await Promise.all(stack.supplements.map(async (supplement) => {
+    const productData = await findProductData(supplement.name);
     
     if (productData) {
-      const actualPrice = parsePrice(productData.price);
-      // Use fallback pricing if actual price is 0 or invalid
-      const finalPrice = actualPrice > 0 ? actualPrice : (
-        typeof supplement.price === 'number' ? supplement.price :
-        supplement.name.toLowerCase().includes('protein') ? 45.99 :
-        supplement.name.toLowerCase().includes('creatine') ? 21.50 :
-        supplement.name.toLowerCase().includes('omega') ? 18.95 :
-        supplement.name.toLowerCase().includes('vitamin d') ? 12.99 :
-        supplement.name.toLowerCase().includes('magnesium') ? 19.95 :
-        supplement.name.toLowerCase().includes('probiotic') ? 29.99 :
-        supplement.name.toLowerCase().includes('melatonin') ? 8.99 :
-        supplement.name.toLowerCase().includes('turmeric') ? 32.97 :
-        supplement.name.toLowerCase().includes('ashwagandha') ? 16.95 :
-        supplement.name.toLowerCase().includes('multivitamin') ? 24.99 :
-        25.99 // Default fallback price
-      );
+      // Parse price from Firestore data with proper type checking
+      let finalPrice = supplement.price || 29.99;
+      
+      if (productData.price) {
+        if (typeof productData.price === 'string') {
+          // Parse string price (e.g., "$29.99", "29.99")
+          const cleanPrice = productData.price.replace(/[$,]/g, '');
+          const parsedPrice = parseFloat(cleanPrice);
+          if (!isNaN(parsedPrice) && parsedPrice > 0) {
+            finalPrice = parsedPrice;
+          }
+        } else if (typeof productData.price === 'number' && productData.price > 0) {
+          // Use numeric price directly
+          finalPrice = productData.price;
+        }
+      }
+      
+      console.log(`✅ Enhancing ${supplement.name}:`);
+      console.log(`   - Original imageUrl: ${supplement.imageUrl}`);
+      console.log(`   - Firestore imageUrl: ${productData.imageUrl}`);
+      console.log(`   - Final imageUrl: ${productData.imageUrl || supplement.imageUrl}`);
       
       return {
         ...supplement,
         price: finalPrice,
         imageUrl: productData.imageUrl || supplement.imageUrl,
-        affiliateUrl: productData.affiliateUrl || supplement.affiliateUrl,
+        affiliateUrl: productData.affiliateUrl || productData.amazonUrl || supplement.affiliateUrl,
         brand: productData.brand || supplement.brand,
         amazonProduct: {
           asin: supplement.amazonProduct?.asin || 'unknown',
-          rating: productData.stars ? parseFloat(productData.stars.split(' ')[0]) : 4.5,
-          reviewCount: productData.reviews ? parseInt(productData.reviews.replace(/,/g, '')) : 1000,
+          rating: productData.rating || 4.5,
+          reviewCount: productData.reviewCount || 1000,
           primeEligible: true,
           qualityScore: 8.5,
           alternatives: supplement.amazonProduct?.alternatives,
           qualityFactors: supplement.amazonProduct?.qualityFactors
         }
       };
+    } else {
+      console.warn(`⚠️ No product data found for: ${supplement.name}, using original data`);
     }
     
     return supplement;
-  });
+  }));
   
   // Recalculate total monthly cost
   const totalMonthlyCost = enhancedSupplements.reduce((total, supplement) => {
@@ -220,5 +217,3 @@ export const generateTabContent = (stack: SupplementStack) => {
   
   return { overview, scientificEvidence, expectedResults };
 };
-
-export { initializeProductData, productDataMap };

@@ -4,34 +4,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.media-amazon.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'm.media-amazon.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images-na.ssl-images-amazon.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.ssl-images-amazon.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.images-amazon.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images-amazon.com',
-      },
-      {
-        protocol: 'https',
         hostname: 'via.placeholder.com',
       },
       {
@@ -49,6 +21,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
     ],
   },

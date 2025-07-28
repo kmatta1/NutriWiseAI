@@ -1,0 +1,362 @@
+{
+  "timestamp": "2025-07-28T00:11:05.039Z",
+  "initialProducts": 603,
+  "newProductsGenerated": 50,
+  "productsAdded": 50,
+  "duplicatesPrevented": 0,
+  "errors": 0,
+  "imageReuses": 0,
+  "totalImagesTracked": 50,
+  "imageProductMappings": [
+    {
+      "imageName": "nutricost_nutricost_ashwagandha_capsules_capsules_5872.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Ashwagandha Capsules by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_ashwagandha_tablets_tablets_5872.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Ashwagandha Tablets by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_ashwagandha_capsules_capsules_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Ashwagandha Capsules by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_ashwagandha_tablets_tablets_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Ashwagandha Tablets by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_ashwagandha_capsules_capsules_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Ashwagandha Capsules by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_ashwagandha_tablets_tablets_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Ashwagandha Tablets by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_cordyceps_capsules_capsules_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Cordyceps Capsules by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_cordyceps_tablets_tablets_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Cordyceps Tablets by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_cordyceps_capsules_capsules_5873.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Cordyceps Capsules by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_cordyceps_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Cordyceps Tablets by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_cordyceps_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Cordyceps Capsules by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_cordyceps_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Cordyceps Tablets by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_ginseng_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Ginseng Capsules by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_ginseng_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Ginseng Tablets by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_ginseng_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Ginseng Capsules by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_ginseng_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Ginseng Tablets by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_ginseng_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Ginseng Capsules by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_ginseng_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Ginseng Tablets by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_reishi_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Reishi Capsules by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_reishi_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Reishi Tablets by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_reishi_capsules_capsules_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Reishi Capsules by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_reishi_tablets_tablets_5874.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Reishi Tablets by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_reishi_capsules_capsules_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Reishi Capsules by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_reishi_tablets_tablets_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Reishi Tablets by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_rhodiola_capsules_capsules_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Rhodiola Capsules by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nutricost_nutricost_rhodiola_tablets_tablets_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Nutricost Rhodiola Tablets by Nutricost"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_rhodiola_capsules_capsules_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Rhodiola Capsules by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "nowfoods_now_foods_rhodiola_tablets_tablets_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Foods Rhodiola Tablets by NOW Foods"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_rhodiola_capsules_capsules_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Rhodiola Capsules by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "gaiaherbs_gaia_herbs_rhodiola_tablets_tablets_5875.jpg",
+      "usedBy": 1,
+      "products": [
+        "Gaia Herbs Rhodiola Tablets by Gaia Herbs"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_arginine_tablets_tablets_5886.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Arginine Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_arginine_tablets_tablets_5887.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Arginine Tablets by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_arginine_tablets_tablets_5887.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports Arginine Tablets by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_211_bcaa_tablets_tablets_5887.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation 2:1:1 BCAA Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_211_bcaa_tablets_tablets_5887.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports 2:1:1 BCAA Tablets by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_211_bcaa_tablets_tablets_5888.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition 2:1:1 BCAA Tablets by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_betaalanine_capsules_capsules_5888.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Beta-Alanine Capsules by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_betaalanine_tablets_tablets_5888.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Beta-Alanine Tablets by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_betaalanine_capsules_capsules_5888.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Beta-Alanine Capsules by Scivation"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_betaalanine_tablets_tablets_5889.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Beta-Alanine Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_betaalanine_capsules_capsules_5889.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports Beta-Alanine Capsules by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_betaalanine_tablets_tablets_5889.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports Beta-Alanine Tablets by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_citrulline_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Citrulline Tablets by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_citrulline_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Citrulline Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_citrulline_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports Citrulline Tablets by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_eaa_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Eaa Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_eaa_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Eaa Tablets by Optimum Nutrition"
+      ]
+    },
+    {
+      "imageName": "nowsports_now_sports_eaa_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "NOW Sports Eaa Tablets by NOW Sports"
+      ]
+    },
+    {
+      "imageName": "scivation_scivation_glutamine_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Scivation Glutamine Tablets by Scivation"
+      ]
+    },
+    {
+      "imageName": "optimumnutritio_optimum_nutrition_glutamine_tablets_tablets_5890.jpg",
+      "usedBy": 1,
+      "products": [
+        "Optimum Nutrition Glutamine Tablets by Optimum Nutrition"
+      ]
+    }
+  ]
+}

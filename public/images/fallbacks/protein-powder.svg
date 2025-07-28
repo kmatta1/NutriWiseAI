@@ -1,0 +1,10 @@
+<!-- SVG Placeholder for Protein Powder -->
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#fef7ed"/>
+  <rect x="60" y="80" width="280" height="300" rx="25" fill="#fed7aa"/>
+  <rect x="80" y="100" width="240" height="260" rx="15" fill="#fdba74"/>
+  <circle cx="200" cy="160" r="35" fill="#f97316"/>
+  <text x="200" y="220" text-anchor="middle" fill="#ea580c" font-family="Arial, sans-serif" font-size="18" font-weight="bold">PROTEIN</text>
+  <text x="200" y="240" text-anchor="middle" fill="#dc2626" font-family="Arial, sans-serif" font-size="14">POWDER</text>
+  <text x="200" y="280" text-anchor="middle" fill="#b45309" font-family="Arial, sans-serif" font-size="10">25g PER SERVING</text>
+</svg>

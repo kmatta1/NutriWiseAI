@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-07-27T15:31:50.305Z",
+  "method": "specific-product-matching",
+  "successfulUpdates": 32,
+  "imageMatches": {
+    "specific-product:creatine monohydrate powder micronized by bulksupplements": 3,
+    "specific-product:omega-3 fish oil 1200mg by nature made": 2,
+    "specific-product:optimum nutrition gold standard 100% whey protein powder - vanilla": 3,
+    "specific-product:vitamin d3 now foods": 5,
+    "specific-product:omega-3 nature made": 2,
+    "fallback:default": 9,
+    "category:protein": 1,
+    "specific-product:magnesium glycinate 400mg by doctor's best": 1,
+    "specific-product:vitamin d3 5000 iu by now foods": 1,
+    "specific-product:multivitamin by garden of life vitamin code men": 1,
+    "specific-product:garden of life multivitamin": 1,
+    "specific-product:pre-workout supplement by legion pulse": 1,
+    "specific-product:bcaa energy amino acid supplement by cellucor c4": 1,
+    "specific-product:collagen peptides powder by vital proteins": 1,
+    "specific-product:l-carnitine 1000mg by nutricost": 1
+  },
+  "errors": [
+    "BCAA Energy Amino Acid Supplement by Cellucor C4: HTTP 404: Not Found"
+  ]
+}

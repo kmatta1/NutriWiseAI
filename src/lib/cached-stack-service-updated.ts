@@ -436,9 +436,10 @@ export class CachedStackService {
       const goalMatched = filtered.filter(supplement => 
         goals.some(goal => 
           supplement.name.toLowerCase().includes(goal.toLowerCase()) ||
-          supplement.features.some(feature => 
-            feature.toLowerCase().includes(goal.toLowerCase())
-          )
+          (supplement.features && Array.isArray(supplement.features) && 
+            supplement.features.some(feature => 
+              feature && feature.toLowerCase().includes(goal.toLowerCase())
+            ))
         )
       );
       
@@ -473,9 +474,10 @@ export class CachedStackService {
       supplement.name.toLowerCase().includes(searchTerm) ||
       supplement.brand.toLowerCase().includes(searchTerm) ||
       supplement.type.toLowerCase().includes(searchTerm) ||
-      supplement.features.some(feature => 
-        feature.toLowerCase().includes(searchTerm)
-      )
+      (supplement.features && Array.isArray(supplement.features) && 
+        supplement.features.some(feature => 
+          feature && feature.toLowerCase().includes(searchTerm)
+        ))
     ).sort((a, b) => b.rating - a.rating);
   }
 

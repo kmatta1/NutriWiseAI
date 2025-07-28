@@ -15,11 +15,13 @@ export default function CartPage() {
   const { state, dispatch } = useCart();
 
   const handleQuantityChange = (supplementName: string, quantity: number) => {
-    if (quantity >= 0) {
+    if (quantity > 0) {
       dispatch({
         type: "UPDATE_QUANTITY",
         payload: { supplementName, quantity },
       });
+    } else {
+      dispatch({ type: "REMOVE_ITEM", payload: { supplementName } });
     }
   };
 
@@ -52,7 +54,36 @@ export default function CartPage() {
 
     try {
       console.log('🛒 Processing Amazon checkout with items:', cartItems);
-      const cartUrl = await WorkingAmazonCart.addToCart(cartItems);
+      
+      // Check which items can be found on Amazon
+      const validItems = [];
+      const invalidItems = [];
+      
+      cartItems.forEach(item => {
+        const product = WorkingAmazonCart.getProductDetails(item.name);
+        if (product) {
+          validItems.push(item);
+          console.log(`✅ Found Amazon product for: ${item.name} -> ${product.title}`);
+        } else {
+          invalidItems.push(item);
+          console.log(`❌ No Amazon product found for: ${item.name}`);
+        }
+      });
+      
+      if (validItems.length === 0) {
+        alert('None of your cart items are available on Amazon. Please add supplements from our recommendations to enable Amazon checkout.');
+        return;
+      }
+      
+      if (invalidItems.length > 0) {
+        const proceed = confirm(`${invalidItems.length} items cannot be added to Amazon cart. Continue with ${validItems.length} available items?`);
+        if (!proceed) return;
+      }
+      
+      const cartUrl = await WorkingAmazonCart.addToCart(validItems);
+      
+      // Show success message
+      alert(`Successfully added ${validItems.length} items to Amazon cart!`);
       
       // Redirect to Amazon cart
       window.open(cartUrl, '_blank');

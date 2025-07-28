@@ -14,7 +14,11 @@
     "test-amazon-connection": "ts-node scripts/test-amazon-connection.ts",
     "generate-all-stacks": "node scripts/comprehensive_stack_generator.mjs",
     "test-firestore": "node scripts/test_firestore.mjs",
-    "setup-firestore": "node scripts/setup_firestore_rules.mjs"
+    "setup-firestore": "node scripts/setup_firestore_rules.mjs",
+    "setup-hybrid": "ts-node scripts/setup-hybrid-architecture.ts",
+    "seed-hybrid": "ts-node scripts/seed-hybrid-database.ts",
+    "seed-firestore": "ts-node scripts/seed-product-catalog.ts",
+    "seed-vector": "ts-node scripts/seed-vector-database.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",
@@ -45,11 +49,14 @@
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "axios": "^1.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.0",
     "embla-carousel-autoplay": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
     "firebase": "^12.0.0",
+    "firebase-admin": "^13.4.0",
     "genkit": "^1.0.0",
     "lucide-react": "^0.417.0",
     "next": "15.4.1",
