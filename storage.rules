@@ -4,6 +4,31 @@ rules_version = '2';
 // For more information, see: https://firebase.google.com/docs/storage/security
 service firebase.storage {
   match /b/{bucket}/o {
+    // Allow public read access to supplement images - FIXED FOR REAL DATABASE IMAGES
+    match /images/supplements/{allPaths=**} {
+      allow read: if true;  // Public read access for supplement images
+      allow write: if request.auth != null;
+    }
+    
+    // Allow public read access to product images (legacy)
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow public read access to product-images folder (legacy)
+    match /product-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow public read access to all images folder
+    match /images/{allPaths=**} {
+      allow read: if true;  // Public read access for all images
+      allow write: if request.auth != null;
+    }
+    
+    // All other files require authentication
     match /{allPaths=**} {
       allow read, write: if request.auth != null;
     }

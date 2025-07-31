@@ -145,13 +145,30 @@ export class ProductCatalogService {
       this.catalog = snapshot.docs.map(doc => {
         const data = doc.data();
         
-        // Prioritize Firebase Storage URLs, fallback to database imageUrl
-        const imageUrl = this.getOptimizedImageUrl(data);
+        // Prioritize Firebase Storage URLs, convert to working format
+        const originalImageUrl = data.imageUrl || data.image;
+        const optimizedImageUrl = this.getOptimizedImageUrl(data);
+        
+        // Debug logging for image URLs
+        if (originalImageUrl) {
+          console.log(`📸 Product: ${data.name || data.productName}`);
+          console.log(`   Original URL: ${originalImageUrl.substring(0, 80)}...`);
+          console.log(`   Optimized URL: ${optimizedImageUrl || 'null'}`);
+        }
+        
+        // Log URL conversion for debugging
+        if (originalImageUrl && optimizedImageUrl !== originalImageUrl) {
+          console.log(`🔄 URL Fix for ${data.name}:`);
+          console.log(`  ❌ Original: ${originalImageUrl}`);
+          console.log(`  ✅ Fixed: ${optimizedImageUrl}`);
+        } else if (optimizedImageUrl) {
+          console.log(`✅ Good URL for ${data.name}: ${optimizedImageUrl}`);
+        }
         
         return {
           id: doc.id,
           ...data,
-          imageUrl: imageUrl, // Optimized Firebase Storage URL
+          imageUrl: optimizedImageUrl, // Optimized Firebase Storage URL
           // Ensure arrays exist and are properly initialized
           targetGoals: Array.isArray(data.targetGoals) ? data.targetGoals : [],
           activeIngredients: Array.isArray(data.activeIngredients) ? data.activeIngredients : [],
@@ -180,29 +197,64 @@ export class ProductCatalogService {
   }
 
   /**
-   * Get optimized image URL prioritizing Firebase Storage
+   * Get optimized image URL prioritizing Firebase Storage - FIXED for double encoding
    */
   private getOptimizedImageUrl(data: any): string | null {
-    // Priority order:
-    // 1. Firebase Storage URLs (firebasestorage.googleapis.com or firebasestorage.app)
-    // 2. Existing imageUrl if already Firebase Storage
-    // 3. null for broken Amazon URLs
-    
     const imageUrl = data.imageUrl || data.image;
     
     if (!imageUrl) return null;
-    
-    // Check if already Firebase Storage URL
-    if (imageUrl.includes('firebasestorage.googleapis.com') || 
-        imageUrl.includes('firebasestorage.app')) {
-      return imageUrl;
-    }
     
     // Skip Amazon URLs (they're broken)
     if (imageUrl.includes('amazon.com')) {
       return null;
     }
     
+    // If it's already a working Firebase Storage API URL, return it
+    if (imageUrl.includes('firebasestorage.googleapis.com') && imageUrl.includes('?alt=media')) {
+      return imageUrl;
+    }
+    
+    // Convert storage.googleapis.com URLs to working Firebase Storage API format
+    if (imageUrl.includes('storage.googleapis.com/nutriwise-ai-3fmvs.firebasestorage.app/')) {
+      // Extract the path after the bucket name, stopping at any query parameters
+      const pathMatch = imageUrl.match(/storage\.googleapis\.com\/nutriwise-ai-3fmvs\.firebasestorage\.app\/(.+?)(\?|$)/);
+      if (pathMatch) {
+        const filePath = pathMatch[1];
+        console.log(`🔄 Converting Firebase Storage URL. File path: ${filePath}`);
+        // Don't double-encode if already encoded
+        const encodedPath = filePath.includes('%2F') ? filePath : filePath.replace(/\//g, '%2F');
+        const finalUrl = `https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/${encodedPath}?alt=media`;
+        console.log(`✅ Converted to: ${finalUrl}`);
+        return finalUrl;
+      }
+    }
+    
+    // If it's a relative path like "images/supplements/filename.jpg", convert to Firebase Storage API
+    if (imageUrl.startsWith('images/supplements/') || imageUrl.includes('/images/supplements/')) {
+      let filePath = imageUrl;
+      // Remove leading slash if present
+      if (filePath.startsWith('/')) {
+        filePath = filePath.substring(1);
+      }
+      // Extract just the path if it's a full URL
+      if (filePath.includes('/images/supplements/')) {
+        const match = filePath.match(/images\/supplements\/.+$/);
+        if (match) {
+          filePath = match[0];
+        }
+      }
+      
+      // Proper single encoding - replace slashes with %2F only
+      const encodedPath = filePath.replace(/\//g, '%2F');
+      return `https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/${encodedPath}?alt=media`;
+    }
+    
+    // If it contains firebasestorage.app but wrong format, try to fix it
+    if (imageUrl.includes('firebasestorage.app')) {
+      return imageUrl;
+    }
+    
+    // For any other URL format, return as-is
     return imageUrl;
   }
 

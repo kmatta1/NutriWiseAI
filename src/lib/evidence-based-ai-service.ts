@@ -2,6 +2,8 @@
 // Complete AI Service with Evidence-Based Logic for All Goals
 // Replaces broken vector database dependencies with scientific supplement selection
 
+import { ProductCatalogService } from './product-catalog-service';
+
 // Local types instead of importing from @/types
 interface UserProfile {
   age: number;
@@ -74,7 +76,7 @@ const EVIDENCE_SUPPLEMENTS = {
     asin: 'B000QSNYGI',
     amazonUrl: 'https://www.amazon.com/dp/B000QSNYGI',
     affiliateUrl: 'https://www.amazon.com/dp/B000QSNYGI?tag=nutriwiseai-20',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Foptimum-nutrition-gold-standard-100-whey-protein-powder-vanilla.jpg?alt=media',
+    imageUrl: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&h=400&fit=crop',
     evidenceLevel: 'very_high',
     studyCount: 127,
     goalRelevance: {
@@ -119,7 +121,7 @@ const EVIDENCE_SUPPLEMENTS = {
     asin: 'B00E9M4XEE',
     amazonUrl: 'https://www.amazon.com/dp/B00E9M4XEE',
     affiliateUrl: 'https://www.amazon.com/dp/B00E9M4XEE?tag=nutriwiseai-20',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Fpure-micronized-creatine-monohydrate-powder.jpg?alt=media',
+    imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
     evidenceLevel: 'very_high',
     studyCount: 500,
     goalRelevance: {
@@ -204,7 +206,7 @@ const EVIDENCE_SUPPLEMENTS = {
     asin: 'B002DTC0WQ',
     amazonUrl: 'https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20',
     affiliateUrl: 'https://amazon.com/dp/B00GB85JR4?tag=nutriwiseai-20',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Fvitamin-d3-5000-iu-by-now-foods.jpg?alt=media',
+    imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop',
     evidenceLevel: 'very_high',
     studyCount: 200,
     goalRelevance: {
@@ -226,7 +228,7 @@ const EVIDENCE_SUPPLEMENTS = {
     dosage: '1 softgel',
     timing: 'With meals',
     reasoning: 'EPA/DHA reduce inflammation, support cardiovascular health, brain function, and enhance recovery.',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Ftriple-strength-omega-3-fish-oil-by-nordic-naturals.jpg?alt=media',
+    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=400&fit=crop',
     evidenceLevel: 'very_high',
     studyCount: 300,
     goalRelevance: {
@@ -248,7 +250,7 @@ const EVIDENCE_SUPPLEMENTS = {
     dosage: '2 tablets',
     timing: 'Before bedtime',
     reasoning: 'Essential for 300+ enzymatic reactions. Improves sleep quality, reduces muscle cramping, supports recovery.',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nutriwise-ai-3fmvs.firebasestorage.app/o/product-images%2Fhigh-absorption-magnesium-by-doctors-best.jpg?alt=media',
+    imageUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&h=400&fit=crop',
     evidenceLevel: 'high',
     studyCount: 120,
     goalRelevance: {
@@ -422,6 +424,11 @@ const GOAL_NORMALIZATION = {
 };
 
 export class EvidenceBasedAI {
+  private productCatalog: ProductCatalogService;
+  
+  constructor() {
+    this.productCatalog = new ProductCatalogService();
+  }
   
   async generateEvidenceBasedStack(userProfile: UserProfile): Promise<SupplementStack> {
     try {
@@ -436,7 +443,7 @@ export class EvidenceBasedAI {
       const budget = userProfile.budget || 100;
       
       // Select supplements based on evidence and budget
-      const selectedSupplements = this.selectSupplementsForGoal(goalMap, budget, userProfile);
+      const selectedSupplements = await this.selectSupplementsForGoal(goalMap, budget, userProfile);
       
       // Generate stack
       const stack = this.createSupplementStack(
@@ -464,13 +471,13 @@ export class EvidenceBasedAI {
     });
   }
   
-  private selectSupplementsForGoal(goalMap: any, budget: number, userProfile: UserProfile) {
+  private async selectSupplementsForGoal(goalMap: any, budget: number, userProfile: UserProfile) {
     const selectedSupplements = [];
     let runningCost = 0;
     
     // Add essential supplements first
     for (const suppKey of goalMap.essential) {
-      const supplement = EVIDENCE_SUPPLEMENTS[suppKey];
+      const supplement = await this.getProductFromCatalog(suppKey);
       if (supplement && runningCost + supplement.price <= budget) {
         selectedSupplements.push(supplement);
         runningCost += supplement.price;
@@ -479,7 +486,7 @@ export class EvidenceBasedAI {
     
     // Add beneficial supplements if budget allows
     for (const suppKey of goalMap.beneficial) {
-      const supplement = EVIDENCE_SUPPLEMENTS[suppKey];
+      const supplement = await this.getProductFromCatalog(suppKey);
       if (supplement && runningCost + supplement.price <= budget) {
         selectedSupplements.push(supplement);
         runningCost += supplement.price;
@@ -488,7 +495,7 @@ export class EvidenceBasedAI {
     
     // Add supportive supplements if budget allows
     for (const suppKey of goalMap.supportive) {
-      const supplement = EVIDENCE_SUPPLEMENTS[suppKey];
+      const supplement = await this.getProductFromCatalog(suppKey);
       if (supplement && runningCost + supplement.price <= budget) {
         selectedSupplements.push(supplement);
         runningCost += supplement.price;
@@ -500,11 +507,112 @@ export class EvidenceBasedAI {
       // Replace whey protein with plant protein
       const wheyIndex = selectedSupplements.findIndex(s => s.id === 'whey-protein-optimum');
       if (wheyIndex !== -1) {
-        selectedSupplements[wheyIndex] = EVIDENCE_SUPPLEMENTS.plantProtein;
+        const plantProtein = await this.getProductFromCatalog('plantProtein');
+        if (plantProtein) {
+          selectedSupplements[wheyIndex] = plantProtein;
+        }
       }
     }
     
     return selectedSupplements;
+  }
+  
+  /**
+   * Get real product from catalog using evidence supplement key
+   */
+  private async getProductFromCatalog(suppKey: string): Promise<any> {
+    const evidenceSupplement = EVIDENCE_SUPPLEMENTS[suppKey];
+    if (!evidenceSupplement) {
+      console.log(`No evidence supplement found for key: ${suppKey}`);
+      return null;
+    }
+    
+    console.log(`🔍 Searching for product: ${evidenceSupplement.name} by ${evidenceSupplement.brand}`);
+    
+    // Ensure catalog is loaded
+    await this.productCatalog.getProducts(); // This calls ensureCatalogLoaded internally
+    
+    // Search for the product by exact name match
+    const searchResults = this.productCatalog.searchProducts(evidenceSupplement.name);
+    let realProduct = searchResults.find(p => p.name === evidenceSupplement.name);
+    
+    // If no exact match, try searching by brand + partial name
+    if (!realProduct && searchResults.length > 0) {
+      realProduct = searchResults.find(p => 
+        p.brand === evidenceSupplement.brand && 
+        p.name.toLowerCase().includes(evidenceSupplement.name.toLowerCase().split(' ').slice(0, 3).join(' '))
+      );
+    }
+    
+    // If still no match, try brand + key ingredients (UNIVERSAL flexible search)
+    if (!realProduct) {
+      const brandProducts = this.productCatalog.searchProducts(evidenceSupplement.brand);
+      console.log(`📦 Found ${brandProducts.length} products from ${evidenceSupplement.brand}`);
+      
+      // Extract key terms from supplement name for universal matching
+      const supplementNameLower = evidenceSupplement.name.toLowerCase();
+      const keyTerms = this.extractKeyTerms(supplementNameLower);
+      console.log(`🔍 Key terms for matching: ${keyTerms.join(', ')}`);
+      
+      // Try to match products by key ingredients
+      realProduct = brandProducts.find(p => {
+        const productNameLower = p.name.toLowerCase();
+        const matchCount = keyTerms.filter(term => productNameLower.includes(term)).length;
+        return matchCount >= Math.min(2, keyTerms.length); // Must match at least 2 terms or all if less than 2
+      });
+      
+      // If no brand match, try across all products
+      if (!realProduct) {
+        console.log(`🌐 Searching across all products for: ${keyTerms.join(', ')}`);
+        const allProducts = await this.productCatalog.getProducts();
+        realProduct = allProducts.find(p => {
+          const productNameLower = p.name.toLowerCase();
+          const matchCount = keyTerms.filter(term => productNameLower.includes(term)).length;
+          return matchCount >= Math.min(2, keyTerms.length);
+        });
+      }
+      
+      if (realProduct) {
+        console.log(`🎯 Universal search found: ${realProduct.name}`);
+      }
+    }
+    
+    // If still no match, try just brand search (fallback)
+    if (!realProduct && searchResults.length > 0) {
+      realProduct = searchResults.find(p => p.brand === evidenceSupplement.brand);
+    }
+    
+    if (realProduct) {
+      console.log(`✅ Found real product for ${evidenceSupplement.name}: ${realProduct.name}`);
+      console.log(`📸 Real image URL: ${realProduct.imageUrl}`);
+      // Merge evidence data with real product data
+      return {
+        id: realProduct.id,
+        name: realProduct.name,
+        brand: realProduct.brand,
+        category: realProduct.category,
+        price: realProduct.currentPrice,
+        dosage: evidenceSupplement.dosage,
+        timing: evidenceSupplement.timing,
+        reasoning: evidenceSupplement.reasoning,
+        amazonUrl: realProduct.amazonUrl,
+        affiliateUrl: realProduct.affiliateUrl,
+        imageUrl: realProduct.imageUrl, // This will be the Firebase Storage URL!
+        evidenceLevel: evidenceSupplement.evidenceLevel,
+        studyCount: evidenceSupplement.studyCount,
+        goalRelevance: evidenceSupplement.goalRelevance,
+        rating: realProduct.rating,
+        reviewCount: realProduct.reviewCount,
+        description: realProduct.description || evidenceSupplement.reasoning
+      };
+    } else {
+      // Fallback to evidence supplement data but WITHOUT any fallback image
+      console.log(`⚠️ Could not find real product for ${evidenceSupplement.name}, using evidence data WITHOUT image`);
+      return {
+        ...evidenceSupplement,
+        imageUrl: null // NO fallback images - show text only
+      };
+    }
   }
   
   private createSupplementStack(
@@ -663,5 +771,32 @@ export class EvidenceBasedAI {
       'https://pubmed.ncbi.nlm.nih.gov/25293431/ - Omega-3 fatty acids and exercise recovery',
       'https://pubmed.ncbi.nlm.nih.gov/28471731/ - Ashwagandha for stress and cortisol reduction'
     ];
+  }
+
+  private extractKeyTerms(supplementName: string): string[] {
+    // Remove common words and extract meaningful terms
+    const commonWords = ['supplement', 'capsules', 'tablets', 'powder', 'extract', 'complex', 'formula', 'blend', 'pure', 'premium', 'high', 'potency'];
+    const words = supplementName.split(' ').filter(word => 
+      word.length > 2 && !commonWords.includes(word.toLowerCase())
+    );
+    
+    // Add specific ingredient mapping
+    const keyTerms = [...words];
+    
+    // Add specific mappings for common supplements
+    if (supplementName.includes('creatine')) keyTerms.push('creatine', 'monohydrate');
+    if (supplementName.includes('ashwagandha')) keyTerms.push('ashwagandha', 'ksm-66', 'ksm66', 'extract');
+    if (supplementName.includes('protein')) keyTerms.push('protein', 'whey', 'isolate');
+    if (supplementName.includes('vitamin d')) keyTerms.push('vitamin', 'd3', 'cholecalciferol');
+    if (supplementName.includes('omega')) keyTerms.push('omega', 'fish', 'oil');
+    if (supplementName.includes('magnesium')) keyTerms.push('magnesium', 'glycinate', 'chelate', 'bisglycinate');
+    if (supplementName.includes('zinc')) keyTerms.push('zinc', 'picolinate', 'chelate');
+    if (supplementName.includes('b12')) keyTerms.push('b12', 'cobalamin', 'methylcobalamin');
+    if (supplementName.includes('bcaa')) keyTerms.push('bcaa', 'amino', 'leucine', 'isoleucine', 'valine');
+    if (supplementName.includes('glutamine')) keyTerms.push('glutamine', 'l-glutamine');
+    if (supplementName.includes('tribulus')) keyTerms.push('tribulus', 'terrestris');
+    if (supplementName.includes('rhodiola')) keyTerms.push('rhodiola', 'rosea');
+    
+    return [...new Set(keyTerms.map(term => term.toLowerCase()))];
   }
 }

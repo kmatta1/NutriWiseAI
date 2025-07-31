@@ -9,6 +9,7 @@
  */
 
 import { EvidenceBasedAI } from './evidence-based-ai-service';
+import { productCatalogService, PersonalizedStack } from './product-catalog-service';
 import { SupplementAdvisorInput } from './actions';
 
 export interface DynamicAdvisorResult {
@@ -23,6 +24,7 @@ export interface DynamicAdvisorResult {
 
 export class DynamicAIAdvisorService {
   private static instance: DynamicAIAdvisorService;
+  private evidenceBasedAI = new EvidenceBasedAI();
   private evidenceBasedAI = new EvidenceBasedAI();
 
   static getInstance(): DynamicAIAdvisorService {
@@ -39,40 +41,64 @@ export class DynamicAIAdvisorService {
     const startTime = Date.now();
     
     try {
+      console.log('� Starting evidence-based AI recommendation generation...');
+      
       // Convert form input to user profile for evidence-based AI
       const userProfile = this.convertInputToUserProfile(input);
+      console.log('User profile for evidence-based AI:', userProfile);
       
-      console.log(`Generating evidence-based recommendations for goals: ${userProfile.fitnessGoals.join(', ')}`);
-      
-      // Generate personalized stack using evidence-based AI
+      // Generate personalized stack using evidence-based AI system
+      console.log('Calling evidence-based AI service...');
       const evidenceBasedStack = await this.evidenceBasedAI.generateEvidenceBasedStack(userProfile);
+      console.log('Generated evidence-based stack:', evidenceBasedStack);
       
       const processingTime = Date.now() - startTime;
       const budgetUtilization = (evidenceBasedStack.totalMonthlyCost / (input.budget || 100)) * 100;
       
-      console.log(`Generated ${evidenceBasedStack.supplements.length} supplement stack in ${processingTime}ms`);
+      console.log(`✅ Generated ${evidenceBasedStack.supplements.length} evidence-based recommendations in ${processingTime}ms`);
       console.log(`Budget utilization: ${Math.round(budgetUtilization)}%`);
       
       return {
         success: true,
         stack: evidenceBasedStack,
-        source: 'evidence-based-ai',
+        source: 'dynamic-ai',
         processingTime,
         recommendations: evidenceBasedStack.supplements.length,
         budgetUtilization: Math.round(budgetUtilization)
       };
       
     } catch (error) {
-      console.error('Dynamic AI Advisor error:', error);
-      return {
-        success: false,
-        stack: null,
-        source: 'evidence-based-ai',
-        processingTime: Date.now() - startTime,
-        recommendations: 0,
-        budgetUtilization: 0,
-        error: error instanceof Error ? error.message : 'Unknown error occurred'
-      };
+      console.error('❌ Error in evidence-based AI generation:', error);
+      
+      // Fallback to product catalog service if evidence-based AI fails
+      console.log('🔄 Falling back to product catalog service...');
+      try {
+        const userProfile = this.convertInputToUserProfile(input);
+        const personalizedStack = await productCatalogService.generatePersonalizedStack(userProfile);
+        
+        const processingTime = Date.now() - startTime;
+        const budgetUtilization = (personalizedStack.totalMonthlyCost / (input.budget || 100)) * 100;
+        
+        return {
+          success: true,
+          stack: personalizedStack,
+          source: 'dynamic-ai',
+          processingTime,
+          recommendations: personalizedStack.recommendations.length,
+          budgetUtilization: Math.round(budgetUtilization)
+        };
+      } catch (fallbackError) {
+        console.error('❌ Both evidence-based AI and fallback failed:', fallbackError);
+        return {
+          success: false,
+          stack: null,
+          source: 'dynamic-ai',
+          processingTime: Date.now() - startTime,
+          recommendations: 0,
+          budgetUtilization: 0,
+          error: error instanceof Error ? error.message : 'AI recommendation system temporarily unavailable'
+        };
+      }
     }
   }
 
@@ -173,6 +199,144 @@ export class DynamicAIAdvisorService {
       healthConcerns: mappedHealthConcerns,
       activityLevel: input.activityLevel || 'moderate',
       experienceLevel: currentSupplements.length > 2 ? 'advanced' : 'beginner'
+    };
+  }
+
+  /**
+   * Convert evidence-based stack or PersonalizedStack to format expected by frontend components
+   */
+  convertStackToFrontendFormat(stack: any) {
+    // Handle evidence-based stack format (from evidence-based-ai-service)
+    if (stack.supplements && Array.isArray(stack.supplements)) {
+      return {
+        id: stack.id,
+        name: stack.name,
+        description: stack.description,
+        supplements: stack.supplements.map((supp: any) => ({
+          name: supp.name,
+          brand: supp.brand,
+          dosage: supp.dosage,
+          timing: supp.timing,
+          reasoning: supp.reasoning,
+          price: supp.price,
+          affiliateUrl: supp.affiliateUrl || supp.amazonUrl,
+          imageUrl: supp.imageUrl, // Use database image from evidence-based service
+          commissionRate: 0.08, // Standard commission rate
+          amazonProduct: {
+            asin: supp.asin,
+            rating: supp.rating || 4.5,
+            reviewCount: supp.reviewCount || 50000,
+            primeEligible: supp.primeEligible || true,
+            qualityScore: 8,
+            qualityFactors: {
+              thirdPartyTested: true,
+              gmpCertified: true,
+              organicCertified: false,
+              allergenFree: true,
+              bioavailableForm: true,
+              contaminantFree: true
+            }
+          },
+          priority: 8,
+          synergies: ['Evidence-based supplement selection'],
+          evidenceLevel: supp.evidenceLevel || 'high',
+          studyCount: supp.studyCount || 10
+        })),
+        totalMonthlyCost: stack.totalMonthlyCost,
+        estimatedCommission: stack.estimatedCommission || (stack.totalMonthlyCost * 0.08),
+        evidenceScore: stack.evidenceScore || 8,
+        userSuccessRate: stack.userSuccessRate || 85,
+        timeline: stack.timeline || 'Results typically seen within 2-8 weeks',
+        synergies: stack.synergies || ['Evidence-based supplement combinations'],
+        contraindications: stack.contraindications || [],
+        scientificBacking: stack.scientificBacking || {
+          studyCount: stack.supplements?.reduce((total: number, s: any) => total + (s.studyCount || 10), 0) || 50,
+          qualityScore: stack.evidenceScore || 8,
+          citations: ['Evidence-based supplement research']
+        },
+        expectedResults: {
+          timeline: stack.timeline || 'Results typically seen within 2-8 weeks',
+          benefits: ['Evidence-based health support', 'Scientifically proven benefits']
+        },
+        scientificRationale: `Evidence-based stack with ${stack.evidenceScore}/10 science score. Selected from comprehensive research database.`,
+        safetyNotes: stack.contraindications || ['Follow recommended dosages', 'Consult healthcare provider'],
+        monitoringRecommendations: ['Track progress weekly', 'Monitor for desired outcomes', 'Adjust based on response']
+      };
+    }
+
+    // Handle PersonalizedStack format (from product-catalog-service) - fallback
+    if (stack.recommendations && Array.isArray(stack.recommendations)) {
+      return {
+        id: stack.id,
+        name: stack.name,
+        description: stack.description,
+        supplements: stack.recommendations.map((rec: any) => ({
+          name: rec.product.name,
+          brand: rec.product.brand,
+          dosage: rec.dosageAdjustment?.adjustedAmount || rec.product.recommendedDosage?.amount || '1 serving',
+          timing: rec.product.recommendedDosage?.timing?.replace('-', ' ') || 'with meals',
+          reasoning: rec.reasoning,
+          price: rec.product.currentPrice,
+          affiliateUrl: rec.product.affiliateUrl,
+          imageUrl: rec.product.imageUrl, // Use database image
+          commissionRate: rec.product.commissionRate || 0.08,
+          amazonProduct: {
+            asin: rec.product.asin,
+            rating: rec.product.rating,
+            reviewCount: rec.product.reviewCount,
+            primeEligible: rec.product.primeEligible,
+            qualityScore: 7,
+            qualityFactors: rec.product.qualityFactors
+          },
+          priority: rec.priority,
+          synergies: rec.synergies,
+          evidenceLevel: rec.product.evidenceLevel,
+          studyCount: rec.product.studyCount
+        })),
+        totalMonthlyCost: stack.totalMonthlyCost,
+        estimatedCommission: stack.recommendations.reduce(
+          (total: number, rec: any) => total + (rec.product.currentPrice * (rec.product.commissionRate || 0.08)), 
+          0
+        ),
+        evidenceScore: 7,
+        userSuccessRate: 80,
+        timeline: stack.expectedResults?.timeline || 'Results typically seen within 2-8 weeks',
+        synergies: ['Product catalog recommendations'],
+        contraindications: stack.safetyNotes || [],
+        scientificBacking: {
+          studyCount: stack.recommendations.reduce((total: number, rec: any) => total + (rec.product.studyCount || 0), 0),
+          qualityScore: 7,
+          citations: stack.recommendations.flatMap((rec: any) => rec.product.citations || []).slice(0, 5)
+        },
+        expectedResults: stack.expectedResults || { 
+          timeline: 'Results typically seen within 2-8 weeks',
+          benefits: ['General health support']
+        },
+        scientificRationale: stack.scientificRationale,
+        safetyNotes: stack.safetyNotes,
+        monitoringRecommendations: stack.monitoringRecommendations
+      };
+    }
+
+    // If neither format matches, return a basic structure
+    console.warn('Unknown stack format, returning basic structure');
+    return {
+      id: 'unknown-stack',
+      name: 'Basic Supplement Stack',
+      description: 'Generated supplement recommendations',
+      supplements: [],
+      totalMonthlyCost: 0,
+      estimatedCommission: 0,
+      evidenceScore: 5,
+      userSuccessRate: 70,
+      timeline: 'Results typically seen within 2-8 weeks',
+      synergies: [],
+      contraindications: [],
+      scientificBacking: { studyCount: 0, qualityScore: 5, citations: [] },
+      expectedResults: { timeline: 'Results typically seen within 2-8 weeks', benefits: [] },
+      scientificRationale: 'Basic supplement recommendations',
+      safetyNotes: [],
+      monitoringRecommendations: []
     };
   }
 

@@ -215,10 +215,12 @@ export default function AdvisorForm({ onSubmit, isLoading = false, prefillData }
       }
       
       // Call the original onSubmit
+      console.log('🔥 Calling parent onSubmit function...');
       await onSubmit(data);
+      console.log('✅ Parent onSubmit completed successfully');
       setFormState('submitted');
     } catch (error) {
-      console.error("Error handling form submission:", error);
+      console.error("❌ Error in AdvisorForm handleSubmit:", error);
       toast({
         title: "Submission Error",
         description: "There was an issue processing your request. Please try again.",

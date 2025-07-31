@@ -22,6 +22,7 @@ export function SupplementStackCard({ stack, onPurchase, isLoading = false }: Su
 
   const getImageUrl = (supplement: any): string | null => {
     // Return the raw image URL stored in the database
+    console.log(`🖼️ Image URL for ${supplement.name}:`, supplement.imageUrl);
     return supplement.imageUrl ?? null;
   };
 
@@ -79,28 +80,17 @@ export function SupplementStackCard({ stack, onPurchase, isLoading = false }: Su
               <Card key={index} className="border border-border/30 hover:border-primary/30 transition-all duration-200 bg-card/50">
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row gap-6">
-                    {/* Product Image */}
-                    <div className="w-full md:w-32 h-32 flex-shrink-0">
-                      {imageUrl && !hasImageError ? (
+                    {/* Product Image - Only show if imageUrl exists */}
+                    {imageUrl && !hasImageError && (
+                      <div className="w-full md:w-32 h-32 flex-shrink-0">
                         <img
                           src={imageUrl}
                           alt={supplement.name}
                           className="w-full h-full object-cover rounded-lg shadow-md"
                           onError={() => handleImageError(supplement.name)}
                         />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center border border-border/30">
-                          <div className="text-center p-2">
-                            <div className="text-primary font-bold text-sm mb-1">
-                              {supplement.brand || 'Premium'}
-                            </div>
-                            <div className="text-xs text-muted-foreground font-medium">
-                              {supplement.name.split(' ').slice(0, 2).join(' ')}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Product Details */}
                     <div className="flex-1 space-y-4">

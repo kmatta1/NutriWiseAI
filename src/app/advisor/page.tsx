@@ -165,111 +165,21 @@ export default function AdvisorPage() {
         description: "Processing with comprehensive AI and scientific evidence...",
       });
 
-      // Use comprehensive AI advisor
-      let advisorResult;
-      try {
-        
-        // Convert form data to comprehensive user profile
-        const comprehensiveProfile = {
-          // Demographics
-          age: advisorInput.age,
-          gender: advisorInput.gender, 
-          weight: advisorInput.weight,
-          height: 70, // Default height if not provided
-          bodyFatPercentage: undefined,
-          
-          // Goals & Lifestyle
-          primaryGoals: advisorInput.fitnessGoals || [],
-          secondaryGoals: [],
-          activityLevel: advisorInput.activityLevel || 'moderate',
-          trainingType: [],
-          diet: 'omnivore',
-          sleepHours: 7,
-          stressLevel: 'medium',
-          
-          // Health & Medical
-          healthConditions: [],
-          medications: [],
-          allergies: [],
-          supplementExperience: 'intermediate',
-          previousSupplements: advisorInput.currentSupplements || [],
-          
-          // Preferences & Constraints
-          budget: advisorInput.budget || 100,
-          maxSupplements: 5,
-          preferredBrands: [],
-          avoidIngredients: [],
-          
-          // Tracking & Outcomes  
-          desiredOutcomes: advisorInput.fitnessGoals || [],
-          timeframe: '3-months',
-          complianceLevel: 'high'
-        };
-        
-        // Call comprehensive AI advisor via API route (server-side)
-        const apiResponse = await fetch('/api/comprehensive-advisor', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(comprehensiveProfile)
-        });
-        
-        const comprehensiveApiResult = await apiResponse.json();
-        
-        if (!comprehensiveApiResult.success) {
-          throw new Error(comprehensiveApiResult.error || 'Comprehensive AI failed');
-        }
-        
-        const comprehensiveResult = comprehensiveApiResult.recommendationStack;
-        
-        // Convert comprehensive AI result to expected format
-        advisorResult = {
-          success: true,
-          stack: comprehensiveResult,
-          source: 'dynamic-ai' as const, // Keep as dynamic-ai for type compatibility
-          processingTime: 0, // Not tracked in comprehensive AI
-          recommendations: comprehensiveResult.recommendations?.length || 0,
-          budgetUtilization: Math.round((comprehensiveResult.totalMonthlyCost / (advisorInput.budget || 100)) * 100)
-        };
-        
-        // Show AI insights in toast
-        if (comprehensiveApiResult.aiInsights) {
-          setTimeout(() => {
-            toast({
-              title: "🧠 AI Analysis Complete",
-              description: comprehensiveApiResult.aiInsights,
-              duration: 6000
-            });
-          }, 1000);
-        }
-        
-      } catch (error) {
-        advisorResult = await dynamicAIAdvisorService.generateRecommendations(advisorInput);
-      }
+      // Use dynamic AI advisor directly - simplified approach
+      console.log('🤖 Generating recommendations with dynamic AI advisor...');
+      
+      const advisorResult = await dynamicAIAdvisorService.generateRecommendations(advisorInput);
+      console.log('Advisor result:', advisorResult);
       
       if (advisorResult.success && advisorResult.stack) {
-        // Convert to frontend format for display
-        let frontendStack;
-        if (advisorResult.source === 'dynamic-ai' && 'aiRationale' in advisorResult.stack) {
-          // This is a ComprehensiveSupplementStack, convert it
-          const personalizedStack = convertComprehensiveToPersonalizedStack(advisorResult.stack as ComprehensiveSupplementStack);
-          frontendStack = dynamicAIAdvisorService.convertStackToFrontendFormat(personalizedStack);
-        } else {
-          // This should be a PersonalizedStack, but let's ensure compatibility
-          frontendStack = dynamicAIAdvisorService.convertStackToFrontendFormat(advisorResult.stack as any);
-        }
+        console.log('✅ Converting stack to frontend format...');
+        
+        // Convert to frontend format for display - simplified approach
+        const frontendStack = dynamicAIAdvisorService.convertStackToFrontendFormat(advisorResult.stack);
+        console.log('Frontend stack:', frontendStack);
         
         setResults({ success: true, data: frontendStack });
-        
-        // Create compatible analytics object for setAdvisorAnalytics
-        const compatibleAnalytics = {
-          ...advisorResult,
-          stack: 'aiRationale' in advisorResult.stack ? 
-            convertComprehensiveToPersonalizedStack(advisorResult.stack as ComprehensiveSupplementStack) : 
-            advisorResult.stack
-        };
-        setAdvisorAnalytics(compatibleAnalytics);
+        setAdvisorAnalytics(advisorResult);
         setShowChangePrompt(false);
         
         toast({
@@ -286,10 +196,13 @@ export default function AdvisorPage() {
         }, 100);
         
       } else {
+        console.error('❌ Advisor result failed:', advisorResult);
         throw new Error(advisorResult.error || 'Failed to generate recommendations');
       }
 
     } catch (error: any) {
+      console.error('❌ Error in handleSubmit:', error);
+      setResults({ success: false, message: error.message });
       toast({
         variant: "destructive",
         title: "Generation Failed",

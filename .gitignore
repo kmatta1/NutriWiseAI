@@ -21,6 +21,17 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+.env.backup
+
+# Firebase config with credentials
+firebaseConfig.json
+serviceAccountKey.json
+
+# Additional sensitive files
+*.key
+*.pem
+*.p12
+**/credentials/**
 
 # IDE and editor files
 .vscode/
